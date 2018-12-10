@@ -1,9 +1,10 @@
 <view class="contain">
   <!--记录保存-->
   <view class="best">
+
     <view class="item">
       <view class="item-20" style='font-size:11pt;font-weight:bolder'>最佳记录</view>
-      <view class="item-60" style='font-size:10pt;text-align:left;'> 3000M越野障碍赛</view>
+      <view class="item-60" style='font-size:10pt;text-align:left;'> {{best[0].title}}</view>
       <view class="item-20" style='text-align:right'>
         <image src="../../../../image/great.png"></image>
       </view>
@@ -14,108 +15,59 @@
       </view>
       <view class="item-25">
         <view style='font-size:10pt;color:#969696;'>单 位</view>
-        <view style='font-size:11pt;'>特勤中队</view>
+        <view style='font-size:11pt;'>{{best[0].dptname}}</view>
       </view>
       <view class="item-30" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
         <view style='font-size:10pt;color:#969696;'>时 间</view>
-        <view style='font-size:11pt;'>2018-10-12</view>
+        <view style='font-size:11pt;'>{{best[0].time}}</view>
       </view>
       <view class="item-30">
         <view style='font-size:10pt;color:#969696;'>成 绩</view>
-        <view style='font-size:11pt;'>02'34"40</view>
+        <view style='font-size:11pt;'>{{best[0].record}}</view>
       </view>
     </view>
+
     <view class="item">
       <view class="item-25" style='font-size:10pt;color:#969696;'>最近记录</view>
-      <view class="item-25" style='font-size:10pt;border-left:1px solid #cdcdcd;'>特勤中队</view>
+      <view class="item-25" style='font-size:10pt;border-left:1px solid #cdcdcd;'>{{best[1].dptname}}</view>
       <view class="item-25" style='font-size:10pt;'>
-        02'22"32
+        {{best[1].time}}
       </view>
       <view class="item-25" style='font-size:10pt;'>
-        2018-01-21
+        {{best[1].record}}
       </view>
     </view>
+
   </view>
   <!--各单位成绩对比-->
   <view class="rank">
     <view style='background-color:#3b413b;height:30px;line-height:30px;width:98%;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
       本月记录
     </view>
-    <view class="item border-btm bk">
+    <view class="item border-btm bk" wx:for="{{records}}" wx:key="{{item.id}}">
       <view class="item-15">
-        <image src="../../../../image/1.png"></image>
+        <view wx:if="{{index<3}}">
+          <image src="../../../../image/{{index+1}}.png"></image>
+        </view>
+        <view wx:if="{{index>=3}}">
+          <text style='font-size:16pt;color:#3b413b;font-style:italic'>{{index+1}}</text>
+        </view>
       </view>
       <view class="item-25">
-        <view style='font-size:11pt;'>特勤中队</view>
+        <view style='font-size:11pt;'>{{item.dptname}}</view>
       </view>
       <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
         <view style='font-size:10pt;color:#969696;'>训练次数</view>
-        <view style='font-size:11pt;'>7</view>
+        <view style='font-size:11pt;'>{{item.total}}</view>
       </view>
       <view class="item-25">
         <view style='font-size:10pt;color:#969696;'>平均成绩</view>
-        <view style='font-size:11pt;'>02'34"40</view>
+        <view style='font-size:11pt;'>{{item.record}}</view>
       </view>
       <view class="item-10">
         <image style='width:20px;height:30px;' src="../../../../image/enter.png"></image>
       </view>
     </view>
-    <view class="item border-btm bk">
-      <view class="item-15">
-        <image src="../../../../image/2.png"></image>
-      </view>
-      <view class="item-25">
-        <view style='font-size:11pt;'>特勤中队</view>
-      </view>
-      <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
-        <view style='font-size:10pt;color:#969696;'>训练次数</view>
-        <view style='font-size:11pt;'>7</view>
-      </view>
-      <view class="item-25">
-        <view style='font-size:10pt;color:#969696;'>平均成绩</view>
-        <view style='font-size:11pt;'>02'34"40</view>
-      </view>
-      <view class="item-10">
-        <image style='width:20px;height:30px;' src="../../../../image/enter.png"></image>
-      </view>
-    </view>
-    <view class="item border-btm bk">
-      <view class="item-15">
-        <image src="../../../../image/3.png"></image>
-      </view>
-      <view class="item-25">
-        <view style='font-size:11pt;'>特勤中队</view>
-      </view>
-      <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
-        <view style='font-size:10pt;color:#969696;'>训练次数</view>
-        <view style='font-size:11pt;'>7</view>
-      </view>
-      <view class="item-25">
-        <view style='font-size:10pt;color:#969696;'>平均成绩</view>
-        <view style='font-size:11pt;'>02'34"40</view>
-      </view>
-      <view class="item-10">
-        <image style='width:20px;height:30px;' src="../../../../image/enter.png"></image>
-      </view>
-    </view>
-    <view class="item border-btm bk">
-      <view class="item-15">
-        <text style='font-size:16pt;color:#3b413b;font-style:italic'>4</text>
-      </view>
-      <view class="item-25">
-        <view style='font-size:11pt;'>特勤中队</view>
-      </view>
-      <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
-        <view style='font-size:10pt;color:#969696;'>训练次数</view>
-        <view style='font-size:11pt;'>7</view>
-      </view>
-      <view class="item-25">
-        <view style='font-size:10pt;color:#969696;'>平均成绩</view>
-        <view style='font-size:11pt;'>02'34"40</view>
-      </view>
-      <view class="item-10">
-        <image style='width:20px;height:30px;' src="../../../../image/enter.png"></image>
-      </view>
-    </view>
+
   </view>
 </view>
