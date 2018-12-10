@@ -11,11 +11,91 @@ Page({
     headerHeight: 30,
     // tab切换  
     currentTab: 0,
-    Duty: [],//当日考勤{ uname: '李慕白', dutytime: '2018-01-23', dutype: 0, udptname: '文山州公安消防支队' }
-    Leave: [],//当日请假
+    group: [
+      {
+        rid:1,
+        title:"400米快速供水操",
+        time:"2018-02-15",
+        dptname:"特勤中队",
+        record:"02'32\"13",
+        first:"特勤中队",
+        frecord:"01'32\"13",
+        second: "富源中队",
+        srecord: "02'32\"13",
+        third: "沾益中队",
+        trecord: "03'02\"13",
+      },
+      {
+        rid: 2,
+        title: "百米梯次进攻操",
+        time: "2018-02-15",
+        dptname: "特勤中队",
+        record: "02'32\"13",
+        first: "特勤中队",
+        frecord: "01'32\"13",
+        second: "富源中队",
+        srecord: "02'32\"13",
+        third: "沾益中队",
+        trecord: "03'02\"13",
+      },
+      {
+        rid: 3,
+        title: "纵深灭火操",
+        time: "2018-02-15",
+        dptname: "特勤中队",
+        record: "02'32\"13",
+        first: "特勤中队",
+        frecord: "01'32\"13",
+        second: "富源中队",
+        srecord: "02'32\"13",
+        third: "沾益中队",
+        trecord: "03'02\"13",
+      }
+    ],//班组科目{ uname: '李慕白', dutytime: '2018-01-23', dutype: 0, udptname: '文山州公安消防支队' }
+    single: [
+      {
+        rid: 1,
+        title: "5000米长跑",
+        time: "2018-02-15",
+        dptname: "李文勇",
+        record: "02'32\"13",
+        first: "江浩",
+        frecord: "01'32\"13",
+        second: "陶渊明",
+        srecord: "02'32\"13",
+        third: "宋久子",
+        trecord: "03'02\"13",
+      },
+      {
+        rid: 2,
+        title: "俯卧撑（3分钟）",
+        time: "2018-02-15",
+        dptname: "李清照",
+        record: "15",
+        first: "白居易",
+        frecord: "12",
+        second: "曹丕",
+        srecord: "11",
+        third: "曹植",
+        trecord: "10",
+      },
+      {
+        rid: 3,
+        title: "单杠卷身上",
+        time: "2018-02-15",
+        dptname: "李清照",
+        record: "15",
+        first: "白居易",
+        frecord: "12",
+        second: "曹丕",
+        srecord: "11",
+        third: "曹植",
+        trecord: "10",
+      }
+    ],//个人科目
     loadShow: false,///加载图标显示
-    tsize: 0,
-    asize: 0,
+    gsize: 0,
+    ssize: 0,
     pagesize: 10,
     DefaultLimit: 7//功能限制访问权限级别
   },
@@ -38,7 +118,7 @@ Page({
     });
     /*
       获取正常考勤和当日请假列表
-     */
+    
     wx.request({
       url: host + "duty.do",
       method: "post",
@@ -102,16 +182,17 @@ Page({
         })
       }
     });
+     */
 
     //初始化Leave和Duty长度
     //初始化长度
     that.setData({
-      tsize: that.data.Duty.length * 105,
-      asize: that.data.Leave.length * 105,
+      gsize: that.data.group.length * 105,
+      ssize: that.data.single.length * 105,
     });
     if (that.data.tsize > that.data.defaultHeight) {
       that.setData({
-        defaultHeight: that.data.tsize + that.data.headerHeight
+        defaultHeight: that.data.gsize + that.data.headerHeight
       });
     }
   },
@@ -128,9 +209,9 @@ Page({
     var current = e.detail.current;
     var size = 0;
     if (current == 0) {
-      size = that.data.Duty.length;
+      size = that.data.group.length;
     } else if (current == 1) {
-      size = that.data.Leave.length;
+      size = that.data.single.length;
     }
     size = size * 105 + that.data.headerHeight;
     if (size < that.data.winHeight) {
@@ -154,9 +235,9 @@ Page({
       var current = e.target.dataset.current;
       var size = 0;
       if (current == 0) {
-        size = that.data.Duty.length;
+        size = that.data.group.length;
       } else if (current == 1) {
-        size = that.data.Leave.length;
+        size = that.data.single.length;
       }
       size = size * 105 + that.data.headerHeight;
       if (size < that.data.winHeight) {
