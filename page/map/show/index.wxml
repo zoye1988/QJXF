@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <map
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        markers="{{markers}}"
+        scale="14"
+        >
+      </map>
+    </view>
+  </view>
+</view>

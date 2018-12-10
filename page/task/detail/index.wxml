@@ -1,0 +1,120 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border">
+          <image src="../../../image/remind.png" class="tip2" />
+        </view>
+        <view class="flex-item item-85" style='font-weight:bolder;line-height:30px;height:30px;'>
+          {{plan.title}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border" style='font-weight:bolder;'>
+          <text>详细\n内容</text>
+        </view>
+        <view class="flex-item item-85" style='Text-indent:25px;'>
+          {{plan.content}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border" style='font-weight:bolder;'>
+          <text>人员\n时间</text>
+        </view>
+        <view class="flex-item item-85" style='text-align:center;'>
+          <text>{{plan.person}}\n</text>
+          <text>({{plan.time}}) {{plan.ptime}}</text>
+        </view>
+      </view>
+      <view class="list_flex-wrp1" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border" style='font-weight:bolder;'>
+          <text>实施\n情况</text>
+        </view>
+        <view class="flex-item item-85">
+          <view wx:for="{{worknote}}" wx:key="{{item.linkID}}" style='border-bottom:1px solid #dcdcdc;margin-bottom:5px;padding-bottom:5px;'>
+            <view>{{item.title}}</view>
+            <view class="worknote_img" wx:if="{{item.video==0}}">
+              <image wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" mode="aspectFill" src="{{imgs}}" data-src="{{imgs}}" data-ilist="{{item.imgs}}" bindtap="previewImage"></image>
+            </view>
+            <view class="worknote_img" wx:elif="{{item.video==1}}">
+              <video wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" style="width:90%;height:180px;" src="{{imgs}}" controls objectFit="contain"></video>
+            </view>
+            <view style='text-align:right;width:100%;'>
+              <view class="font-fade date_view" style='text-align:right;'>
+                编辑：{{item.uname}}
+              </view>
+              <view class="date_view" style='text-align:right;color:#cdcdcd;'>
+                /
+              </view>
+              <view class="font-fade date_view" style='text-align:right;'>
+                {{item.wtime}}
+              </view>
+              <view class="date_view" style='text-align:right;color:#cdcdcd;'>
+                |
+              </view>
+              <view class="font-fade date_view" style='text-align:center;color:#1296db;margin-right:10px;' wx:if="{{item.openid==_openid}}" data-linkid="{{item.linkID}}" bindtap='delItem'>
+                删除
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--edit-->
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item3 item-25" style='color:#ffffff;'>
+          <image src="../../../image/time.png" class="tip2" /> 实施内容
+        </view>
+        <view class="flex-item3 item-75">
+        </view>
+      </view>
+
+      <!--swiper-->
+        <view style='padding:10px;background-color:#fff;'>
+        <view class="plan_input">
+          <textarea auto-focus="" placeholder="记录救援现场情况" value="{{title}}" bindinput='keyChange2'></textarea>
+        </view>
+        <view class="imgDiv {{resDiv ? 'divHide' : 'divShow'}}">
+          <view style="text-align:right;color:#B2B2B2;font-size:10pt;">{{imageList.length}}/{{countIndex}}</view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files">
+              <view wx:for="{{imageList}}" wx:for-item="image">
+                <view class="weui-uploader__file">
+                  <image mode="aspectFill" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage2"></image>
+                </view>
+              </view>
+            </view>
+            <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </view>
+        </view>
+        <view class="videoDiv video_padding {{resDiv ? 'divShow' : 'divHide'}}">
+          <!--video edit-->
+          <view class="page-body-info" style='padding:0;'>
+            <block wx:if="{{src === ''}}">
+              <view class="image-plus image-plus-nb" style='border:1px solid #d9d9d9;' bindtap="chooseVideo">
+                <view class="image-plus-horizontal"></view>
+                <view class="image-plus-vertical"></view>
+              </view>
+            </block>
+            <block wx:if="{{src != ''}}">
+              <video src="{{src}}" class="video"></video>
+            </block>
+          </view>
+          <!--video edit-->
+        </view>
+        <view style="flex-direction:row;display:flex;">
+          <view style='width:50%;text-align:left;'>
+            <button type="default" class="mini-btn" size="mini" bindtap='changeRes'>{{resString}}</button>
+          </view>
+          <view style='width:50%;text-align:right;'>
+            <button type="primary" class="mini-btn" size="mini" bindtap="{{resDiv?'uploadAccidentVideo' :'uploadAccident'}}">发布</button>
+          </view>
+        </view>
+      </view>
+      <!--swiper-->
+
+      <!--edit-->
+    </view>
+  </view>
+</view>

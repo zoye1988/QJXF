@@ -1,0 +1,263 @@
+/**index.wxss**/  
+@import "../../common/lib/weui.wxss";
+.swiper-tab{  
+    width: 100%;  
+    text-align: center;  
+    background-color: #ffffff;
+    font-size: 10pt;
+    font-family: "黑体";
+    vertical-align: middle;
+    line-height: 30px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-bottom: 1px solid #CACACA;
+}  
+.swiper-tab-list{  
+    display: inline-block;  
+    width: 33%;  
+    color: #777777; 
+}  
+.on{ 
+  color: #1296db;  
+}  
+.swiper-box{ display: block; width: 100%; overflow: hidden; }  
+.item_border{
+  border-left: 1px solid #CACACA;
+}
+
+.list_flex-wrp{
+  display:flex;
+  padding:5px;
+  background-color:#ffffff;
+  text-align: center;
+  height:25px;
+  line-height: 25px;
+}
+.item-20{
+  width:20%;
+}
+.item-30{
+  width:30%;
+}
+.item-40{
+  width:40%;
+}
+.item-60{
+  width:60%;
+}
+.item-35{
+  width:35%;
+}
+.item-80{
+  width:80%;
+}
+.tip{
+  width:20px;height:20px;vertical-align: middle;padding-right:5px;border-right:1px solid #CACACA;
+}
+.tip2{
+  width:20px;height:20px;vertical-align: middle;padding-right:2px;
+}
+.tip3{
+  width:20px;height:20px;vertical-align: middle;border-left:1px solid #CACACA;padding-left:5px;
+}
+.tip4{
+  width:20px;
+  height:20px;
+  vertical-align: middle;
+  padding-right:5px;
+  padding-left:5px;
+  border-right:1px solid #CACACA;
+  border-left:1px solid #CACACA;
+}
+.union_tip{
+  background-color:#80a0fe;
+  border-radius:5px;
+  padding-left:2px;
+  padding-right:2px;
+  border:1px solid #373937;
+  color:#ffffff;
+}
+.union_tip2{
+  background-color:#f9f46b;
+  border-radius:5px;
+  padding-left:2px;
+  padding-right:2px;
+  border:1px solid #373937;
+  color:black;
+}
+.union_tip3{
+  background-color:#dcfac8;
+  border-radius:5px;
+  padding-left:2px;
+  padding-right:2px;
+  border:1px solid #373937;
+  color:black;
+}
+.union_title{
+  text-align: center;
+  font-weight: bold;
+  padding-left:5px;
+  margin-left:5px;
+  border-left:1px solid #CACACA;
+  height:25px;
+  overflow: hidden;
+}
+.union_content{
+  text-align: center;
+  padding-left:5px;
+  margin-left:5px;
+}
+.union_item{
+  background-color:#ffffff;
+  margin-bottom:5px;
+  padding-left:5px;
+  padding-right:5px;
+  padding-top:5px;
+  border-bottom:1px solid #CACACA;
+  font-size: 10pt;
+}
+.union_border{
+  border-bottom:1px solid #CACACA;
+}
+.home_title{
+  text-align:center;
+  font-size: 9pt;
+}
+.home_image{
+  width:25px;
+  height:25px;
+}
+.home_text{
+  text-align: "center";
+  color:#CACACA;
+  font-family:"黑体"
+}
+.home_img{
+  text-align:center;
+  margin-top:10px;
+}
+.title_border{
+  border-left:1px solid #CACACA;
+}
+.icon-box{
+  margin-bottom: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color:white;
+  border-bottom:1px solid #CFCFCF;
+  height:80px;
+}
+.icon-box2{
+  margin-bottom: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color:white;
+  border-bottom:1px solid #CFCFCF;
+  height:100px;
+}
+.icon-box-img{
+  margin-right: 46rpx;
+}
+.icon-box-ctn{
+  flex-shrink: 100;
+  padding-left: 10px;
+  border-left:1px solid #cacaca;
+  margin-top:4px;
+  margin-bottom:4px;
+  width:75%;
+  text-align: left;
+}
+.icon-box-title{
+  font-size: 10pt;
+  font-weight: bold;
+}
+.icon-box-desc{
+  margin-top: 2px;
+  font-size: 10pt;
+  color: #888;
+  height:40px;
+  overflow-y: hidden;
+}
+.icon-box-desc2{
+  margin-top: 2px;
+  font-size: 10pt;
+  color: #888;
+  height:65px;
+  overflow-y: hidden;
+}
+
+.icon-small-wrp{
+  margin-right: 46rpx;
+  width: 93px;
+  height: 93px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home_note{
+  margin-top:5px;
+}
+.note_icon{
+  width:30px;
+  height:30px;
+  text-align:center;
+}
+.note_icon_div{
+  width:15%;
+  text-align:center;
+  vertical-align: middle;
+}
+.note_icon_div2{
+  margin:2px;
+}
+.note_btn_icon{
+  width:20px;
+  height:30px;
+  text-align:center;
+}
+.note_icon_btn{
+  width:10%;
+  text-align:center;
+  vertical-align: middle;
+}
+.note_icon_btn2{
+  margin:2px;
+}
+.accAdd{
+  position:absolute;
+  right:8%;
+}
+.accAdd image{
+  width:45px;
+  height:45px;
+}
+.load{
+  margin-top:5px;
+  margin-bottom:5px;
+  background-color:#fff;
+  text-align: center;
+}
+.load image{
+  width:30px;
+  height:30px;
+}
+.showItemCss{
+  display: block;
+}
+.hideItemCss{
+  display: none;
+}
+.empty_item{
+  font-size:10pt;
+  text-align: center;
+  color:#888;
+  position: absolute;
+  top:40%;
+  left:40%;
+}
+.empty_item image{
+  width:40px;
+  height:40px;
+}

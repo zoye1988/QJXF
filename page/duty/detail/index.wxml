@@ -1,0 +1,168 @@
+<!--head-->
+<view class="head home_note">
+  <view class="icon-box">
+
+      <view class="note_icon_div" style='font-size:9pt;'>
+        <image class="note_icon" src="../../../image/phones.png" />
+        <view wx:if="{{Duty.dutype==0}}">正常上班</view>
+        <view wx:if="{{Duty.dutystatus==3}}">审批中</view>
+        <view wx:if="{{Duty.dutype==1 && Duty.dutystatus==4}}">事假中</view>
+        <view wx:if="{{Duty.dutype==2 && Duty.dutystatus==4}}">休假中</view>
+        <view wx:if="{{Duty.dutype==3 && Duty.dutystatus==4}}">病假中</view>
+        <view wx:if="{{Duty.dutype==4 && Duty.dutystatus==4}}">产假中</view>
+        <view wx:if="{{Duty.dutype==5 && Duty.dutystatus==4}}">婚假中</view>
+        <view wx:if="{{Duty.dutype==6 && Duty.dutystatus==4}}">加班中</view>
+      </view>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">
+        {{Duty.uname}}
+      </view>
+      <view class="icon-box-desc2">
+        <text>{{Duty.dptname}}\n</text>
+        <text>{{Duty.jobtitle}}\n</text>
+        <text>{{Duty.dutytime}}</text>
+      </view>
+    </view>
+    <view class="note_icon_btn">
+      <view class="note_icon_btn2">
+      </view>
+    </view>
+  </view>
+</view>
+<!--head-->
+<!--content-->
+<view class="content">
+  <view class="icon-box2">
+    <view class="note_icon_div">
+      <view class="note_icon_div2">
+        <text style='font-size:13pt;color:#888'>上午\n</text>
+        <text style='font-size:9pt;color:#888'>（8:30-11:30）</text>
+      </view>
+    </view>
+    <view class="icon-box-ctn2">
+      <view class="icon-box-title2" style='border-bottom:1px solid #CFCFCF;'>
+        <image src="../../../image/duty/checkin.png" class="tip2"></image>
+        上班考勤：
+        <block wx:if="{{Duty.morningcheckin==''}}">
+          <text style='color:#ea986c'>未录入</text>
+        </block>
+        <block wx:if="{{Duty.morningcheckin!=''}}">
+          {{Duty.morningcheckin}}
+        </block>
+      </view>
+      <view class="icon-box-title2">
+        <image src="../../../image/duty/checkout.png" class="tip2"></image>
+        下班考勤：
+        <block wx:if="{{Duty.morningcheckout==''}}">
+          <text style='color:#ea986c'>未录入</text>
+        </block>
+        <block wx:if="{{Duty.morningcheckout!=''}}">
+          {{Duty.morningcheckout}}
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="icon-box2">
+    <view class="note_icon_div">
+      <view class="note_icon_div2">
+        <text style='font-size:13pt;color:#888'>下午\n</text>
+        <text style='font-size:9pt;color:#888'>（14:30-17:30）</text>
+      </view>
+    </view>
+    <view class="icon-box-ctn2">
+      <view class="icon-box-title2" style='border-bottom:1px solid #CFCFCF;'>
+        <image src="../../../image/duty/checkin.png" class="tip2"></image>
+        上班考勤：
+        <block wx:if="{{Duty.afternooncheckin==''}}">
+          <text style='color:#ea986c'>未录入</text>
+        </block>
+        <block wx:if="{{Duty.afternooncheckin!=''}}">
+          {{Duty.afternooncheckin}}
+        </block>
+      </view>
+      <view class="icon-box-title2">
+        <image src="../../../image/duty/checkout.png" class="tip2"></image>
+        下班考勤：
+        <block wx:if="{{Duty.afternooncheckout==''}}">
+          <text style='color:#ea986c'>未录入</text>
+        </block>
+        <block wx:if="{{Duty.afternooncheckout!=''}}">
+          {{Duty.afternooncheckout}}
+        </block>
+      </view>
+    </view>
+  </view>
+  <view class="icon-box4">
+    <view class="note_icon_div">
+      <view class="note_icon_div2">
+        <text style='font-size:13pt;color:#888'>抽查\n</text>
+        <text style='font-size:9pt;color:#888'>（0:00-24:00）</text>
+      </view>
+    </view>
+    <view class="icon-box-ctn2">
+      <view class="icon-box-title2" style='border-bottom:1px solid #CFCFCF;'>
+        <image src="../../../image/duty/check.png" class="tip2"></image>
+        抽查考勤：
+        <block wx:if="{{Duty.workcheck==''}}">
+          <text style='color:#ea986c'>未录入</text>
+        </block>
+        <block wx:if="{{Duty.workcheck!=''}}">
+          {{Duty.workcheck}}
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--请假/加班-->
+  <view class="icon-box3" wx:if="{{Duty.dutystatus!=0}}">
+    <view class="note_icon_div">
+      <view class="note_icon_div2" wx:if="{{Duty.dutype==6}}">
+        <image class="note_icon" src="../../../image/duty/work.png" style='width:40px;height:40px;' />
+        <view style='font-size:10pt;'>加班情况</view>
+      </view>
+      <view class="note_icon_div2" style="font-size:10pt;" wx:if="{{Duty.dutype!=0 && Duty.dutype!=6}}">
+        <image class="note_icon" src="../../../image/duty/leave.png" style='width:40px;height:40px;' />
+        <view wx:if="{{Duty.dutype==1}}">
+          <text>事假</text>
+        </view>
+        <view wx:if="{{Duty.dutype==2}}">
+          <text>休假</text>
+        </view>
+        <view wx:if="{{Duty.dutype==3}}">
+          <text>病假</text>
+        </view>
+        <view wx:if="{{Duty.dutype==4}}">
+          <text>产(护理)假</text>
+        </view>
+        <view wx:if="{{Duty.dutype==5}}">
+          <text>婚假</text>
+        </view>
+      </view>
+    </view>
+    <view class="icon-box-ctn2">
+      <view class="icon-box-desc3">
+        <text>申请时间：</text>
+        <text style='color:black'>{{Duty.actioncheckin}}\n</text>
+        <text>结束时间：</text>
+        <text style='color:black'>{{Duty.actioncheckout}}\n</text>
+        <text>申请原因：</text>
+        <text style='color:black'>{{Duty.actionreason}}\n</text>
+        <text>审批状态：</text>
+        <text style='color:#1296db' wx:if="{{Duty.dutystatus==3}}" >等待审批\n</text>
+        <text style='color:green' wx:if="{{Duty.dutystatus==4}}" style='color:green'>审批通过</text><text wx:if="{{Duty.dutystatus==4}}"> [审批领导：{{Duty.leader}}]\n</text>
+        <text wx:if="{{Duty.dutystatus==1}}" style='color:red'>未通过审批</text><text wx:if="{{Duty.dutystatus==1}}"> [审批领导：{{Duty.leader}}]\n</text>
+        <!--审批-->
+        <view class="list_flex-wrp" wx:if="{{job==Duty.leadercode && Duty.dutystatus==3}}">
+          <button type="primary" style="font-size:10pt;" bindtap="dutyPassBtn">同意审批</button>
+          <button type="warn" style="font-size:10pt;" bindtap="dutyDelayBtn">拒绝审批</button>
+        </view>
+        <view class="list_flex-wrp">
+          <button type="primary" style="font-size:10pt;" bindtap="backBtn">返回上一页</button>
+        </view>
+        <!--审批-->
+      </view>
+    </view>
+  </view>
+  <!--请假/加班-->
+
+</view>
+<!--content-->

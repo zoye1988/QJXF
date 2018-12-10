@@ -1,0 +1,62 @@
+<view class="container">
+  <view class="page-body">
+    <!--head-->
+      <view class="page-section2">
+        <view class="page-section-spacing search_spacing">
+          <!--search-->
+          <view class="flex-wrp" style="flex-direction:row;">
+            <view class="flex-item search_text" bindtap="showItem_build">
+              <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{bitems}}">
+                <image class="formImg" src="../../../image/other.png" />
+              </picker>
+            </view>
+            <view class="flex-item search_item">
+              <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入搜索关键字" bindblur="keyChange" />
+            </view>
+            <view class="flex-item search_icon" bindtap='searchAction'>
+              <image class="searchImg" src="../../../image/search.png" />
+            </view>
+          </view>
+          <!--item-->
+        </view>
+      </view>
+    <!--head-->
+    <!--content-->
+    <view style='margin-top:35px;'>
+      <view class="empty_item" wx:if="{{builds.length==0}}">
+        <image src="../../../image/empty.png"></image>
+        <view>暂时无数据</view>
+      </view>
+      <!--循环-->
+      <navigator url="../detail/index?id={{item.bid}}" wx:for="{{builds}}" wx:key="{{item.id}}">
+        <view class="list_flex-wrp" style="flex-direction:row;">
+          <view class="flex-item build_pic" wx:if="{{item.image==''}}">
+            <image class="buildImg" mode="aspectFit" src="../../../image/temp.png" />
+          </view>
+          <view class="flex-item build_pic" wx:if="{{item.image!=''}}">
+            <image class="buildImg" mode="aspectFill" src="{{downloadurl}}{{item.imagestring}}" />
+          </view>
+          <view class="flex-item build_content">
+            <view class="build_title">{{item.title}}</view>
+            <view class="build_address">
+              <image src="../../../image/address.png" class="tip2"></image>
+              {{item.address}}
+            </view>
+            <view class="build_type">
+              <image src="../../../image/phone.png" class="tip2"></image>
+              {{item.tel}}
+            </view>
+            <view class="build_type">
+              <view class="tip">{{item.btname}}</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <!--循环-->
+      <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+        <image src="../../../image/timg.gif"></image>
+      </view>
+    </view>
+    <!--content-->
+  </view>
+</view>

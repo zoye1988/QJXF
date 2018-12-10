@@ -1,0 +1,85 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    今日警情
+  </view>
+  <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    近期警情
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 一日生活制度 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{todayAcc.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note" wx:for="{{todayAcc}}" wx:key="{{item.aid}}">
+      <navigator url="../detail/index?aid={{item.aid}}">
+        <view class="icon-box2">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/accident.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+            <image src="../../../image/new.png" class="tip2" wx:if="{{item.isnew}}"/>
+            {{item.dptname}}
+            </view>
+            <view class="icon-box-desc2">
+              <text>事故时间：{{item.atime}}\n</text>
+              <text>事故类别：{{item.atype}}\n</text>
+              <text>事故地址：{{item.address}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 通知公告 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{Acc.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note" wx:for="{{Acc}}" wx:key="{{item.aid}}">
+      <navigator url="../detail/index?aid={{item.aid}}">
+        <view class="icon-box2">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/accident.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+            {{item.dptname}}
+            </view>
+            <view class="icon-box-desc2">
+              <text>事故时间：{{item.atime}}\n</text>
+              <text>事故类别：{{item.atype}}\n</text>
+              <text>事故地址：{{item.address}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>

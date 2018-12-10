@@ -1,0 +1,54 @@
+<view class="container">
+  <view class="page-body">
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border">
+          <image src="../../../image/events.png" class="tip2" />
+        </view>
+        <view class="flex-item2 item-85">
+          <view style="font-weight:bold;font-size:10pt;">{{event.title}}</view>
+          <view style="font-size:9pt;color:#888;">时间：{{event.time}}</view>
+          <view style="font-size:9pt;color:#888;">编辑：{{event.author}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border">
+          <view style="font-weight:bold;font-size:9pt;">
+            <text>详细\n内容</text>
+          </view>
+        </view>
+        <view class="flex-item item-85 chemical_content">
+          <text>{{event.content}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-15 right_border">
+          <view style="font-weight:bold;font-size:9pt;">
+            <text>相关\n附件</text>
+          </view>
+        </view>
+        <view class="flex-item item-85 chemical_content" style="text-align:left;Text-indent:0px;">
+          <view style="font-size:11pt;text-align:center;color:#DCDCDC" wx:if="{{imageList.length==0}}">
+            <text>暂时无数据</text>
+          </view>
+          <view class="worknote_img" >
+            <image wx:for="{{imageList}}" mode="aspectFill" src="{{item}}" data-src="{{item}}" data-ilist="{{item}}" bindtap="previewImage"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="list_flex-wrp" style="flex-direction:row">
+        <view class="flex-item item-60">
+        </view>
+        <view class="flex-item item-40">
+          <view style="font-size:9pt;color:#1296db;text-align:right;margin-right:10px;" wx:if="{{event.openid==_openid}}"  bindtap='deleteNote'>删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

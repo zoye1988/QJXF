@@ -1,0 +1,92 @@
+<view class="container">
+  <view class="page-body">
+    <!--head-->
+      <view class="page-section2">
+        <view class="page-section-spacing search_spacing">
+          <!--search-->
+          <view class="flex-wrp" style="flex-direction:row;">
+            <view class="flex-item search_text" bindtap="showItem_build">
+              <picker bindchange="bindPickerChange" value="{{index}}" range="{{ditems}}">
+                <image class="formImg" src="../../../image/other.png" />
+              </picker>
+            </view>
+            <view class="flex-item search_item">
+              <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入姓名关键字" bindinput="keyChange" />
+            </view>
+            <view class="flex-item search_icon" bindtap='searchAction'>
+              <image class="searchImg" src="../../../image/search.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+    <!--head-->
+    <!--content-->
+    <view style='margin-top:35px;'>
+      <view class="empty_item" wx:if="{{user.length==0}}">
+        <image src="../../../image/empty.png"></image>
+        <view>暂时无数据</view>
+      </view>
+      <view class="home_note" wx:for="{{user}}" wx:key="{{item.uid}}">
+        <view class="icon-box" wx:if="{{openid==item.openid}}">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/self.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+              <text style='font-size:10pt;'>{{item.uname}}</text>
+              <text style='font-weight:normal;color:#80a0fe;'> |{{item.jobtitle}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <view class="flex-wrp" style="flex-direction:row;height:25px;line-height:25px;padding-top:5px;">
+                <view class="flex-item" style='width:10%;'>
+                  <image src="../../../image/phone.png" class="tip2" />
+                </view>
+                <view class="flex-item" style='width:60%;font-size:10pt;'>
+                  <input type="text" name="keyword" value="{{item.tel}}" bindinput="keyChange2" style='border-bottom:1px solid #888;' />
+                </view>
+                <view class="flex-item" style='width:30%;text-align:right;'>
+                  <button type="primary" class="mini-btn" size="mini" bindtap='updateTel' style='margin:0;'>更新</button>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+
+            </view>
+          </view>
+        </view>
+        <view class="icon-box" wx:elif="{{openid!=item.openid}}">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/person.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn" bindtap='callTel' data-tel='{{item.tel}}' data-uname='{{item.uname}}'>
+            <view class="icon-box-title">
+              <text style='font-size:10pt;'>{{item.uname}}</text>
+              <text style='font-weight:normal;color:#80a0fe;'> | {{item.jobtitle}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <image src="../../../image/address.png" class="tip" />
+              <text>{{item.dptname}}\n</text>
+              <image src="../../../image/phone.png" class="tip" />
+              <text>{{item.tel}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn" bindtap='downloadPhone' data-phone='{{item.tel}}' data-uname='{{item.uname}}' data-dptname='{{item.dptname}}'>
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/dlphone.png" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+        <image src="../../../image/timg.gif"></image>
+      </view>
+    </view>
+    <!--content-->
+  </view>
+</view>

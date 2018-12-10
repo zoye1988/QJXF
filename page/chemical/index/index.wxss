@@ -1,0 +1,250 @@
+/* index.wxss */
+@import "../../common/lib/weui.wxss";
+.radio {
+  margin-right: 20rpx;
+}
+.page-section{
+  margin-bottom:0;
+}
+.page-section2{
+  position: fixed;top: 0;width: 100%;
+}
+.flex-wrp{
+  margin-top:0px;
+  display:flex;
+  height:35px;
+  border-bottom:1px solid #CACACA;
+}
+.flex-item{
+  font-size: 26rpx;
+}
+.empty_item{
+  font-size:10pt;
+  text-align: center;
+  color:#888;
+  position: absolute;
+  top:40%;
+  left:40%;
+}
+.empty_item image{
+  width:40px;
+  height:40px;
+}
+.search_item{
+  width:90%;
+  height:35px;
+  padding-top:5px;
+}
+.wxsearch{
+  width:100%;
+  height:30px;
+  font-size: 10pt;
+  padding-left:5px;
+}
+.search_text{
+  width:13%;
+  height:25px;
+  text-align: center;
+  border-right:1px solid #CACACA;
+  margin-top:5px;
+
+}
+.search_icon{
+  width:10%;
+  height:25px;
+  text-align: center;
+  margin-top:5px;
+  border-left:1px solid #CACACA;
+}
+.searchImg{
+  width:25px;
+  height:25px;
+}
+.formImg{
+  width:25px;
+  height:25px;
+}
+.search_spacing{
+  margin:0px;
+  padding-left:1px;
+  padding-right:1px;
+  background-color:white;
+  border-bottom:1px solid #cacaca;
+}
+.showItemCss{
+  display: block;
+}
+.hideItemCss{
+  display: none;
+}
+.chemical_flex-wrp{
+  margin-top:5px;
+  display:flex;
+  background-color:#ffffff;
+  border-bottom:1px solid #CACACA;
+  padding-bottom: 3px;
+}
+.clist-flex-wrp{
+  display:flex;
+  line-height: 30px;
+  width:98%;
+  border-bottom:1px solid #CACACA;
+}
+.danger-flex-wrp{
+  float:left;
+  display:flex;
+  vertical-align: middle;
+  margin-left: 5px;
+  padding-top:5px;
+  color: #888;
+}
+.list_flex-item{
+  font-size: 26rpx;
+}
+.buildImg{
+  width:130px;
+  height:80px;
+  margin-top:5px;
+}
+button{
+  margin-left:5px;
+  margin-right:5px;
+  background-color:#373937;
+  color:#ffffff;
+  font-size:11pt;
+}
+.button-sp-area{
+  margin: 0 auto;
+  width: 60%;
+}
+.mini-btn{
+  margin-right: 10rpx;
+}
+.build_content{
+  width:85%;
+}
+.chemical_title{
+  font-weight:bolder;
+  font-size: 10pt;
+  height:30px;
+  overflow-y: hidden;
+  padding-right:5px;
+}
+.chemical_title2{
+  font-size: 9pt;
+  height:30px;
+  overflow-y: hidden;
+}
+.build_address{
+  font-size: 9pt;
+  height:40px;
+  overflow-y: hidden;
+  padding-top:7px;
+  color:#888;
+  border-top:1px solid #CACACA;
+  width:100%;
+}
+.build_type{
+  font-size: 9pt;
+  padding-top:7px;
+  height:20px;
+  color:#888;
+  width:100%;
+}
+.tip{
+  width:15px;
+  height:15px;
+  vertical-align: middle;
+  border-right:1px solid #CACACA;
+  padding-right:5px;
+  margin-right:5px;
+}
+.item_txt{
+  float:left;
+  vertical-align: middle;
+  height:20px;
+  margin-left: 5px;
+}
+.radius_normal{
+  background-color:#80a0fe;
+  border-radius:5px;
+  padding-left:5px;
+  padding-right:5px;
+  float:left;
+  border:1px solid #373937;
+  color:#ffffff;
+}
+.radius_broke{
+  background-color:#fb6570;
+  border-radius:5px;
+  padding-left:5px;
+  padding-right:5px;
+  float:left;
+  border:1px solid #373937;
+  color:#ffffff;
+}
+.item-intense{
+  float:left;
+}
+.item-10{
+  width:10%;
+}
+.item-13{
+  width:13%;
+}
+.item-15{
+  width:15%;
+}
+.item-20{
+  width:20%;
+}
+.item-30{
+  width:30%;
+}
+.item-40{
+  width:40%;
+}
+.item-60{
+  width:60%;
+}
+.item-35{
+  width:35%;
+}
+.item-80{
+  width:80%;
+}
+.item-70{
+  width:70%;
+}
+.item-90{
+  width:90%;
+  text-align: left;
+}
+.chemical-tip{
+  border-right:1px solid #CACACA;
+  margin-right:5px;
+  text-align: center;
+}
+.chemical-tip image{
+  width:100%;
+  height:30px;
+}
+.chemical-txt{
+  font-size:10pt;
+}
+.load{
+  margin-top:5px;
+  margin-bottom:5px;
+  background-color:#fff;
+  text-align: center;
+}
+.load image{
+  width:30px;
+  height:30px;
+}
+.showItemCss{
+  display: block;
+}
+.hideItemCss{
+  display: none;
+}

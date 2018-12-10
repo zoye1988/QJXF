@@ -1,0 +1,148 @@
+/* index.wxss */
+@import "../../common/lib/weui.wxss";
+.list_flex-wrp{
+  display:flex;
+  background-color:#ffffff;
+  text-align: center;
+}
+.list_flex-wrp2{
+  display:flex;
+  background-color:#ffffff;
+  text-align: center;
+  border-bottom:1px dashed #CACACA;
+}
+.build_list_pic{
+  padding:5px;
+  border-bottom:1px solid #EAEAEA;
+}
+.build_list_pic image{
+  width:100%;
+  height:200px;
+}
+.flex-item{
+  font-size: 10pt;
+  padding-bottom:5px;
+  padding-top:5px;
+  text-align: center;
+}
+.flex-item2{
+  font-size: 10pt;
+  padding-bottom:5px;
+  padding-top:5px;
+  text-align: left;
+}
+.item-10{
+  width:10%;
+}
+.item-13{
+  width:13%;
+}
+.item-15{
+  width:15%;
+}
+.item-20{
+  width:20%;
+}
+.item-30{
+  width:30%;
+}
+.item-40{
+  width:40%;
+}
+.item-60{
+  width:60%;
+}
+.item-35{
+  width:35%;
+}
+.item-80{
+  width:80%;
+}
+.item-85{
+  width:85%;
+}
+.item-70{
+  width:70%;
+}
+.item-90{
+  width:90%;
+  text-align: left;
+}
+.tip{
+  width:30px;height:30px;vertical-align: middle;padding-right:5px;border-right:1px solid #CACACA;
+  text-align: center;
+}
+.tip2{
+  width:30px;height:30px;vertical-align: middle;
+  text-align: center;
+}
+.tip3{
+  width:20px;height:20px;vertical-align: middle;border-left:1px solid #CACACA;padding-left:5px;
+}
+.tip4{
+  width:20px;
+  height:20px;
+  vertical-align: middle;
+  padding-right:5px;
+  padding-left:5px;
+  border-right:1px solid #CACACA;
+  border-left:1px solid #CACACA;
+}
+.radius{
+  background-color:#EAEAEA;
+  border-radius:5px;
+  padding-left:5px;
+  padding-right:5px;
+  padding-bottom:2px;
+  float:left;
+  border:1px solid #373937;
+}
+.file_title{
+  background-color: #373937;
+  color:white;
+}
+.file_link{
+  height:20px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.file_hide{
+  display:none;
+}
+.right_border{
+  border-right:1px solid #CACACA;
+  margin-right:5px;
+  margin-top:2px;
+  margin-bottom:2px;
+  text-align: center;
+  
+}
+.left_border{
+  border-left:1px solid #CACACA;
+  text-align: center;
+}
+.chemical_item{
+  padding-bottom:5px;
+  padding-top:5px;
+  border-bottom:1px solid #CACACA;
+}
+.chemical_item2{
+  padding-bottom:5px;
+  padding-top:5px;
+}
+.chemical_content{
+  padding:5px;
+  line-height: 20px;
+  text-align: left;
+  Text-indent:25px;
+}
+.container{
+  background-color: #ffffff;
+  height:100%;
+}
+.worknote_img{
+  width:100%;display:flex-inline;text-align: left;
+}
+.worknote_img image{
+  width:90px;height:90px;padding-right:5px;padding-top:5px;
+}

@@ -1,0 +1,152 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <!--首页图标-->
+      <view class="home-section-spacing">
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item home_title home_text">
+            <navigator url="../build/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/build.png" />
+              </view>
+              <text>社会单位</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../xfs/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/water.png" />
+              </view>
+              <text>消防水源</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../union/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/coporation.png" />
+              </view>
+              <text>社会联动</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../chemical/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/raw.png" />
+              </view>
+              <text>危化品处置</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../duty/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/checkin.png" />
+              </view>
+              <text>工作考勤</text>
+            </navigator>
+          </view>
+        </view>
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item home_title home_text">
+            <navigator url="../plan/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/notice.png" />
+              </view>
+              <text>通知预警</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../accident/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/hot.png" />
+              </view>
+              <text>警情速报</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../car/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/auto.png" />
+              </view>
+              <text>车辆派遣</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../events/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/events3.png" />
+              </view>
+              <text>工作要情</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../task/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/form.png" />
+              </view>
+              <text>任务计划</text>
+            </navigator>
+          </view>
+        </view>
+        <view class="flex-wrp" style="flex-direction:row;">
+          
+          <view class="flex-item home_title home_text">
+            <navigator url="../rank/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/rank.png" />
+              </view>
+              <text>训练排名</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../live/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/video.png" />
+              </view>
+              <text>现场图像</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../phone/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/_phone.png" />
+              </view>
+              <text>联络电话</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!--首页通知-->
+      <view class="home_note">
+        <view class="empty_item" wx:if="{{worknotes.length==0}}">
+          <image src="../../../image/empty.png"></image>
+          <view>暂时无数据</view>
+        </view>
+        <navigator url="../{{item.targetUrl}}" wx:for="{{worknotes}}" wx:key="{{item.linkID}}">
+          <view class="icon-box2">
+            <view class="note_icon_div">
+              <view class="note_icon_div2">
+                <image class="note_icon" src="../../image/{{item.targetIcon}}" />
+              </view>
+            </view>
+            <view class="icon-box-ctn">
+              <view class="icon-box-title">{{item.sipname}}</view>
+              <view class="icon-box-desc2">
+                <text>{{item.targetTime}}\n</text>
+                <text>{{item.targetTitle}}\n</text>
+                <text>{{item.targetBrief}}</text>
+              </view>
+            </view>
+            <view class="note_icon_btn">
+              <view class="note_icon_btn2">
+                <image class="note_btn_icon" src="../../image/enter.png" />
+              </view>
+            </view>
+          </view>
+        </navigator>
+        <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+          <image src="../../../image/timg.gif"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

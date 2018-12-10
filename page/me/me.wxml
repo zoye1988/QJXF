@@ -1,0 +1,99 @@
+<!--page/me/me.wxml-->
+<view class="mecon">
+  <!--head-->
+  <view class="mehead">
+    <view class="list_flex-wrp" style="flex-direction:row;">
+      <view class="flex-item item-25">
+        <image src="{{uimg}}"></image>
+      </view>
+      <view class="flex-item mename item-70">
+        <text style="font-weight:bold;color:#fff;font-size:10pt;">{{uname}}</text><text style='color:#fff;font-size:9pt;'> [ {{jobtitle}} ]\n</text>
+        <text>{{udptname}}\n</text>
+        <text>最后登录:{{lastlogindate}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="department">
+    <view class="list_flex-wrp" style="flex-direction:row;">
+      <view class="flex-item item-25">
+        更新用户
+      </view>
+      <view class="flex-item item-70" style='text-align:right;'>
+        <button type="primary" class="mini-btn" size="mini" bindtap='updateUser' style='margin:0;'>点击更新</button>
+      </view>
+    </view>
+  </view>
+  <!--function-->
+  <view class="mefunction">
+    <view class="metitle">我的功能</view>
+    <view class="meitems">
+      <navigator url="../build/new/index">
+        <view class="meitem">
+          <image src="../../image/nbuild.png"></image>
+          <view style="font-size:10pt;">单位采集</view>
+        </view>
+      </navigator>
+      <navigator url="../xfs/new/index">
+        <view class="meitem">
+          <image src="../../image/nxfs.png"></image>
+          <view style="font-size:10pt;">水源采集</view>
+        </view>
+      </navigator>
+      <navigator url="../accident/new/index">
+        <view class="meitem">
+          <image src="../../image/nacc.png"></image>
+          <view style="font-size:10pt;">警情录入</view>
+        </view>
+      </navigator>
+      <navigator url="../plan/note/index">
+        <view class="meitem">
+          <image src="../../image/nnote.png"></image>
+          <view style="font-size:10pt;">通知管理</view>
+        </view>
+      </navigator>
+      <navigator url="../plan/weather/index">
+        <view class="meitem">
+          <image src="../../image/nweather.png"></image>
+          <view style="font-size:10pt;">预警管理</view>
+        </view>
+      </navigator>
+      <navigator url="../union/new/index">
+        <view class="meitem">
+          <image src="../../image/nunion.png"></image>
+          <view style="font-size:10pt;">联动采集</view>
+        </view>
+      </navigator>
+      <navigator url="../events/new/index">
+        <view class="meitem">
+          <image src="../../image/events2.png"></image>
+          <view style="font-size:10pt;">工作要情</view>
+        </view>
+      </navigator>
+      <navigator url="../phone/index/index">
+        <view class="meitem">
+          <image src="../../image/line.png"></image>
+          <view style="font-size:10pt;">联络电话</view>
+        </view>
+      </navigator>
+      <navigator url="../duty/me/index">
+        <view class="meitem">
+          <image src="../../image/finger.png"></image>
+          <view style="font-size:10pt;">我的考勤</view>
+        </view>
+      </navigator>
+      <navigator url="../phone/index/index">
+        <view class="meitem">
+          <image src="../../image/tableb.png"></image>
+          <view style="font-size:10pt;">统计分析</view>
+        </view>
+      </navigator>
+      <navigator url="../live/index/index">
+        <view class="meitem">
+          <image src="../../image/push.png"></image>
+          <view style="font-size:10pt;">现场直播</view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  
+</view>

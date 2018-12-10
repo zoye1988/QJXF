@@ -1,0 +1,84 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list item_border {{currentTab==0? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    今日任务
+  </view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    明日任务
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 通知公告 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{plans.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="home_note" wx:for="{{plans}}" wx:key="{{plans.pid}}">
+      <navigator url="../detail/index?pid={{item.pid}}">
+        <view class="icon-box">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/remind.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+              <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}"/>
+              <text>{{item.title}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <text>任务时间：{{item.time}}\n</text>
+              <text>参加人员：{{item.person}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 会议通知 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{tplans.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="home_note" wx:for="{{tplans}}" wx:key="{{tplans.pid}}">
+      <navigator url="../detail/index?pid={{item.pid}}">
+        <view class="icon-box">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/remind.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+              <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}"/>
+              <text>{{item.title}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <text>任务时间：{{item.time}}\n</text>
+              <text>参加人员：{{item.person}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>

@@ -1,0 +1,200 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    班组科目
+  </view>
+  <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    个人科目
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 一日生活制度 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{Duty.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note" wx:for="{{Duty}}" wx:key="{{item.did}}">
+      <navigator url="../detail/index?did={{item.did}}">
+        <view class="icon-box2">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/phones.png" />
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==0}}">
+                <text>在位</text>
+              </view>       
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+            {{item.uname}}
+            </view>
+            <view class="icon-box-desc2">
+              <text>人员类型：{{item.jobtitle}}\n</text>
+              <text>考勤日期：{{item.dutytime}}\n</text>
+              <text>考勤单位：{{item.dptname}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+        <view class="icon-box2">
+        test
+        </view>
+      </navigator>
+    </view>
+    <view class="home_note">
+      <navigator url="../group/list/index?did=1">
+        <view class="icon-box">
+          <view class="rank-title">
+            <view class="item-15">
+              <image src="../../../image/group.png"></image>
+            </view>
+            <view class="item-55">
+              <view style='font-size:11pt;font-weight:bolder'>400米快速供水操</view>
+              <view style='font-size:9pt'>记录时间：2018-01-21</view>
+            </view>
+            <view class="item-10" style='text-align:right'>
+              <image style="width:30px;height:30px;" src="../../../image/best.png"></image>
+            </view>
+            <view class="item-20" style='text-align:center;'>
+              <view style='font-size:10pt;'>特勤中队</view>
+              <view style='font-size:9pt;'>02'12"30</view>
+            </view>
+          </view>
+          <view class="rank-content">
+            <view class="item-15" style='font-size:9pt;color:#2782D7;border-right:1px solid #cdcdcd;'>月记录</view>
+            <view class="item-10">
+              <image src="../../../image/1.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>特勤中队</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/2.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>富源中队</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/3.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>特勤中队</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 通知公告 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{Leave.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note">
+      <navigator url="../single/index?did=1">
+        <view class="icon-box">
+          <view class="rank-title">
+            <view class="item-15">
+              <image src="../../../image/single.png"></image>
+            </view>
+            <view class="item-55">
+              <view style='font-size:11pt;font-weight:bolder'>3000米耐力跑</view>
+              <view style='font-size:9pt'>记录时间：2018-01-21</view>
+            </view>
+            <view class="item-10" style='text-align:right'>
+              <image style="width:30px;height:30px;" src="../../../image/best.png"></image>
+            </view>
+            <view class="item-20" style='text-align:center;'>
+              <view style='font-size:10pt;'>李某某</view>
+              <view style='font-size:9pt;'>02'12"30</view>
+            </view>
+          </view>
+          <view class="rank-content">
+            <view class="item-15" style='font-size:9pt;color:#2782D7;border-right:1px solid #cdcdcd;'>月记录</view>
+            <view class="item-10">
+              <image src="../../../image/1.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>马某某</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/2.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>徐默默</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/3.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>李嬷嬷</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="../single/index?did=1">
+        <view class="icon-box">
+          <view class="rank-title">
+            <view class="item-15">
+              <image src="../../../image/single.png"></image>
+            </view>
+            <view class="item-55">
+              <view style='font-size:11pt;font-weight:bolder'>5000米耐力跑</view>
+              <view style='font-size:9pt'>记录时间：2018-01-21</view>
+            </view>
+            <view class="item-10" style='text-align:right'>
+              <image style="width:30px;height:30px;" src="../../../image/best.png"></image>
+            </view>
+            <view class="item-20" style='text-align:center;'>
+              <view style='font-size:10pt;'>李某某</view>
+              <view style='font-size:9pt;'>02'12"30</view>
+            </view>
+          </view>
+          <view class="rank-content">
+            <view class="item-15" style='font-size:9pt;color:#2782D7;border-right:1px solid #cdcdcd;'>月记录</view>
+            <view class="item-10">
+              <image src="../../../image/1.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>马某某</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/2.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>徐默默</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+            <view class="item-10">
+              <image src="../../../image/3.png"></image>
+            </view>
+            <view class="item-18">
+              <view style='font-size:9pt'>李嬷嬷</view>
+              <view style='font-size:9pt'>02'21'23</view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>

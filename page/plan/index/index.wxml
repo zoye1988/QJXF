@@ -1,0 +1,84 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list item_border {{currentTab==0? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    通知公告
+  </view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    灾害预警
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 通知公告 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{note.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="home_note" wx:for="{{note}}" wx:key="{{item.nid}}">
+      <navigator url="../show/index?nid={{item.nid}}&code=note">
+        <view class="icon-box">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/note.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+              <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}"/>
+              <text>{{item.title}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <text>通知时间：{{item.time}}\n</text>
+              <text>通知内容：{{item.content}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 会议通知 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{weather.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="home_note" wx:for="{{weather}}" wx:key="{{item.nid}}">
+      <navigator url="../show/index?nid={{item.nid}}&code=weather">
+        <view class="icon-box">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/weather.png" />
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+              <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}"/>
+              <text>{{item.title}}</text>
+            </view>
+            <view class="icon-box-desc">
+              <text>通报时间：{{item.time}}\n</text>
+              <text>通报内容：{{item.content}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>

@@ -1,0 +1,125 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    工作考勤
+  </view>
+  <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    加班请假
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 一日生活制度 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{Duty.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note" wx:for="{{Duty}}" wx:key="{{item.did}}">
+      <navigator url="../detail/index?did={{item.did}}">
+        <view class="icon-box2">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <image class="note_icon" src="../../../image/phones.png" />
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==0}}">
+                <text>在位</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 && item.dutype==2}}">
+                <text>事假</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 &&item.dutype==2}}">
+                <text>休假</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 &&item.dutype==3}}">
+                <text>病假</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 &&item.dutype==4}}">
+                <text>产(护理)假</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 &&item.dutype==5}}">
+                <text>婚假</text>
+              </view>
+              <view style='font-size:9pt;color:#888' wx:if="{{item.dutystatus==4 &&item.dutype==6}}">
+                <text>加班</text>
+              </view>
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+            {{item.uname}}
+            </view>
+            <view class="icon-box-desc2">
+              <text>人员类型：{{item.jobtitle}}\n</text>
+              <text>考勤日期：{{item.dutytime}}\n</text>
+              <text>考勤单位：{{item.dptname}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 通知公告 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{Leave.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂无警情数据</view>
+    </view>
+    <view class="home_note" wx:for="{{Leave}}" wx:key="{{item.lid}}">
+      <navigator url="../leave/index?lid={{item.lid}}">
+        <view class="icon-box2">
+          <view class="note_icon_div">
+            <view class="note_icon_div2">
+              <view>
+                <image class="note_icon" src="../../../image/duty/waiting.png" />
+                <view style='font-size:9pt;color:#888'>审批中</view>
+              </view>
+            </view>
+          </view>
+          <view class="icon-box-ctn">
+            <view class="icon-box-title">
+            {{item.uname}}
+            </view>
+            <view class="icon-box-desc2">
+              <text>申请时间：{{item.actioncheckin}}\n</text>
+              <text>所属单位：{{item.dptname}}\n</text>
+              <view wx:if="{{item.dutype==1}}">
+                <text>申请类型：事假</text>
+              </view>
+              <view wx:if="{{item.dutype==2}}">
+                <text>申请类型：休假</text>
+              </view>
+              <view wx:if="{{item.dutype==3}}">
+                <text>申请类型：病假</text>
+              </view>
+              <view wx:if="{{item.dutype==4}}">
+                <text>申请类型：产(护理)假</text>
+              </view>
+              <view wx:if="{{item.dutype==5}}">
+                <text>申请类型：婚假</text>
+              </view>
+              <view wx:if="{{item.dutype==6}}">
+                <text>申请类型：加班</text>
+              </view>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>

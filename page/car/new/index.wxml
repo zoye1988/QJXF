@@ -1,0 +1,55 @@
+<view class="container">
+  <view class="page-body">
+    <view style='background-color:#fff;font-size:10pt;padding:5px;'>
+      <!--step1-->
+      <view style='width:100%;border-bottom:1px solid #1296db;margin-bottom:5px;'>
+        <text style='font-size:11pt;font-weight:bold'>步骤一：上传个人身份证件</text>
+      </view>
+      <view style='color:#888;text-indent:25px;line-height:20px;height:45px;'>
+        <text>请上传证件正面照片，要求拍摄文字清晰，自行对图片进行剪裁，不允许留白边</text>
+      </view>
+      <view style='text-align:center;'>
+        <image src='../../../image/identify_amry.png' style='width:80%;height:180px;'></image>
+      </view>
+      <!--step4-->
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item3 item-25" style='color:#ffffff;'>
+          个人身份证件
+        </view>
+        <view class="flex-item3 item-75">
+        </view>
+      </view>
+      <view style='width:80%;text-align:center;margin:10px auto;'>
+        <image src='{{downloadurl}}{{identifyImg}}' style='width:100%;height:180px;border:1px solid #888' bindtap='chooseIdentifyImage'></image>
+        <view style='width:100%;text-align:right'>
+          <button type="primary" class="mini-btn" size="mini" bindtap='submitIdentifyLicence'>提交</button>
+        </view>
+      </view>
+      <!--step2-->
+      <view style='width:100%;border-bottom:1px solid #1296db;margin-top:10px;margin-bottom:5px;'>
+        <text style='font-size:11pt;font-weight:bold'>步骤二：上传车辆驾驶证件</text>
+      </view>
+      <view style='color:#888;text-indent:25px;line-height:20px;height:45px;'>
+        <text>请上传证件正面照片，要求拍摄文字清晰，自行对图片进行剪裁，不允许留白边</text>
+      </view>
+      <view style='text-align:center;padding-top:10px;'>
+        <image src='../../../image/driver_amry.png' style='width:80%;height:180px;'></image>
+      </view>
+      <!--step4-->
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item3 item-25" style='color:#ffffff;'>
+          车辆驾驶证件
+        </view>
+        <view class="flex-item3 item-75">
+        </view>
+      </view>
+      <view style='width:80%;text-align:center;margin:10px auto;'>
+        <image src='{{downloadurl}}{{driverImg}}' style='width:100%;height:180px;border:1px solid #888' bindtap='chooseDriverImage'></image>
+        <view style='width:100%;text-align:right'>
+          <button type="primary" class="mini-btn" size="mini" bindtap='submitDriverLicence'>提交</button>
+        </view>
+      </view>
+      <!--step end-->
+    </view>
+  </view>
+</view>

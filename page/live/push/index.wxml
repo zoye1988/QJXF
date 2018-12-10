@@ -1,0 +1,48 @@
+<!--page/live/push/index.wxml-->
+<view style="width:100%;height: 100%; background-color: #1296db;">
+  <live-pusher 
+    class="pusher"
+    id="pusher"
+    url="{{playUrl}}"
+    mode="RTC"
+    orientation="{{orientation}}"
+    beauty="{{beauty}}"
+    whiteness="{{whiteness}}"
+    muted="{{muted}}"
+    bindstatechange="statechange"
+    autopush="false"
+    enable-camera="{{enableCamera}}"
+    >
+    <!-- 垂直方向的按钮 -->
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:350px;margin-left:10px">
+      <cover-image class="bottom_button" src="../../../image/live/{{beauty == 0 ? 'beauty-dis':'beauty'}}.png" bindtap='onBeautyClick'></cover-image>
+      <cover-view class='bottom_text'>美颜</cover-view>
+    </cover-view>
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:285px;margin-left:10px">
+      <cover-image class="bottom_button" src="../../../image/live/{{orientation == 'vertical'?'portrait':'landscape'}}.png" bindtap='onOrientationClick'></cover-image>
+      <cover-view class='bottom_text'>{{orientation == 'vertical'?'竖屏':'横屏'}}</cover-view>
+    </cover-view>
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:220px;margin-left:10px">
+      <cover-image class="bottom_button" src="../../../image/live/{{enableCamera?'off':'camera-dis'}}.png" bindtap='onEnableCameraClick'></cover-image>
+      <cover-view class='bottom_text'>摄像头</cover-view>
+    </cover-view>
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:155px;margin-left:10px">
+      <cover-image class="bottom_button" src="../../../image/live/{{muted?'mic-dis':'mic'}}.png" bindtap='onMuteClick'></cover-image>
+      <cover-view class='bottom_text'>声音</cover-view>
+    </cover-view>
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:90px;margin-left:10px;">
+      <cover-image class="bottom_button" src="../../../image/live/camera.png" bindtap='onSwitchCameraClick'></cover-image>
+      <cover-view class='bottom_text'>翻转</cover-view>
+    </cover-view>
+    <cover-view style="width:40px; height: 50px; position:absolute;bottom:25px;margin-left:10px;">
+      <cover-image class="bottom_button" src="../../../image/live/{{playing?'suspend':'start'}}.png" bindtap='onPushClick'></cover-image>
+      <cover-view class='bottom_text'>推送</cover-view>
+    </cover-view>
+    <!--文字列表-->
+    <cover-view class="word">
+      <cover-view class="{{item.type ? 'wordy' : 'wordw'}}" wx:for="{{notice}}" wx:key="{{item.type}}">
+        [{{item.ntime}}]{{item.title}}
+      </cover-view>
+    </cover-view>
+  </live-pusher>
+</view>

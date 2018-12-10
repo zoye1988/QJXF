@@ -1,0 +1,103 @@
+<view class="car_title">
+  工作表情登记表（{{dutytime}}）</view>
+          <map
+          id="myMap"
+          latitude="{{latitude}}"
+          longitude="{{longitude}}"
+          markers="{{markers}}"
+          scale="17"
+          circles="{{circles}}"
+          show-location=true,
+          bindcontroltap="getSelfLoc">
+          </map>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/person.png" class="tip2" />
+    <text>考勤人员</text>
+  </view>
+  <view class="flex-item item-50" style='margin-top:3px;'>
+    {{uname}}
+  </view>
+  <view class="flex-item item-25">
+    <view class="radius" bindtap='getSelfPos'>
+      <image src="../../../image/coordinates_fill.png" class="tip2" />
+      重新定位
+    </view>
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/other.png" class="tip2" />
+    <text>所属单位</text>
+  </view>
+  <view class="flex-item item-75">
+    {{dptname}}
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/duty.png" class="tip2" />
+    <text>考勤类型</text>
+  </view>
+  <view class="flex-item item-75">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{dutyArray}}">
+      <view>{{dutyArray[index]}}</view>
+    </picker>
+  </view>
+</view>
+<view class="list_flex-wrp2" style='border-bottom:1px solid #efefef'>
+        <button type="primary" style="font-size:10pt;" bindtap="submitDuty">提交考勤</button>
+        <button type="warn" style="font-size:10pt;" bindtap="leaveBtn">请假/加班</button>
+</view>
+<!--考勤记录-->
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item" style='width:100%;color:#1296db;'>
+    今日考勤记录
+  </view>
+</view>
+<view class="list_flex-wrp2" wx:if="{{Duty.morningcheckin!=''}}" style="flex-direction:row;">
+  <view class="flex-item item-40">
+    <image src="../../../image/duty/checkin.png" class="tip2" />
+    <text>上午-上班考勤:</text>
+  </view>
+  <view class="flex-item item-60">
+    {{Duty.morningcheckin}}
+  </view>
+</view>
+<view class="list_flex-wrp2" wx:if="{{Duty.morningcheckout!=''}}" style="flex-direction:row;">
+  <view class="flex-item item-40">
+    <image src="../../../image/duty/checkout.png" class="tip2" />
+    <text>上午-下班考勤:</text>
+  </view>
+  <view class="flex-item item-60">
+    {{Duty.morningcheckout}}
+  </view>
+</view>
+<view class="list_flex-wrp2" wx:if="{{Duty.afternooncheckin!=''}}" style="flex-direction:row;">
+  <view class="flex-item item-40">
+    <image src="../../../image/duty/checkin.png" class="tip2" />
+    <text>下午-上班考勤:</text>
+  </view>
+  <view class="flex-item item-60">
+    {{Duty.afternooncheckin}}
+  </view>
+</view>
+<view class="list_flex-wrp2" wx:if="{{Duty.afternooncheckout!=''}}" style="flex-direction:row;">
+  <view class="flex-item item-40">
+    <image src="../../../image/duty/checkout.png" class="tip2" />
+    <text>下午-下班考勤:</text>
+  </view>
+  <view class="flex-item item-60">
+    {{Duty.afternooncheckout}}
+  </view>
+</view>
+<view class="list_flex-wrp2" wx:if="{{Duty.workcheck!=''}}" style="flex-direction:row;">
+  <view class="flex-item item-40">
+    <image src="../../../image/duty/check.png" class="tip2" />
+    <text> 值班抽查考勤:</text>
+  </view>
+  <view class="flex-item item-60">
+    {{Duty.workcheck}}
+  </view>
+</view>
+<!--考勤记录-->

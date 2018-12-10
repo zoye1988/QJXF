@@ -1,0 +1,57 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/btitle.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <input placeholder="请输入联动单位名称" placeholder-style="color:#888" type='text' value="{{title}}" bindinput='titleChange'>
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/type.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="radius" style="margin-top:3px;">{{array[index]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip" />
+        </view>
+        <view class="flex-item item-60">{{locationAddress}}</view>
+        <view class="flex-item item-30">
+          <button type="primary" class="locationBtn" bindtap="chooseLocation">获取地址</button>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/loc.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          E: {{location.longitude[0]}}°{{location.longitude[1]}}′ ,
+          N: {{location.latitude[0]}}°{{location.latitude[1]}}′
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <input placeholder="请输入联系电话" placeholder-style="color:#888" type='text' value="{{tel}}" bindinput='telChange'>
+          </input>
+        </view>
+      </view>
+      
+     
+      <view style="padding-left:5px;padding-right:5px;">
+        <button type="primary" style="font-size:10pt;" bindtap='submitUnion'>提交</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_pic">
+      <image mode="aspectFit" src="{{build.image}}"></image>
+    </view>
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip" />
+        </view>
+        <view class="flex-item item-90" bindtap="navimap" data-lat="{{build.lat}}" data-lng="{{build.lng}}" data-title="{{build.title}}" data-type="build">
+          {{build.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/type.png" class="tip" />
+        </view>
+        <view class="flex-item item-90 ">
+          <view class="radius">
+            {{build.tip}}
+          </view>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/btitle.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          {{build.dptname}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" bindtap="callTel">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          {{build.tel}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" bindtap="callPhone">
+        <view class="flex-item item-10">
+          <image src="../../../image/tel.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          {{build.phone}}
+        </view>
+      </view>
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item item-20">
+          <image src="../../../image/file.png" class="tip2" /> 附件
+        </view>
+        <view class="flex-item item-80">
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" wx:for="{{bFile}}" wx:key="{{item.bfid}}">
+        <view class="flex-item item-10">
+          <image src="../../../image/{{item.bftype}}.png" class="tip2" />
+        </view>
+        <view class="flex-item item-80 file_link">
+          {{item.bftitle}}
+        </view>
+        <view class="flex-item item-10" data-files="{{item.bflink}}" bindtap="downloadFile">
+          <image src="../../../image/download.png" class="tip3" />
+        </view>
+      </view>
+      <view class="list_flex-wrp {{bFile.length!=0?'file_hide':''}}" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/warning.png" class="tip2" />
+        </view>
+        <view class="flex-item item-80 file_link">
+          暂无数据
+        </view>
+        <view class="flex-item item-10">
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

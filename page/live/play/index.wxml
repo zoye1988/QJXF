@@ -1,0 +1,18 @@
+<view class="video">
+  <live-player id="livePlayer" class="play" src="{{playurl}}" mode="live" autoplay="false" bindstatechange="statechange">
+    <!--文字列表-->
+    <cover-view class="word">
+      <cover-view class="{{item.type ? 'wordy' : 'wordw'}}" wx:for="{{notice}}" wx:key="{{item.type}}">
+        [{{item.ntime}}]{{item.title}}
+      </cover-view>
+    </cover-view>
+  </live-player>
+</view>
+<view class="inputs">
+  <view style='width:85%;padding-right:5px;padding-right:5px;'>
+    <input class="info" type="text" bindinput='insertWord' bindconfirm="checkKeyWord" value="{{title}}" placeholder='请在此输入文字' />
+  </view>
+  <view style='width:15%;padding-right:2px;'>
+    <button type="primary" bindtap='submitKeyWord'>发送</button>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_pic">
+      <image mode="aspectFit" src="{{downloadurl}}{{xfs.imagestring}}"></image>
+    </view>
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip" />
+        </view>
+        <view class="flex-item item-90" bindtap="navimap" data-lat="{{xfs.lat}}" data-lng="{{xfs.lng}}" data-title="{{xfs.title}}" data-type="xfs">
+          {{xfs.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/btitle.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          {{xfs.dptname}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-13">
+          <image src="../../../image/guanjing.png" class="tip" />
+        </view>
+        <view class="flex-item item-20">
+          {{xfs.diameter}}mm
+        </view>
+        <view class="flex-item item-13">
+          <image src="../../../image/yali.png" class="tip4" />
+        </view>
+        <view class="flex-item item-20">
+          {{xfs.pressure}}kPa
+        </view>
+        <view class="flex-item item-13">
+          <image src="../../../image/interface.png" class="tip4" />
+        </view>
+        <view class="flex-item item-20">
+          {{xfs.types ? '内扣式接口' : '卡扣式接口'}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/type.png" class="tip" />
+        </view>
+        <view class="flex-item item-90 ">
+          <view class="radius">
+            {{xfs.xstatus?'故障维修':'运行正常'}}
+          </view>
+        </view>
+      </view>
+
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item item-30">
+          <image src="../../../image/file.png" class="tip2" /> 检查记录
+        </view>
+        <view class="flex-item item-60">
+        </view>
+        <view class="flex-item item-10" bindtap="actionSheetTap" data-id="{{xfs.id}}">
+          <image src="../../../image/add.png" class="tip2" />
+        </view>
+      </view>
+      <!--检查情况-->
+      <view class="list_flex-wrp" style="flex-direction:row;" wx:for="{{xfsCheck}}" wx:key="{{item.xcid}}">
+        <view class="flex-item item-10">
+          <image src="../../../image/task.png" class="tip" />
+        </view>
+        <view class="flex-item item-70">
+          {{item.xcdatetime}}
+        </view>
+        <view class="flex-item item-20 left_border">
+          {{item.xcstatus?'故障维修':'运行正常'}}
+        </view>
+      </view>
+      <!--检查情况-->
+      <view class="list_flex-wrp {{xfsCheck.length!=0?'file_hide':''}}" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/warning.png" class="tip2" />
+        </view>
+        <view class="flex-item item-80 file_link">
+          暂无数据
+        </view>
+        <view class="flex-item item-10">
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

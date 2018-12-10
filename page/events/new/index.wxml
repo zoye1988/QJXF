@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/title.png" class="tip2" />
+          <text>要情标题</text>
+        </view>
+        <view class="flex-item item-75">
+          <input type='text' placeholder="请输入要情标题" placeholder-style="color:#888" value='{{title}}' bindinput='titleChange'>
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;border-bottom:0;">
+        <view class="flex-item item-25" style="border-bottom:0;">
+          <image src="../../../image/other.png" class="tip2" />
+          <text>要情内容</text>
+        </view>
+        <view class="flex-item item-75" style="border-bottom:0;">
+          <view class="plan_input">
+            <textarea auto-focus="" placeholder="最多输入60个汉字" value="{{content}}" bindinput='contentChange'></textarea>
+          </view>
+        </view>
+      </view>
+      <!--文件链接-->
+			<view class="weui-cells" style="margin-top:0;border:0;">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title" style="font-size:10pt;">
+								<image src="../../../image/events2.png" class="tip2" />
+								要情附件</view>
+                <view class="weui-uploader__info">{{imageList.length}}/{{countIndex}}</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files">
+                  <block wx:for="{{imageList}}" wx:for-item="image">
+                    <view class="weui-uploader__file">
+                      <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage" mode="aspectFit"></image>
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!--文件链接-->
+      <view style="padding-left:5px;padding-right:5px;">
+        <button type="primary" style="font-size:10pt;" bindtap='submitWeather'>提交</button>
+      </view>
+    </view>
+  </view>
+</view>

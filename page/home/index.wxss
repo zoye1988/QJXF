@@ -1,0 +1,122 @@
+/* index.wxss */
+@import "../common/index.wxss";
+.flex-wrp{
+  margin:0;
+  display:flex;
+  background-color:#373937;
+}
+.flex-item{
+  width: 20%;
+  height: 65px;
+  font-size: 26rpx;
+}
+.flex-item-V{
+  margin: 0 auto;
+  width: 200px;
+  height: 150px;
+}
+.home_title{
+  text-align:center;
+  font-size: 9pt;
+}
+.home_image{
+  width:25px;
+  height:25px;
+}
+.home_text{
+  text-align: "center";
+  color:#CACACA;
+  font-family:"黑体"
+}
+.home_img{
+  text-align:center;
+  margin-top:10px;
+}
+.title_border{
+  border-left:1px solid #CACACA;
+}
+.icon-box{
+  margin-bottom: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color:white;
+  border-bottom:1px solid #CFCFCF;
+  height:80px;
+}
+.icon-box2{
+  margin-bottom: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  background-color:white;
+  border-bottom:1px solid #CFCFCF;
+  height:110px;
+}
+.icon-box-img{
+  margin-right: 46rpx;
+}
+.icon-box-ctn{
+  flex-shrink: 110px;
+  padding-left: 10px;
+  border-left:1px solid #cacaca;
+  margin-top:4px;
+  margin-bottom:4px;
+  width:75%;
+}
+.icon-box-title{
+  font-size: 10pt;
+  font-weight: bold;
+}
+.icon-box-desc{
+  margin-top: 2px;
+  font-size: 10pt;
+  color: #888;
+  height:40px;
+  overflow-y: hidden;
+}
+.icon-box-desc2{
+  margin-top: 2px;
+  font-size: 10pt;
+  color: #888;
+  height:60px;
+  overflow-y: hidden;
+}
+
+.icon-small-wrp{
+  margin-right: 46rpx;
+  width: 93px;
+  height: 93px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home_note{
+  margin-top:5px;
+}
+.note_icon{
+  width:30px;
+  height:30px;
+  text-align:center;
+}
+.note_icon_div{
+  width:15%;
+  text-align:center;
+  vertical-align: middle;
+}
+.note_icon_div2{
+  margin:2px;
+}
+.note_btn_icon{
+  width:20px;
+  height:30px;
+  text-align:center;
+}
+.note_icon_btn{
+  width:10%;
+  text-align:center;
+  vertical-align: middle;
+}
+.note_icon_btn2{
+  margin:2px;
+}

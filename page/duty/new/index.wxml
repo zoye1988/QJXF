@@ -1,0 +1,133 @@
+<view class="car_title">
+  加班/请假申请表</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/person.png" class="tip2" />
+    <text>申请人员</text>
+  </view>
+  <view class="flex-item item-75">
+    {{uname}}
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/dpt.png" class="tip2" />
+    <text>所属单位</text>
+  </view>
+  <view class="flex-item item-75">
+    {{dptname}}
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/class.png" class="tip2" />
+    <text>申请类型</text>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid==0}}">
+    <picker bindchange="leaveChange" value="{{dutype}}" range="{{leaveArray}}">
+      <view>{{leaveArray[dutype]}}</view>
+    </picker>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid!=0}}">
+    <view>{{leaveArray[dutype]}}</view>
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/other.png" class="tip2" />
+    <text>申请原因</text>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid==0}}">
+    <input placeholder="请输入申请理由" value="{{actionreason}}" type='text' placeholder-style="color:#888" bindinput="reasonChange">
+    </input>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid!=0}}">
+    <view>{{actionreason}}</view>
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;" wx:if="{{lid==0}}">
+  <view class="flex-item item-30">
+    <image src="../../../image/duty.png" class="tip2" />
+    <text>开始时间</text>
+  </view>
+  <view class="flex-item item-40">
+    <picker mode="date" value="{{begindate}}" bindchange="beginDateChange">
+      <view>{{begindate}}</view>
+    </picker>
+  </view>
+  <view class="flex-item item-30" style='color:black;'>
+    <picker mode="time" value="{{begintime}}" bindchange="beginTimeChange">
+      <view>{{begintime}}</view>
+    </picker>
+  </view>
+</view>
+
+<view class="list_flex-wrp2" style="flex-direction:row;" wx:if="{{lid!=0}}">
+  <view class="flex-item item-30">
+    <image src="../../../image/duty.png" class="tip2" />
+    <text>开始时间</text>
+  </view>
+  <view class="flex-item item-70">
+    {{actioncheckin}}
+  </view>
+</view>
+
+<view class="list_flex-wrp2" style="flex-direction:row;" wx:if="{{lid==0}}">
+  <view class="flex-item item-30">
+    <image src="../../../image/duty.png" class="tip2" />
+    <text>结束时间</text>
+  </view>
+  <view class="flex-item item-40">
+    <picker mode="date" value="{{enddate}}" bindchange="endDateChange">
+      <view>{{enddate}}</view>
+    </picker>
+  </view>
+  <view class="flex-item item-30" style='color:black;'>
+    <picker mode="time" value="{{endtime}}" bindchange="endTimeChange">
+      <view>{{endtime}}</view>
+    </picker>
+  </view>
+</view>
+
+<view class="list_flex-wrp2" style="flex-direction:row;" wx:if="{{lid!=0}}">
+  <view class="flex-item item-30">
+    <image src="../../../image/duty.png" class="tip2" />
+    <text>结束时间</text>
+  </view>
+  <view class="flex-item item-70">
+    {{actioncheckout}}
+  </view>
+
+</view>
+
+<view class="list_flex-wrp2" style="flex-direction:row;">
+  <view class="flex-item item-25">
+    <image src="../../../image/leader2.png" class="tip2" />
+    <text>审批等级</text>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid==0}}">
+    <picker bindchange="jobChange" value="{{jindex}}" range="{{array}}">
+      <view>{{array[jindex]}}</view>
+    </picker>
+  </view>
+  <view class="flex-item item-75" wx:if="{{lid!=0}}">
+    <view>{{array[_job-1]}}</view>
+  </view>
+</view>
+<view class="list_flex-wrp2" style="flex-direction:row;" wx:if="{{lid!=0}}">
+  <view class="flex-item item-25">
+    <text>审批结果</text>
+  </view>
+  <view class="flex-item item-75 car_result">
+    <image wx:if="{{dutystatus==3}}" src="../../../image/processing.png"></image>
+    <image wx:if="{{dutystatus==1}}" src="../../../image/delay.png"></image>
+    <image wx:if="{{dutystatus==4}}" src="../../../image/pass.png"></image>
+    <image wx:if="{{dutystatus==2}}" src="../../../image/cancel4.png"></image>
+    <text style="color:#888;margin-right:5px;">签名</text>{{leader}}
+  </view>
+</view>
+<view class="list_flex-wrp2">
+  <button wx:if="{{dutystatus==3}}" type="warn" style="font-size:10pt;" bindtap="cancelLeave">取消申请</button>
+  <button wx:if="{{lid==0}}" type="primary" style="font-size:10pt;" bindtap="submitLeave">提交申请</button>
+  <button wx:if="{{lid!=0 && dutystatus!=3}}" type="primary" style="font-size:10pt;" bindtap="resetLeave">重新申请</button>
+</view>

@@ -1,0 +1,31 @@
+<view class="container">
+  <view class="page-body">
+    <view class="page-section">
+      <view class="mapinfo">
+        <view class="flex-item item-10">
+          <image src="{{icon}}" class="tip" />
+        </view>
+        <view class="flex-item item-70" style='margin-left:5px;'>
+          {{title}}
+        </view>
+        <view class="flex-item item-20" style='text-align:center;border-left:1px solid #888;padding-left:5px;'>
+          <view class="radius_normal" bindtap='showMapInfo'>查看</view>
+        </view>
+      </view>
+      <map
+        id="myMap"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        markers="{{markers}}"
+        scale="14"
+        circles="{{circles}}"
+        show-location=true,
+        controls="{{controls}}"
+        bindcontroltap="getSelfLoc"
+        bindmarkertap="markertap"
+        bindcallouttap="callouttap"
+        >
+      </map>
+    </view>
+  </view>
+</view>

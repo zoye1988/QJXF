@@ -1,0 +1,92 @@
+<view class="home_note2">
+  <view class="list_flex-wrp" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/person.png" class="tip2" />
+      <text>用车人员</text>
+    </view>
+    <view class="flex-item item-75">
+      {{driver}}
+    </view>
+  </view>
+  <view class="list_flex-wrp" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/car2.png" class="tip2" />
+      <text>使用车辆</text>
+    </view>
+    <view class="flex-item item-75">
+      {{carid}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/other.png" class="tip2" />
+      <text>用车原因</text>
+    </view>
+    <view class="flex-item item-75">
+      {{reason}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/date.png" class="tip2" />
+      <text>用车日期</text>
+    </view>
+    <view class="flex-item item-75">
+      {{usetime}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/leader2.png" class="tip2" />
+      <text>审批等级</text>
+    </view>
+    <view class="flex-item item-75">
+      {{jobtitle}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/rescuer.png" class="tip2" />
+      <text>签批领导</text>
+    </view>
+    <view class="flex-item item-75">
+      {{leader}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/carin.png" class="tip2" />
+      <text>返回时间</text>
+    </view>
+    <view class="flex-item item-75">
+      {{backtime}}
+    </view>
+  </view>
+  <view class="list_flex-wrp2" style="flex-direction:row;">
+    <view class="flex-item item-25">
+      <image src="../../../image/type.png" class="tip2" />
+      <text>当前状态</text>
+    </view>
+    <view class="flex-item item-75">
+      <view wx:if="{{cstatus==1}}">
+        审批中
+      </view>
+      <view wx:if="{{cstatus==2}}">
+        未通过
+      </view>
+      <view wx:if="{{cstatus==3}}">
+        已出发
+      </view>
+      <view wx:if="{{cstatus==4}}">
+        已返回
+      </view>
+      <view wx:if="{{cstatus==5}}">
+        已取消
+      </view>
+    </view>
+  </view>
+  <view class="list_flex-wrp2" wx:if="{{cstatus==1 && jobcode==job}}">
+        <button type="warn" style="font-size:10pt;" bindtap="carPassBtn" data-cid="{{cid}}">同意审批</button>
+        <button type="primary" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carDelayBtn">拒绝审批</button>
+  </view>
+</view>

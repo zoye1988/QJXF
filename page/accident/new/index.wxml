@@ -1,0 +1,131 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/address2.png" class="tip2" />
+          <text>事故地址</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入灾害地址" placeholder-style="color:#888" type='text' value="{{address}}" bindinput="addressChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/btitle.png" class="tip2" />
+          <text>所属辖区</text>
+        </view>
+        <view class="flex-item item-75">
+          {{udptname}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/acc.png" class="tip2" />
+          <text>事故类别</text>
+        </view>
+        <view class="flex-item item-75">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view style="margin-top:3px;">{{array[index]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/hurt.png" class="tip2" />
+          <text>被困人数</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入被困人数" type="number" value="{{dangerman}}" placeholder-style="color:#888" bindinput="dangermanChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/burn.png" class="tip2" />
+          <text>燃烧物资</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入燃烧物资" placeholder-style="color:#888" type='text' value="{{burnthing}}" bindinput="burnthingChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/fog.png" class="tip2" />
+          <text>烟雾情况</text>
+        </view>
+        <view class="flex-item item-75">
+          <picker bindchange="bindPickerChange2" value="{{findex}}" range="{{frog}}">
+            <view style="margin-top:3px;">{{frog[findex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/sir.png" class="tip2" />
+          <text>作战指挥</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入作战指挥" placeholder-style="color:#888" type='text' value="{{leader}}" bindinput="leaderChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/driver.png" class="tip2" />
+          <text>车辆驾驶</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入车辆驾驶员" placeholder-style="color:#888" type='text' value="{{driver}}" bindinput="driverChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/rescuer.png" class="tip2" />
+          <text>出动人员</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入参与救援人数" placeholder-style="color:#888" type='number' value="{{rescueman}}" bindinput="rescuemanChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/firecar.png" class="tip2" />
+          <text>出动车辆</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入出动救援车辆" placeholder-style="color:#888" type='number' value="{{rescuecar}}" bindinput="rescuecarChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/protect.png" class="tip2" />
+          <text>报警电话</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入报警联系电话" placeholder-style="color:#888" type='text' value="{{phone}}" bindinput="phoneChange">
+          </input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/other.png" class="tip2" />
+          <text>灾情备注</text>
+        </view>
+        <view class="flex-item item-75">
+          <view class="plan_input">
+            <textarea auto-focus="" placeholder="请输入灾情备注" value="{{brief}}" bindinput="briefChange"></textarea>
+          </view>
+        </view>
+      </view>
+      <view style="padding-left:5px;padding-right:5px;">
+        <button type="primary" style="font-size:10pt;" loading='{{lock}}' disabled="{{lock}}" bindtap='submitAccident'>提交</button>
+      </view>
+    </view>
+  </view>
+</view>

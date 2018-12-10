@@ -1,0 +1,87 @@
+<!--head-->
+<view class="head home_note">
+  <view class="icon-box">
+      <view class="note_icon_div" style='font-size:9pt;'>
+        <image class="note_icon" src="../../../image/phones.png" />
+        <view wx:if="{{Leave.dutype==0}}">正常上班</view>
+        <view wx:if="{{Leave.dutystatus==3}}">审批中</view>
+        <view wx:if="{{Leave.dutype==1 && Leave.dutystatus==4}}">事假中</view>
+        <view wx:if="{{Leave.dutype==2 && Leave.dutystatus==4}}">休假中</view>
+        <view wx:if="{{Leave.dutype==3 && Leave.dutystatus==4}}">病假中</view>
+        <view wx:if="{{Leave.dutype==4 && Leave.dutystatus==4}}">产假中</view>
+        <view wx:if="{{Leave.dutype==5 && Leave.dutystatus==4}}">婚假中</view>
+        <view wx:if="{{Leave.dutype==6 && Leave.dutystatus==4}}">加班中</view>
+      </view>
+    <view class="icon-box-ctn">
+      <view class="icon-box-title">
+        {{Leave.uname}}
+      </view>
+      <view class="icon-box-desc2">
+        <text>{{Leave.dptname}}\n</text>
+        <text>{{Leave.jobtitle}}\n</text>
+        <text>{{Leave.dutytime}}</text>
+      </view>
+    </view>
+    <view class="note_icon_btn">
+      <view class="note_icon_btn2">
+      </view>
+    </view>
+  </view>
+</view>
+<!--head-->
+<!--content-->
+<view class="content">
+  <!--请假/加班-->
+  <view class="icon-box3">
+    <view class="note_icon_div">
+      <view class="note_icon_div2" wx:if="{{Leave.dutype==6}}">
+        <image class="note_icon" src="../../../image/duty/work.png" style='width:40px;height:40px;' />
+        <view style='font-size:10pt;'>加班</view>
+      </view>
+      <view class="note_icon_div2" style="font-size:10pt;" wx:if="{{Leave.dutype!=6}}">
+        <image class="note_icon" src="../../../image/duty/leave.png" style='width:40px;height:40px;' />
+        <view wx:if="{{Leave.dutype==1}}">
+          <text>事假</text>
+        </view>
+        <view wx:if="{{Leave.dutype==2}}">
+          <text>休假</text>
+        </view>
+        <view wx:if="{{Leave.dutype==3}}">
+          <text>病假</text>
+        </view>
+        <view wx:if="{{Leave.dutype==4}}">
+          <text>产(护理)假</text>
+        </view>
+        <view wx:if="{{Leave.dutype==5}}">
+          <text>婚假</text>
+        </view>
+      </view>
+    </view>
+    <view class="icon-box-ctn2">
+      <view class="icon-box-desc3">
+        <text>申请时间：</text>
+        <text style='color:black'>{{Leave.actioncheckin}}\n</text>
+        <text>结束时间：</text>
+        <text style='color:black'>{{Leave.actioncheckout}}\n</text>
+        <text>申请原因：</text>
+        <text style='color:black'>{{Leave.actionreason}}\n</text>
+        <text>审批状态：</text>
+        <text style='color:#1296db' wx:if="{{Leave.dutystatus==3}}" >等待审批\n</text>
+        <text style='color:green' wx:if="{{Leave.dutystatus==4}}" style='color:green'>审批通过</text><text wx:if="{{Leave.dutystatus==4}}"> [审批领导：{{Leave.leader}}]\n</text>
+        <text wx:if="{{Leave.dutystatus==1}}" style='color:red'>未通过审批</text><text wx:if="{{Leave.dutystatus==1}}"> [审批领导：{{Leave.leader}}]\n</text>
+        <!--审批-->
+        <view class="list_flex-wrp" wx:if="{{job==Leave.job && Leave.dutystatus==3}}">
+          <button type="primary" style="font-size:10pt;" bindtap="dutyPassBtn">同意审批</button>
+          <button type="warn" style="font-size:10pt;" bindtap="dutyDelayBtn">拒绝审批</button>
+        </view>
+        <view class="list_flex-wrp">
+          <button type="primary" style="font-size:10pt;" bindtap="backBtn">返回上一页</button>
+        </view>
+        <!--审批-->
+      </view>
+    </view>
+  </view>
+  <!--请假/加班-->
+
+</view>
+<!--content-->

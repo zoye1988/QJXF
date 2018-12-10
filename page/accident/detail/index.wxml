@@ -1,0 +1,233 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/address.png" class="tip2" />
+          <text>事故地址</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/btitle.png" class="tip2" />
+          <text>所属辖区</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.dptname}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/type.png" class="tip2" />
+          <text>事故类别</text>
+        </view>
+        <view class="flex-item item-75">
+          <view class="radius">
+            {{accident.atype}}
+          </view>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/hurt.png" class="tip2" />
+          <text>被困人数</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.dangerman}}人
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/fog.png" class="tip2" />
+          <text>烟雾情况</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.frog}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/burn.png" class="tip2" />
+          <text>燃烧物资</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.burnthing}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/sir.png" class="tip2" />
+          <text>作战指挥</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.leader}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/driver.png" class="tip2" />
+          <text>车辆驾驶</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.driver}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/rescuer.png" class="tip2" />
+          <text>出动人员</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.rescueman}}人
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/firecar.png" class="tip2" />
+          <text>出动车辆</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.rescuecar}}辆
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/times.png" class="tip2" />
+          <text>出警时间</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.atime}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/list.png" class="tip2" />
+          <text>灾情备注</text>
+        </view>
+        <view class="flex-item item-75">
+          {{accident.brief}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/protect.png" class="tip2" />
+          <text>报警电话</text>
+        </view>
+        <view class="flex-item item-50">
+          {{accident.linkphone}}
+        </view>
+        <view class="flex-item item-25" bindtap='callPhone'>
+          <image src="../../../image/phone.png" class="tip3" /> 点击呼叫
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" wx:if="{{udptcode==accident.dptcode}}">
+        <view class="flex-item item-25">
+          <image src="../../../image/cancel.png" class="tip2" />
+          <text>管理操作</text>
+        </view>
+        <view class="flex-item item-75">
+          <button type="warn" class="mini-btn" size="mini" bindtap='delAcc' style='margin:0;'>删除警情</button>
+        </view>
+      </view>
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item3 item-25" style='color:#ffffff;'>
+          <image src="../../../image/time.png" class="tip2" /> 火场文书
+        </view>
+        <view class="flex-item3 item-75">
+        </view>
+      </view>
+      <!--swiper-->
+
+      <view style='padding:10px;background-color:#fff;'>
+        <view class="plan_input">
+          <textarea auto-focus="" placeholder="记录救援现场情况" value="{{title}}" bindinput='keyChange2'></textarea>
+        </view>
+        <view class="imgDiv {{resDiv ? 'divHide' : 'divShow'}}">
+          <view style="text-align:right;color:#B2B2B2;font-size:10pt;">{{imageList.length}}/{{countIndex}}</view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files">
+              <view wx:for="{{imageList}}" wx:for-item="image">
+                <view class="weui-uploader__file">
+                  <image mode="aspectFill" class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage2"></image>
+                </view>
+              </view>
+            </view>
+            <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </view>
+        </view>
+        <view class="videoDiv video_padding {{resDiv ? 'divShow' : 'divHide'}}">
+          <!--video edit-->
+          <view class="page-body-info" style='padding:0;'>
+            <block wx:if="{{src === ''}}">
+              <view class="image-plus image-plus-nb" style='border:1px solid #d9d9d9;' bindtap="chooseVideo">
+                <view class="image-plus-horizontal"></view>
+                <view class="image-plus-vertical"></view>
+              </view>
+            </block>
+            <block wx:if="{{src != ''}}">
+              <video src="{{src}}" class="video"></video>
+            </block>
+          </view>
+          <!--video edit-->
+        </view>
+        <view style="flex-direction:row;display:flex;">
+          <view style='width:50%;text-align:left;'>
+            <button type="default" class="mini-btn" size="mini" bindtap='changeRes'>{{resString}}</button>
+          </view>
+          <view style='width:50%;text-align:right;'>
+            <button type="primary" class="mini-btn" size="mini" bindtap="{{resDiv?'uploadAccidentVideo' :'uploadAccident'}}">发布</button>
+          </view>
+        </view>
+      </view>
+      <!--swiper-->
+
+
+      <!--note-->
+      <view class="list_flex-wrp file_title" style="flex-direction:row;">
+        <view class="flex-item3 item-25" style='color:#ffffff;'>
+          <image src="../../../image/file.png" class="tip2" /> 火场记录
+        </view>
+        <view class="flex-item3 item-75">
+        </view>
+      </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;" wx:for="{{worknote}}" wx:key="{{item.linkID}}">
+        <view class="flex-item item-10 line">
+          <image src="../../../image/point.png" class="tip5" />
+        </view>
+        <view class="flex-item item-90">
+          <view class="font-fade">{{item.wtime}}</view>
+          <view>{{item.title}}</view>
+          <view class="worknote_img" wx:if="{{item.video==0}}">
+            <image wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" mode="aspectFill" src="{{imgs}}" data-src="{{imgs}}" data-ilist="{{item.imgs}}" bindtap="previewImage"></image>
+          </view>
+          <view class="worknote_img" wx:elif="{{item.video==1}}">
+            <video wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" style="width:90%;height:180px;" src="{{imgs}}" controls objectFit="contain"></video>
+          </view>
+          <view wx:if="{{udptcode==item.dptcode}}" style='font-size:9pt;text-align:right;margin-right:5px;color:#1296db' data-linkid='{{item.linkID}}' bindtap='delItem'>删除</view>
+        </view>
+      </view>
+
+
+
+      <!--
+            暂无数据
+       -->
+      <view class="list_flex-wrp {{worknote.length!=0?'file_hide':''}}" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/warning.png" class="tip2" /> 暂无数据
+        </view>
+        <view class="flex-item item-75">
+        </view>
+      </view>
+      <!--
+            暂无数据
+       -->
+      <!--note-->
+    </view>
+  </view>
+</view>

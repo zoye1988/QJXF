@@ -1,0 +1,160 @@
+/* index.wxss */
+@import "../../common/lib/weui.wxss";
+.radio {
+  margin-right: 20rpx;
+}
+.page-section{
+  margin-bottom:0;
+}
+.page-section2{
+  position: fixed;top: 0;width: 100%;
+}
+.flex-wrp{
+  margin-top:0px;
+  display:flex;
+  height:35px;
+  border-bottom:1px solid #CACACA;
+}
+.flex-item{
+  font-size: 26rpx;
+}
+.search_item{
+  width:74%;
+  height:35px;
+  padding-top:5px;
+}
+.wxsearch{
+  width:100%;
+  height:30px;
+  font-size: 10pt;
+  padding-left:5px;
+}
+.search_text{
+  width:13%;
+  height:30px;
+  text-align: center;
+  border-right:1px solid #CACACA;
+  margin-top:5px;
+
+}
+.search_icon{
+  width:13%;
+  height:30px;
+  text-align: center;
+  margin-top:5px;
+  border-left:1px solid #CACACA;
+}
+.searchImg{
+  width:25px;
+  height:25px;
+}
+.formImg{
+  width:25px;
+  height:25px;
+}
+.search_spacing{
+  margin:0px;
+  padding-left:1px;
+  padding-right:1px;
+  background-color:white;
+}
+.showItemCss{
+  display: block;
+}
+.hideItemCss{
+  display: none;
+}
+.list_flex-wrp{
+  margin-top:5px;
+  display:flex;
+  height:100px;
+  padding:5px;
+  background-color:#ffffff;
+  border-bottom:1px solid #DADADA;
+}
+.list_flex-item{
+  font-size: 26rpx;
+}
+.buildImg{
+  width:130px;
+  height:80px;
+  margin-top:5px;
+}
+button{
+  margin-left:5px;
+  margin-right:5px;
+  background-color:#373937;
+  color:#ffffff;
+  font-size:11pt;
+}
+.button-sp-area{
+  margin: 0 auto;
+  width: 60%;
+}
+.mini-btn{
+  margin-right: 10rpx;
+}
+.build_content{
+  padding-left:5px;
+  margin-left:5px;
+  height:100px;
+  border-left:1px solid #eeeeef;
+  width:100%;
+}
+.build_title{
+  font-weight:bolder;
+  font-size: 10pt;
+  height:20px;
+  overflow-y: hidden;
+  width:100%;
+}
+.build_address{
+  font-size: 10pt;
+  line-height: 20px;
+  height:20px;
+  overflow-y: hidden;
+  color:#888;
+  border-top:1px solid #CACACA;
+  width:100%;
+  padding-top:3px;
+}
+.build_type{
+  font-size: 10pt;
+  line-height: 20px;
+  color:#888;
+  width:100%;
+  padding-top:3px;
+}
+.load{
+  margin-top:5px;
+  margin-bottom:5px;
+  background-color:#fff;
+  text-align: center;
+}
+.tip{
+  background-color:#EAEAEA;border:1px solid #bababa;border-radius:5px;padding-left:5px;padding-right:5px;float:left;
+}
+.tip2{
+  width:15px;
+  height:15px;
+  vertical-align: middle;
+  padding-right:3px;
+  float:left;
+  padding-top:2px;
+}
+.load image{
+  width:30px;
+  height:30px;
+}
+.empty_item{
+  font-size:10pt;
+  text-align: center;
+  color:#888;
+  position: absolute;
+  top:40%;
+  left:40%;
+}
+.empty_item image{
+  width:40px;
+  height:40px;
+}

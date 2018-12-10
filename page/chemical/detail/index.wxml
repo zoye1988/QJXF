@@ -1,0 +1,94 @@
+<view class="container">
+  <view class="page-body">
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border" style="background-color:#2c2c2c;color:#ffffff;">
+          <image src="../../../image/chemical2.png" class="tip2" />
+        </view>
+        <view class="flex-item item-80" style="line-height:30px;">
+          <view style="font-weight:bold;font-size:10pt;float:left;">{{chemical.title}}</view>
+          <view style="font-size:9pt;float:left;padding-left:5px;">(分子式：{{chemical.formula}})</view>
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/explode.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+           <text>外观\n形状</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+          {{chemical.quality}}
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/warning.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+            
+            <text>注意\n事项</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+          {{chemical.warning}}
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/danger2.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+          <text>危险\n特性</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+          {{chemical.danger}}
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/hyp.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+            <text>灭火\n方法</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+          {{chemical.fire}}
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/protect.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+            <text>应急\n处置</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+          {{chemical.progress}}
+        </view>
+      </view>
+    </view>
+    <view class="chemical_item">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-20 right_border">
+          <image src="../../../image/rescue.png" class="tip2" />
+          <view style="font-weight:bold;font-size:9pt;">
+            <text>急救\n措施</text>
+          </view>
+        </view>
+        <view class="flex-item item-80 chemical_content">
+         {{chemical.rescue}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

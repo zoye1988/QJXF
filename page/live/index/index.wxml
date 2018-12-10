@@ -1,0 +1,49 @@
+<view class="page-section2">
+  <view class="flex-wrp" style="flex-direction:row;">
+    <view class="flex-item search_text">
+      <image class="searchImg" src="../../../image/live.png" />
+    </view>
+    <view class="flex-item search_item">
+     正在直播 {{Live.length}}/5
+    </view>
+    <view class="flex-item search_icon">
+      <button type="primary" style="font-size:9pt;padding:0;margin:0;background-color:#1296db;width:95%" bindtap='pushClick'>开始直播</button>
+    </view>
+  </view>
+</view>
+<view class="empty_item" wx:if="{{Live.length==0}}">
+  <image src="../../../image/empty.png"></image>
+  <view>暂无现场图像数据</view>
+</view>
+<view class="home_note" wx:for="{{Live}}" wx:key="{{item.lid}}">
+  <navigator url="../play/index?lid={{item.lid}}">
+    <view class="icon-box2">
+      <view class="note_icon_div">
+        <view class="note_icon_div2">
+          <image class="note_icon" src="../../../image/watch.png" />
+          <view style='font-size:9pt;color:#888'>
+            <text>直播中</text>
+          </view>
+        </view>
+      </view>
+      <view class="icon-box-ctn">
+        <view class="icon-box-title">
+          {{item.title}}
+        </view>
+        <view class="icon-box-desc2">
+          <text>所属单位：{{item.dptname}}\n</text>
+          <text>操作时间：{{item.begintime}}\n</text>
+          <text>操作人员：{{item.uname}}</text>
+        </view>
+      </view>
+      <view class="note_icon_btn">
+        <view class="note_icon_btn2">
+          <image class="note_btn_icon" src="../../../image/enter.png" />
+        </view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+  <image src="../../../image/timg.gif"></image>
+</view>

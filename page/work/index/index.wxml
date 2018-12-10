@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="page-body">
+    <!--item-->
+    <view class="chemical_flex-wrp" style="flex-direction:row;" wx:for="{{worknotes}}" wx:key="{{item.linkID}}">
+      <view class="flex-item item-15 chemical-tip">
+        <image class="note_icon" src="../../../image/{{item.targetIcon}}" />
+      </view>
+      <view class="flex-item build_content">
+        <view class="clist-flex-wrp">
+          <view class="flex-item chemical_title">
+            {{item.sipname}}
+          </view>
+        </view>
+        <view class="danger-flex-wrp">
+          {{item.title}}
+        </view>
+        <view class="worknote_img" wx:if="{{item.video==0}}">
+           <image mode="aspectFill" wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" src="{{imgs}}" data-src="{{imgs}}" data-ilist="{{item.imgs}}" bindtap="previewImage"></image>
+        </view>
+        <view class="worknote_img" wx:elif="{{item.video==1}}">
+           <video wx:for="{{item.imgs}}" wx:for-item="imgs" wx:key="id" style="width:90%;height:180px;" src="{{imgs}}" controls objectFit="contain"></video>
+        </view>
+        <navigator url="../../{{item.targetUrl}}">
+        <view class="icon-box2" bindtap='viewNote' data-url="{{item.targetUrl}}">
+          <view class="icon-box-ctn">
+            <view class="icon-box-title"> {{item.dptname}}</view>
+            <view class="icon-box-desc2">
+              <text>{{item.targetTime}}\n</text>
+              <text>{{item.targetTitle}}\n</text>
+              <text>{{item.targetBrief}}</text>
+            </view>
+          </view>
+          <view class="note_icon_btn">
+            <view class="note_icon_btn2">
+              <image class="note_btn_icon" src="../../../image/enter.png" />
+            </view>
+          </view>
+        </view>
+        </navigator>
+        <view class="date_view">
+          <text>发布：{{item.uname}}</text>
+          <text style='margin-left:5px;margin-right:5px;color:#8b8b8b;'>/</text>
+          <text>{{item.wtime}}</text>
+          <text style='color:#1296db;margin-left:10px;' wx:if="{{item.openid==openid}}" bindtap="delItem" data-linkid="{{item.linkID}}">删除</text>
+        </view>
+      </view>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </view>
+</view>

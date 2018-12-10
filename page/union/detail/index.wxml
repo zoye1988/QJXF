@@ -1,0 +1,26 @@
+<view class="union_item">
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-20 union_tip2">
+          {{types}}
+        </view>
+        <view class="flex-item item-80 union_title">
+          {{title}}
+        </view>
+      </view>
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content">
+          {{address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" bindtap="callTel">
+          {{tel}}
+        </view>
+      </view>
+    </view>

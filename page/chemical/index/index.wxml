@@ -1,0 +1,67 @@
+<view class="container">
+  <view class="page-body">
+    <!--head-->
+    <view class="page-section2">
+      <view class="page-section-spacing search_spacing">
+        <!--search-->
+        <view class="flex-wrp" style="flex-direction:row;">
+          <view class="flex-item search_item">
+            <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入搜索关键字" bindblur="keyChange" />
+          </view>
+          <view class="flex-item search_icon" bindtap='searchAction'>
+            <image class="searchImg" src="../../../image/search.png" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--head-->
+    <!--content-->
+    <view style='margin-top:35px;'>
+      <view class="empty_item" wx:if="{{chemicals.length==0}}">
+        <image src="../../../image/empty.png"></image>
+        <view>暂时无数据</view>
+      </view>
+      <!--item-->
+      <navigator url="../detail/index?cid={{item.cid}}" wx:for="{{chemicals}}" wx:key="{{item.cid}}">
+        <view class="chemical_flex-wrp" style="flex-direction:row;">
+          <view class="flex-item item-15 chemical-tip">
+            <image src="../../../image/chemical.png"></image>
+          </view>
+          <view class="flex-item build_content">
+            <view class="clist-flex-wrp" style="flex-direction:row;">
+              <view class="flex-item item-intense chemical_title">
+                {{item.title}}
+              </view>
+              <view class="flex-item item-intense chemical_title2">
+                (分子式：{{item.formula}})
+              </view>
+            </view>
+            <view class="danger-flex-wrp" style="flex-direction:row;">
+              <view class="flex-item item-intense">
+                <image src="../../../image/explode.png" class="tip"></image>
+              </view>
+              <view class="flex-item item-intense chemical-txt">
+                {{item.quality}}
+              </view>
+            </view>
+            <view class="danger-flex-wrp" style="flex-direction:row;">
+              <view class="flex-item item-intense">
+                <image src="../../../image/danger.png" class="tip"></image>
+              </view>
+              <view class="flex-item item-intense chemical-txt">
+                {{item.warning}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </navigator>
+      <!--item-->
+      <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+        <image src="../../../image/timg.gif"></image>
+      </view>
+    </view>
+
+
+    <!--content-->
+  </view>
+</view>

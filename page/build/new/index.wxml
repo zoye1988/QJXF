@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="page-body">
+    <view class="build_list_pic">
+      <block wx:if="{{imgString != ''}}">
+        <image src="{{downloadurl}}{{imgString}}" class="image" mode="aspectFit" bindtap="chooseImage"></image>
+      </block>
+      <block wx:if="{{imgString === ''}}">
+        <view class="image-plus image-plus-nb" bindtap="chooseImage">
+          <view class="image-plus-horizontal"></view>
+          <view class="image-plus-vertical"></view>
+        </view>
+        <view class="image-plus-text">请选择封面图片</view>
+      </block>
+    </view>
+    <view class="build_list_detail">
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/btitle.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <input type='text' placeholder="请输入单位名称" placeholder-style="color:#888" value="{{title}}" bindinput="buildTitleChange"></input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/loc.png" class="tip" />
+        </view>
+        <view class="flex-item item-60">{{locationAddress}}</view>
+        <view class="flex-item item-30">
+          <button type="primary" class="locationBtn" bindtap="chooseLocation">获取地址</button>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+        E: {{location.longitude[0]}}°{{location.longitude[1]}}′ ,
+        N: {{location.latitude[0]}}°{{location.latitude[1]}}′
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/type.png" class="tip" />
+        </view>
+        <view class="flex-item item-90 ">
+          <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{bitems}}">
+            <view class="radius">{{bitems[bindex]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" bindtap="callTel">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <input type='text' placeholder="请输入联系电话" placeholder-style="color:#888" value="{{phone}}" bindinput="phoneChange"></input>
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" bindtap="callPhone">
+        <view class="flex-item item-10">
+          <image src="../../../image/tel.png" class="tip" />
+        </view>
+        <view class="flex-item item-90">
+          <input type='text' placeholder="请输入联系手机号码" placeholder-style="color:#888" value="{{tel}}" bindinput="telChange"></input>
+        </view>
+      </view>
+      <view style="border-bottom:1px solid #D9D9D9;">
+        <button type="primary" style="font-size:10pt;" bindtap='submitBuild'>提交数据</button>
+        <button type="warn" style="font-size:10pt;" bindtap='claerBuild'>清空表格</button>
+      </view>
+    </view>
+  </view>
+</view>

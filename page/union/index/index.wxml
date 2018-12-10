@@ -1,0 +1,125 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+    专职消防队
+  </view>
+  <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+    社会联动单位
+  </view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">
+    微型消防站
+  </view>
+</view>
+
+<swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
+  <!-- 专职消防队 -->
+  <swiper-item>
+    <!-- 专职循环 -->
+    <view class="empty_item" wx:if="{{zzxfd.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="union_item" wx:for="{{zzxfd}}" wx:key="{{item.uid}}">
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-25 union_tip">
+          专职消防队
+        </view>
+        <view class="flex-item item-75 union_title">
+          {{item.title}}
+        </view>
+      </view>
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" bindtap="navimap" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-title="{{item.title}}" data-type="rescue">
+          {{item.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" data-tel="{{item.tel}}" bindtap="callTel">
+          {{item.tel}}
+        </view>
+      </view>
+    </view>
+    <!-- 专职循环 -->
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 社会联动单位 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{shld.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="union_item" wx:for="{{shld}}" wx:key="{{item.uid}}">
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-20 union_tip2">
+          社会联动
+        </view>
+        <view class="flex-item item-80 union_title">
+          {{item.title}}
+        </view>
+      </view>
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" bindtap="navimap" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-title="{{item.title}}" data-type="socity">
+          {{item.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" data-tel="{{item.tel}}" bindtap="callTel">
+          {{item.tel}}
+        </view>
+      </view>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+  <!-- 微型消防站 -->
+  <swiper-item>
+    <view class="empty_item" wx:if="{{wx.length==0}}">
+      <image src="../../../image/empty.png"></image>
+      <view>暂时无数据</view>
+    </view>
+    <view class="union_item" wx:for="{{wx}}" wx:key="{{item.uid}}">
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-25 union_tip3">
+          微型消防站
+        </view>
+        <view class="flex-item item-75 union_title">
+          {{item.title}}
+        </view>
+      </view>
+      <view class="list_flex-wrp union_border" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/address.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" bindtap="navimap" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-title="{{item.title}}" data-type="wx">
+          {{item.address}}
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;">
+        <view class="flex-item item-10">
+          <image src="../../../image/phone.png" class="tip"></image>
+        </view>
+        <view class="flex-item item-90 union_content" data-tel="{{item.tel}}" bindtap="callTel">
+          {{item.tel}}
+        </view>
+      </view>
+    </view>
+    <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+      <image src="../../../image/timg.gif"></image>
+    </view>
+  </swiper-item>
+</swiper>
