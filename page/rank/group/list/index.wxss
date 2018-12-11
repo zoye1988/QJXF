@@ -20,7 +20,7 @@
 .bk{
   background-color:#ffffff;
   padding-top:10px;
-  border-right:1px solid #969696;
+  border-right:1px solid #cdcdcd;
 }
 image{
   width:30px;
