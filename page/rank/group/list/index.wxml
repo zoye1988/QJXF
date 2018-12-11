@@ -41,7 +41,7 @@
   </view>
   <!--各单位成绩对比-->
   <view class="rank">
-    <view style='background-color:#3b413b;height:30px;line-height:30px;width:98%;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
+    <view style='background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
       本月记录
     </view>
     <view class="item border-btm bk" wx:for="{{records}}" wx:key="{{item.id}}">
