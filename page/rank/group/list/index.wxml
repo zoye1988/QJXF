@@ -5,8 +5,8 @@
     <view class="item">
       <view class="item-20" style='font-size:11pt;font-weight:bolder'>最佳记录</view>
       <view class="item-60" style='font-size:10pt;text-align:left;'> {{best[0].title}}</view>
-      <view class="item-20" style='text-align:right'>
-        <image src="../../../../image/great.png"></image>
+      <view class="item-20" style='text-align:right;align-items:center;line-height:20px;'>
+        <image src="../../../../image/rules.png" style='width:15px;height:15px;'></image>
       </view>
     </view>
     <view class="item border-btm">
@@ -42,7 +42,7 @@
   <!--各单位成绩对比-->
   <view class="rank">
     <view style='background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
-      本月记录
+      本月成绩
     </view>
     <navigator url="../index/index?rid=1" class="item border-btm bk" wx:for="{{records}}" wx:key="{{item.id}}">
       <view class="item-15">
