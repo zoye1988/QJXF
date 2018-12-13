@@ -44,7 +44,12 @@ Page({
         dptname: "会泽中队",
         total: 7,
         record: "02'34\"13"
-      }
+      },
+      {
+        dptname: "师宗中队",
+        total: 4,
+        record: "02'34\"13"
+      },
     ]
   },
 
