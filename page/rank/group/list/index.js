@@ -109,5 +109,9 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  showRules:function(){
+    
   }
 })

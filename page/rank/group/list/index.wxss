@@ -36,6 +36,12 @@ image{
   margin:5px;
   text-align: center;
 }
+.items{
+  display: flex;
+  align-items: center;
+  margin-left:5px;
+  margin-right:5px;
+}
 .item-10{
   width:10%;
 }
@@ -68,4 +74,30 @@ image{
 }
 .item-85{
   width:85%;
+}
+.showItem{
+  position: absolute;
+  left:0;
+  top:0;
+  background-color:#cdcdcd;
+  opacity: 0.7;
+  width:100%;
+  height:100%;
+  margin:0 auto;
+  z-index: 8888;
+}
+.showRules{
+  position: absolute;
+  left:10%;
+  top:10%;
+  width:80%;
+  height:80%;
+  border:1px solid #969696;
+  background-color:#ffffff;
+  border-radius: 10px;
+  z-index:9999;
+}
+.rulesTitle{
+  font-size:11pt;
+  margin-top:5px;
 }
