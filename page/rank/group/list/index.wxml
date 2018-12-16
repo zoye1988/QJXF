@@ -71,9 +71,9 @@
   </view>
 </view>
 
-<view class="showItem">
+<view class="{{show?'showItem':'hide'}}">
 </view>
-<view class="showRules">
+<view class="{{show?'showRules':'hide'}}">
     <view class="items border-btm">
       <view class="item-20" style='line-height:25px;align-items: center;text-align:center;margin-top:10px;'>
         <image src="../../../../image/rules.png" style='width:25px;height:25px;align-items: center;'></image>
@@ -82,7 +82,7 @@
         300M越野障碍赛
       </view>
       <view class="item-20" style='line-height:25px;text-align:center;margin-top:10px;'>
-        <image src="../../../../image/delete.png" style='width:25px;height:25px;'></image>
+        <image src="../../../../image/delete.png" style='width:25px;height:25px;' bindtap='closeRules'></image>
       </view>
     </view>
     <view style='font-size:10pt;padding:15px;line-height:25px;text-indent:20px;'>

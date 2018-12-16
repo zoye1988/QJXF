@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    show:0,
     best:[
       {
         title: "3000M越野障碍赛",
@@ -112,6 +113,13 @@ Page({
   },
 
   showRules:function(){
-    
+    this.setData({
+      show:1
+    })
+  },
+  closeRules:function(){
+    this.setData({
+      show: 0
+    })
   }
 })
