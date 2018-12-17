@@ -21,6 +21,7 @@
   background-color:#ffffff;
   padding-top:10px;
   border-right:1px solid #cdcdcd;
+  border-left:1px solid #cdcdcd;
 }
 image{
   width:30px;

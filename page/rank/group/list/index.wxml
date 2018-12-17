@@ -56,12 +56,12 @@
       <view class="item-25">
         <view style='font-size:11pt;'>{{item.dptname}}</view>
       </view>
-      <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
-        <view style='font-size:10pt;color:#969696;'>训练次数</view>
+      <view class="item-25" style='border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
+        <view style='font-size:9pt;color:#969696;'>训练次数</view>
         <view style='font-size:11pt;'>{{item.total}}</view>
       </view>
       <view class="item-25">
-        <view style='font-size:10pt;color:#969696;'>平均成绩</view>
+        <view style='font-size:9pt;color:#969696;'>最佳成绩</view>
         <view style='font-size:11pt;'>{{item.record}}</view>
       </view>
       <view class="item-10">

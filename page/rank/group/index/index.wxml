@@ -1,2 +1,130 @@
-<!--page/rank/group/index/index.wxml-->
-<text>page/rank/group/index/index.wxml</text>
+<view class="contain">
+  <view class="best">
+
+    <view class="item">
+      <view class="item-20">
+        <image src="../../../../image/team.png" style='width:50px;height:50px;'></image>
+      </view>
+      <view class="item-40" style='text-align:left;'>
+        <view style='height:25px;line-height:25px;font-size:10pt;'>特勤中队</view>
+        <view style='height:25px;line-height:25px;font-size:10pt'>3000M灭火操</view>
+      </view>
+      <view class="item-20" style='text-align:right;'>
+        <view style='height:25px;line-height:25px;font-size:9pt;color:#969696;border-bottom:1px solid #cfcfcf;'>共计训练:</view>
+        <view style='height:25px;line-height:25px;font-size:9pt;color:#969696'>最佳记录:</view>
+      </view>
+      <view class="item-20" style='text-align:center;'>
+        <view style='height:25px;line-height:25px;font-size:9pt;border-bottom:1px solid #cfcfcf;'>15次</view>
+        <view style='height:25px;line-height:25px;font-size:9pt;'>11'26"63</view>
+      </view>
+    </view>
+
+    <view class="item" style='border:1px solid #969696;border-radius:5px;text-align:center;line-height:25px;font-size:9pt'>
+      <view class="item-20">
+        <view style='border-bottom:1px solid #969696;'>月份</view>
+        <view style='border-bottom:1px solid #969696;'>最佳成绩</view>
+        <view>训练次数</view>
+      </view>
+      <view class="item-20" style='border-left:1px solid #969696;'>
+        <view style='border-bottom:1px solid #969696;'>8月份</view>
+        <view style='border-bottom:1px solid #969696;'>11'23"30</view>
+        <view>9次</view>
+      </view>
+      <view class="item-20" style='border-left:1px solid #969696;'>
+        <view style='border-bottom:1px solid #969696;'>7月份</view>
+        <view style='border-bottom:1px solid #969696;'>11'23"30</view>
+        <view>9次</view>
+      </view>
+      <view class="item-20" style='border-left:1px solid #969696;'>
+        <view style='border-bottom:1px solid #969696;'>6月份</view>
+        <view style='border-bottom:1px solid #969696;'>11'23"30</view>
+        <view>9次</view>
+      </view>
+      <view class="item-20" style='border-left:1px solid #969696;'>
+        <view style='border-bottom:1px solid #969696;'>5月份</view>
+        <view style='border-bottom:1px solid #969696;'>11'23"30</view>
+        <view>9次</view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <view class="rank">
+    <view style='display:flex;background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
+      <view class="item-20">
+        本月成绩
+      </view>
+      <view class="item-60">
+      </view>
+      <view class="item-20" style='text-align:center;'>
+        Total 13
+      </view>
+    </view>
+    <view class="item border-btm bk">
+      <view class="item-15">
+        
+      </view>
+      <view class="item-35">
+        <view style='font-size:9pt;color:#969696;'>时 间</view>
+        <view style='font-size:11pt;'>2018-03-12</view>
+      </view>
+      <view class="item-35" >
+        <view style='font-size:9pt;color:#969696;'>成 绩</view>
+        <view style='font-size:11pt;'>21'36"112</view>
+      </view>
+      <view class="item-15" style='border-left:1px solid #cdcdcd;'>
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png"></image>
+      </view>
+    </view>
+    <view class="item border-btm bk">
+      <view class="item-15">
+        
+      </view>
+      <view class="item-35">
+        <view style='font-size:9pt;color:#969696;'>时 间</view>
+        <view style='font-size:11pt;'>2018-03-12</view>
+      </view>
+      <view class="item-35" >
+        <view style='font-size:9pt;color:#969696;'>成 绩</view>
+        <view style='font-size:11pt;'>21'36"112</view>
+      </view>
+      <view class="item-15" style='border-left:1px solid #cdcdcd;'>
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png"></image>
+      </view>
+    </view>
+    <view class="item border-btm bk">
+      <view class="item-15">
+        <image style='width:25px;height:25px;' src="../../../../image/best.png"></image>
+      </view>
+      <view class="item-35" style='border-left:1px solid #cdcdcd;'>
+        <view style='font-size:9pt;color:#969696;'>时 间</view>
+        <view style='font-size:11pt;'>2018-03-12</view>
+      </view>
+      <view class="item-35" >
+        <view style='font-size:9pt;color:#969696;'>成 绩</view>
+        <view style='font-size:11pt;'>21'36"112</view>
+      </view>
+      <view class="item-15" style='border-left:1px solid #cdcdcd;'>
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png"></image>
+      </view>
+    </view>
+    <view class="item border-btm bk">
+      <view class="item-15">
+        
+      </view>
+      <view class="item-35">
+        <view style='font-size:9pt;color:#969696;'>时 间</view>
+        <view style='font-size:11pt;'>2018-03-12</view>
+      </view>
+      <view class="item-35" >
+        <view style='font-size:9pt;color:#969696;'>成 绩</view>
+        <view style='font-size:11pt;'>21'36"112</view>
+      </view>
+      <view class="item-15" style='border-left:1px solid #cdcdcd;'>
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png"></image>
+      </view>
+    </view>
+  </view>
+
+</view>
