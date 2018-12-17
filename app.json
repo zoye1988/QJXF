@@ -44,7 +44,9 @@
     "page/live/play/index",
     "page/rank/index/index",
     "page/rank/group/list/index",
-    "page/rank/group/index/index"
+    "page/rank/group/index/index",
+    "page/rank/single/list/index",
+    "page/rank/single/index/index"
   ],
   "window": {
     "navigationBarTextStyle": "light",
