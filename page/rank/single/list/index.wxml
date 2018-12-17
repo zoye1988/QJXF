@@ -46,8 +46,16 @@
   </view>
   <!--各单位成绩对比-->
   <view class="rank">
-    <view style='background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
-      本月成绩
+    <view style='display:flex;background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
+      <view class="item-30">
+        本月成绩（全体）
+      </view>
+      <view class="item-40">
+      </view>
+      <view class="item-15" style='text-align:right;'>本级</view>
+      <view class="item-15" style='text-align:center'>
+        <image src="../../../../image/change.png" ></image>
+      </view>
     </view>
     <navigator url="../index/index?rid=1" class="item border-btm bk" wx:for="{{records}}" wx:key="{{item.id}}">
       <view class="item-15">

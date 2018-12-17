@@ -67,8 +67,14 @@ image{
 .item-45{
   width:45%;
 }
+.item-50{
+  width:50%;
+}
 .item-60{
   width:60%;
+}
+.item-55{
+  width:55%;
 }
 .item-70{
   width:70%;
