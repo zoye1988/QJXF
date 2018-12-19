@@ -47,14 +47,11 @@
   <!--各单位成绩对比-->
   <view class="rank">
     <view style='display:flex;background-color:#3b413b;height:30px;line-height:30px;width:auto;color:#ffffff;font-size:10pt;padding-left:10px;border-radius:5px;'>
-      <view class="item-30">
-        本月成绩（全体）
+      <view class="item-70">
+        本月成绩 [ 全体 ]
       </view>
-      <view class="item-40">
-      </view>
-      <view class="item-15" style='text-align:right;'>本级</view>
-      <view class="item-15" style='text-align:center'>
-        <image src="../../../../image/change.png" ></image>
+      <view class="item-30" style='text-align:center;color:#2782D7'>
+        切换 [ 本级 ]
       </view>
     </view>
     <navigator url="../index/index?rid=1" class="item border-btm bk" wx:for="{{records}}" wx:key="{{item.id}}">
@@ -67,7 +64,8 @@
         </view>
       </view>
       <view class="item-25">
-        <view style='font-size:11pt;'>{{item.dptname}}</view>
+        <view style='font-size:9pt;color:#969696;'>{{item.dptname}}</view>
+        <view style='font-size:11pt;'>李嬷嬷</view>
       </view>
       <view class="item-25" style='border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
         <view style='font-size:9pt;color:#969696;'>训练次数</view>

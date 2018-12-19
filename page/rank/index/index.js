@@ -16,81 +16,153 @@ Page({
         rid:1,
         title:"400米快速供水操",
         time:"2018-02-15",
-        dptname:"特勤中队",
-        record:"02'32\"13",
-        first:"特勤中队",
-        frecord:"01'32\"13",
-        second: "富源中队",
-        srecord: "02'32\"13",
-        third: "沾益中队",
-        trecord: "03'02\"13",
+        dptname:"特勤园区中队",
+        uname:"",
+        best:"02'32\"13",
+        records:[
+          {
+            dptname:"特勤园区中队",
+            uname:"",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+        ]
       },
       {
-        rid: 2,
-        title: "百米梯次进攻操",
+        rid: 1,
+        title: "400米快速供水操",
         time: "2018-02-15",
-        dptname: "特勤中队",
-        record: "02'32\"13",
-        first: "特勤中队",
-        frecord: "01'32\"13",
-        second: "富源中队",
-        srecord: "02'32\"13",
-        third: "沾益中队",
-        trecord: "03'02\"13",
+        dptname: "特勤园区中队",
+        uname: "",
+        best: "02'32\"13",
+        records: [
+          {
+            dptname: "特勤园区中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+        ]
       },
       {
-        rid: 3,
-        title: "纵深灭火操",
+        rid: 1,
+        title: "400米快速供水操",
         time: "2018-02-15",
-        dptname: "特勤中队",
-        record: "02'32\"13",
-        first: "特勤中队",
-        frecord: "01'32\"13",
-        second: "富源中队",
-        srecord: "02'32\"13",
-        third: "沾益中队",
-        trecord: "03'02\"13",
-      }
+        dptname: "特勤园区中队",
+        uname: "",
+        best: "02'32\"13",
+        records: [
+          {
+            dptname: "特勤园区中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "",
+            record: "02'32\"13"
+          },
+        ]
+      },
     ],//班组科目{ uname: '李慕白', dutytime: '2018-01-23', dutype: 0, udptname: '文山州公安消防支队' }
     single: [
       {
         rid: 1,
-        title: "5000米长跑",
+        title: "俯卧撑",
         time: "2018-02-15",
-        dptname: "李文勇",
-        record: "02'32\"13",
-        first: "江浩",
-        frecord: "01'32\"13",
-        second: "陶渊明",
-        srecord: "02'32\"13",
-        third: "宋久子",
-        trecord: "03'02\"13",
+        dptname: "特勤园区中队",
+        uname: "李嬷嬷",
+        best: "02'32\"13",
+        records: [
+          {
+            dptname: "特勤园区中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+        ]
       },
       {
-        rid: 2,
-        title: "俯卧撑（3分钟）",
+        rid: 1,
+        title: "俯卧撑",
         time: "2018-02-15",
-        dptname: "李清照",
-        record: "15",
-        first: "白居易",
-        frecord: "12",
-        second: "曹丕",
-        srecord: "11",
-        third: "曹植",
-        trecord: "10",
+        dptname: "特勤园区中队",
+        uname: "李嬷嬷",
+        best: "02'32\"13",
+        records: [
+          {
+            dptname: "特勤园区中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+        ]
       },
       {
-        rid: 3,
-        title: "单杠卷身上",
+        rid: 1,
+        title: "俯卧撑",
         time: "2018-02-15",
-        dptname: "李清照",
-        record: "15",
-        first: "白居易",
-        frecord: "12",
-        second: "曹丕",
-        srecord: "11",
-        third: "曹植",
-        trecord: "10",
+        dptname: "特勤园区中队",
+        uname: "李嬷嬷",
+        best: "02'32\"13",
+        records: [
+          {
+            dptname: "特勤园区中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "富源二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+          {
+            dptname: "沾益二中队",
+            uname: "李嬷嬷",
+            record: "02'32\"13"
+          },
+        ]
       }
     ],//个人科目
     loadShow: false,///加载图标显示
