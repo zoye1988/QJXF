@@ -31,7 +31,7 @@
             </view>
             <view class="item-30" style='text-align:center;'>
               <view style='font-size:10pt;'>{{item.dptname}}</view>
-              <view style='font-size:9pt;'>{{item.best}}</view>
+              <view style='font-size:10pt;'>{{item.best}}</view>
             </view>
           </view>
           <view class="rank-content">
@@ -45,8 +45,8 @@
                 <image src="../../../image/{{index+1}}.png"></image>
               </view>
               <view class="item-20">
-                <view style='font-size:9pt'>{{records.dptname}}</view>
-                <view style='font-size:9pt'>{{records.record}}</view>
+                <view style='font-size:8pt'>{{records.dptname}}</view>
+                <view style='font-size:10pt'>{{records.record}}</view>
               </view>
             </block>
           </view>
@@ -80,7 +80,7 @@
             </view>
             <view class="item-25" style='text-align:center;'>
               <view style='font-size:10pt;'>{{item.uname}}</view>
-              <view style='font-size:9pt;'>{{item.best}}</view>
+              <view style='font-size:10pt;'>{{item.best}}</view>
             </view>
           </view>
           <view class="rank-content">
@@ -93,8 +93,8 @@
                 <image src="../../../image/{{index+1}}.png"></image>
               </view>
               <view class="item-20">
-                <view style='font-size:9pt'>{{records.uname}}</view>
-                <view style='font-size:9pt'>{{records.record}}</view>
+                <view style='font-size:10pt'>{{records.uname}}</view>
+                <view style='font-size:10pt'>{{records.record}}</view>
               </view>
             </block>
           </view>

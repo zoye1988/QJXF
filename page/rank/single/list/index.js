@@ -11,7 +11,7 @@ Page({
         title: "男子3000M耐力跑",
         time: "2018-10-12",
         record: "02'34\"13",
-        dptname: "特勤中队",
+        dptname: "特勤企业中队",
         uname:"李白"
       },
       {

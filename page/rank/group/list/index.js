@@ -11,13 +11,13 @@ Page({
         title: "3000M越野障碍赛",
         time: "2018-10-12",
         record: "02'34\"13",
-        dptname: "特勤园区的中队"
+        dptname: "特勤中队"
       },
       {
         title: "3000M越野障碍赛",
         time: "2018-10-12",
         record: "02'34\"13",
-        dptname: "沾益园区的中队"
+        dptname: "沾益中队"
       }
     ],
     records:[

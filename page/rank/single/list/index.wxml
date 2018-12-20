@@ -13,19 +13,15 @@
       <view class="item-15">
         <image src="../../../../image/best.png"></image>
       </view>
-      <view class="item-20">
-        <view style='font-size:9pt;color:#969696;'>单 位</view>
-        <view style='font-size:10pt;'>{{best[0].dptname}}</view>
-      </view>
-      <view class="item-20" style='border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
-        <view style='font-size:9pt;color:#969696;'>姓 名</view>
+      <view class="item-30">
+        <view style='font-size:9pt;'>[ {{best[0].dptname}} ]</view>
         <view style='font-size:10pt;'>{{best[0].uname}}</view>
       </view>
-      <view class="item-25" style='border-right:1px solid #cdcdcd;'>
+      <view class="item-25" style='border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
         <view style='font-size:9pt;color:#969696;'>时 间</view>
         <view style='font-size:9pt;'>{{best[0].time}}</view>
       </view>
-      <view class="item-20">
+      <view class="item-25">
         <view style='font-size:9pt;color:#969696;'>成 绩</view>
         <view style='font-size:10pt;'>{{best[0].record}}</view>
       </view>
@@ -34,8 +30,8 @@
     <view class="item">
       <view class="item-20" style='font-size:9pt;color:#969696;'>最近记录</view>
       <view class="item-15" style='font-size:9pt;border-left:1px solid #cdcdcd;'>{{best[1].uname}}</view>
-      <view class="item-20" style='font-size:9pt;'>{{best[1].dptname}}</view>
-      <view class="item-25" style='font-size:9pt;'>
+      <view class="item-25" style='font-size:9pt;'>{{best[1].dptname}}</view>
+      <view class="item-20" style='font-size:9pt;'>
         {{best[1].time}}
       </view>
       <view class="item-20" style='font-size:9pt;'>
