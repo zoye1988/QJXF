@@ -8,163 +8,11 @@ Page({
         */
     winWidth: 0,
     defaultHeight: 0,
-    headerHeight: 30,
+    headerHeight: 40,
     // tab切换  
     currentTab: 0,
-    group: [
-      {
-        rid:1,
-        title:"400米快速供水操",
-        time:"2018-02-15",
-        dptname:"特勤园区中队",
-        uname:"",
-        best:"02'32\"13",
-        records:[
-          {
-            dptname:"特勤园区中队",
-            uname:"",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-        ]
-      },
-      {
-        rid: 1,
-        title: "400米快速供水操",
-        time: "2018-02-15",
-        dptname: "特勤园区中队",
-        uname: "",
-        best: "02'32\"13",
-        records: [
-          {
-            dptname: "特勤园区中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-        ]
-      },
-      {
-        rid: 1,
-        title: "400米快速供水操",
-        time: "2018-02-15",
-        dptname: "特勤园区中队",
-        uname: "",
-        best: "02'32\"13",
-        records: [
-          {
-            dptname: "特勤园区中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "",
-            record: "02'32\"13"
-          },
-        ]
-      },
-    ],//班组科目{ uname: '李慕白', dutytime: '2018-01-23', dutype: 0, udptname: '文山州公安消防支队' }
-    single: [
-      {
-        rid: 1,
-        title: "俯卧撑",
-        time: "2018-02-15",
-        dptname: "特勤园区中队",
-        uname: "李嬷嬷",
-        best: "02'32\"13",
-        records: [
-          {
-            dptname: "特勤园区中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-        ]
-      },
-      {
-        rid: 1,
-        title: "俯卧撑",
-        time: "2018-02-15",
-        dptname: "特勤园区中队",
-        uname: "李嬷嬷",
-        best: "02'32\"13",
-        records: [
-          {
-            dptname: "特勤园区中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-        ]
-      },
-      {
-        rid: 1,
-        title: "俯卧撑",
-        time: "2018-02-15",
-        dptname: "特勤园区中队",
-        uname: "李嬷嬷",
-        best: "02'32\"13",
-        records: [
-          {
-            dptname: "特勤园区中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "富源二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-          {
-            dptname: "沾益二中队",
-            uname: "李嬷嬷",
-            record: "02'32\"13"
-          },
-        ]
-      }
-    ],//个人科目
+    group: [],
+    single: [],//个人科目
     loadShow: false,///加载图标显示
     gsize: 0,
     ssize: 0,
@@ -188,79 +36,82 @@ Page({
         });
       }
     });
-    /*
-      获取正常考勤和当日请假列表
+    
+    //获取班组科目
     
     wx.request({
-      url: host + "duty.do",
+      url: host + "record.do",
       method: "post",
       data: {
-        method: "dutylist",
-        dptcode: udptcode,
-        page: that.data.Duty.length,
+        method: "getTrainingList",
+        types:0,
+        page: that.data.group.length,
         pagesize: that.data.pagesize
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var Duty = that.data.Duty;
-        var _Duty = res.data;
-        for (var bt in _Duty) {
-          Duty.push(_Duty[bt]);
+        var group = that.data.group;
+        var _group = res.data;
+        console.log(_group);
+        for (var bt in _group) {
+          group.push(_group[bt]);
         }
         that.setData({
-          Duty: Duty
+          group: group
         });
       },
       fail: function (res) {
         wx.showModal({
           title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：duty_GETDUTYLIST," + res.errMsg,
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
           showCancel: false,
           confirmText: "确定"
         })
       }
     });
 
+    //获取个人科目
     wx.request({
-      url: host + "duty.do",
+      url: host + "record.do",
       method: "post",
       data: {
-        method: "leavelist",
-        dptcode: udptcode,
-        page: that.data.Leave.length,
+        method: "getTrainingList",
+        types: 1,
+        page: that.data.single.length,
         pagesize: that.data.pagesize
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var Leave = that.data.Leave;
-        var _Leave = res.data;
-        for (var bt in _Leave) {
-          Leave.push(_Leave[bt]);
+        var single = that.data.single;
+        var _single = res.data;
+        console.log(_single);
+        for (var bt in _single) {
+          single.push(_single[bt]);
         }
         that.setData({
-          Leave: Leave
+          single: single
         });
       },
       fail: function (res) {
         wx.showModal({
           title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：duty_GETDUTYLIST," + res.errMsg,
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
           showCancel: false,
           confirmText: "确定"
         })
       }
     });
-     */
+
 
     //初始化Leave和Duty长度
     //初始化长度
     that.setData({
-      gsize: that.data.group.length * 105,
-      ssize: that.data.single.length * 105,
+      gsize: that.data.group.length * 115,
+      ssize: that.data.single.length * 115,
     });
     if (that.data.tsize > that.data.defaultHeight) {
       that.setData({
@@ -285,7 +136,7 @@ Page({
     } else if (current == 1) {
       size = that.data.single.length;
     }
-    size = size * 105 + that.data.headerHeight;
+    size = size * 117 + that.data.headerHeight;
     if (size < that.data.winHeight) {
       size = that.data.winHeight;
     }
@@ -311,7 +162,7 @@ Page({
       } else if (current == 1) {
         size = that.data.single.length;
       }
-      size = size * 105 + that.data.headerHeight;
+      size = size * 117 + that.data.headerHeight;
       if (size < that.data.winHeight) {
         size = that.data.winHeight;
       }
@@ -359,8 +210,8 @@ Page({
             }
             that.setData({
               Duty: Duty,
-              tsize: Duty.length * 105 + that.data.headerHeight,
-              defaultHeight: Duty.length * 105 + that.data.headerHeight
+              tsize: Duty.length * 115 + that.data.headerHeight,
+              defaultHeight: Duty.length * 115 + that.data.headerHeight
             });
           }
         },
@@ -403,8 +254,8 @@ Page({
             }
             that.setData({
               Leave: Leave,
-              asize: Leave.length * 105 + that.data.headerHeight,
-              defaultHeight: Leave.length * 105 + that.data.headerHeight
+              asize: Leave.length * 115 + that.data.headerHeight,
+              defaultHeight: Leave.length * 115 + that.data.headerHeight
             });
           }
         },
@@ -501,8 +352,8 @@ Page({
     //初始化Leave和Duty长度
     //初始化长度
     that.setData({
-      tsize: that.data.Duty.length * 105,
-      asize: that.data.Leave.length * 105,
+      tsize: that.data.Duty.length * 115,
+      asize: that.data.Leave.length * 115,
     });
     var currentTab = that.data.currentTab;
     if (currentTab == 0) {

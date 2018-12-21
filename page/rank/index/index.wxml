@@ -15,8 +15,8 @@
       <image src="../../../image/empty.png"></image>
       <view>暂无警情数据</view>
     </view>
-    <view class="home_note" wx:for="{{group}}" wx:key="{{item.rid}}">
-      <navigator url="../group/list/index?rid={{item.rid}}">
+    <view class="home_note" wx:for="{{group}}" wx:key="{{item.tid}}">
+      <navigator url="../group/list/index?tid={{item.tid}}">
         <view class="icon-box">
           <view class="rank-title">
             <view class="item-15">
@@ -24,14 +24,35 @@
             </view>
             <view class="item-45">
               <view style='font-size:11pt;font-weight:bolder'>{{item.title}}</view>
-              <view style='font-size:9pt'>记录时间：{{item.time}}</view>
+              <view style='font-size:9pt'>记录时间：
+                <block wx:if="{{item.time==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.time!=''}}">
+                  {{item.time}}
+                </block>
+              </view>
             </view>
             <view class="item-10" style='text-align:right'>
               <image style="width:30px;height:30px;" src="../../../image/best.png"></image>
             </view>
             <view class="item-30" style='text-align:center;'>
-              <view style='font-size:10pt;'>{{item.dptname}}</view>
-              <view style='font-size:10pt;'>{{item.best}}</view>
+              <view style='font-size:10pt;'>
+                <block wx:if="{{item.dptname==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.dptname!=''}}">
+                  {{item.dptname}}
+                </block>
+              </view>
+              <view style='font-size:10pt;'>
+                <block wx:if="{{item.best==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.best!=''}}">
+                  {{item.best}}
+                </block>
+              </view>
             </view>
           </view>
           <view class="rank-content">
@@ -39,8 +60,10 @@
               <view>本月</view>
               <view>记录</view>
             </view>
+            <view wx:if="{{item.records.length==0}}" style='font-size:10pt;text-align:center;width:100%;'>
+              暂无记录
+            </view>
             <block wx:for="{{item.records}}" wx:for-item="records" wx:key="id">
-
               <view class="item-10">
                 <image src="../../../image/{{index+1}}.png"></image>
               </view>
@@ -64,8 +87,8 @@
       <view>暂无警情数据</view>
     </view>
 
-    <view class="home_note" wx:for="{{single}}" wx:key="{{item.rid}}">
-      <navigator url="../single/list/index?rid={{item.rid}}">
+    <view class="home_note" wx:for="{{single}}" wx:key="{{item.tid}}">
+      <navigator url="../single/list/index?tid={{item.tid}}">
         <view class="icon-box">
           <view class="rank-title">
             <view class="item-15">
@@ -73,20 +96,44 @@
             </view>
             <view class="item-50">
               <view style='font-size:11pt;font-weight:bolder'>{{item.title}}</view>
-              <view style='font-size:9pt'>记录时间：{{item.time}}</view>
+              <view style='font-size:9pt'>记录时间：
+                <block wx:if="{{item.time==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.time!=''}}">
+                  {{item.time}}
+                </block>
+              </view>
             </view>
             <view class="item-10" style='text-align:right'>
               <image style="width:30px;height:30px;" src="../../../image/best.png"></image>
             </view>
             <view class="item-25" style='text-align:center;'>
-              <view style='font-size:10pt;'>{{item.uname}}</view>
-              <view style='font-size:10pt;'>{{item.best}}</view>
+              <view style='font-size:10pt;'>
+                 <block wx:if="{{item.uname==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.uname!=''}}">
+                  {{item.uname}}
+                </block>
+              </view>
+              <view style='font-size:10pt;'>
+                <block wx:if="{{item.best==''}}">
+                  --/--
+                </block>
+                <block wx:if="{{item.best!=''}}">
+                  {{item.best}}
+                </block>
+              </view>
             </view>
           </view>
           <view class="rank-content">
             <view class="item-10" style='font-size:9pt;color:#2782D7;border-right:1px solid #cdcdcd;'>
               <view>本月</view>
               <view>记录</view>
+            </view>
+            <view wx:if="{{item.records.length==0}}" style='font-size:10pt;text-align:center;width:100%;'>
+              暂无记录
             </view>
             <block wx:for="{{item.records}}" wx:for-item="records" wx:key="id">
               <view class="item-10">
@@ -101,8 +148,6 @@
         </view>
       </navigator>
     </view>
-
-
     <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
       <image src="../../../image/timg.gif"></image>
     </view>
