@@ -19,6 +19,78 @@ Page({
     pagesize: 10,
     DefaultLimit: 7//功能限制访问权限级别
   },
+
+  getRecordGroup:function(){
+    var that = this;
+    var host = app.globalData.host;
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getTrainingList",
+        types: 0,
+        page: that.data.group.length,
+        pagesize: that.data.pagesize
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var group = that.data.group;
+        var _group = res.data;
+        for (var bt in _group) {
+          group.push(_group[bt]);
+        }
+        that.setData({
+          group: group
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+  },
+
+  getRecordSingle:function(){
+    var that = this;
+    var host = app.globalData.host;
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getTrainingList",
+        types: 1,
+        page: that.data.single.length,
+        pagesize: that.data.pagesize
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var single = that.data.single;
+        var _single = res.data;
+        for (var bt in _single) {
+          single.push(_single[bt]);
+        }
+        that.setData({
+          single: single
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+  },
   onLoad: function () {
     var that = this;
     app.validateUser();//验证用户
@@ -38,80 +110,18 @@ Page({
     });
     
     //获取班组科目
+    that.getRecordGroup();
     
-    wx.request({
-      url: host + "record.do",
-      method: "post",
-      data: {
-        method: "getTrainingList",
-        types:0,
-        page: that.data.group.length,
-        pagesize: that.data.pagesize
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var group = that.data.group;
-        var _group = res.data;
-        console.log(_group);
-        for (var bt in _group) {
-          group.push(_group[bt]);
-        }
-        that.setData({
-          group: group
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
 
     //获取个人科目
-    wx.request({
-      url: host + "record.do",
-      method: "post",
-      data: {
-        method: "getTrainingList",
-        types: 1,
-        page: that.data.single.length,
-        pagesize: that.data.pagesize
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var single = that.data.single;
-        var _single = res.data;
-        console.log(_single);
-        for (var bt in _single) {
-          single.push(_single[bt]);
-        }
-        that.setData({
-          single: single
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
+    that.getRecordSingle();
 
 
     //初始化Leave和Duty长度
     //初始化长度
     that.setData({
-      gsize: that.data.group.length * 115,
-      ssize: that.data.single.length * 115,
+      gsize: that.data.group.length * 117,
+      ssize: that.data.single.length * 117,
     });
     if (that.data.tsize > that.data.defaultHeight) {
       that.setData({
@@ -177,97 +187,11 @@ Page({
   onReachBottom: function () {
     var that = this;
     //触底事件，仅涉及Duty
-    var host = app.globalData.host;
-    var udptcode = app.globalData.udptcode;
     var current = this.data.currentTab;
     if (current == 0) {
-      var list = that.data.Duty;
-      wx.request({
-        url: host + "duty.do",
-        method: "post",
-        data: {
-          method: "dutylist",
-          dptcode: udptcode,
-          page: that.data.Duty.length,
-          pagesize: that.data.pagesize
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          var Duty = that.data.Duty;
-          var _Duty = res.data;
-          if (_Duty.length == 0) {
-            //判断获取参数等于0，提示数据已经到底
-            wx.showToast({
-              title: "数据已经到底",
-              image: "../../../image/warning.png",
-              duration: 2000
-            })
-          } else {
-            for (var bt in _Duty) {
-              Duty.push(_Duty[bt]);
-            }
-            that.setData({
-              Duty: Duty,
-              tsize: Duty.length * 115 + that.data.headerHeight,
-              defaultHeight: Duty.length * 115 + that.data.headerHeight
-            });
-          }
-        },
-        fail: function (res) {
-          wx.showModal({
-            title: "数据异常",
-            content: "请检查网络或重启程序,错误代码：duty_GETLIST," + res.errMsg,
-            showCancel: false,
-            confirmText: "确定"
-          })
-        }
-      });
+      that.getRecordGroup();
     } else {
-      var list = that.data.Leave;
-      wx.request({
-        url: host + "duty.do",
-        method: "post",
-        data: {
-          method: "leavelist",
-          dptcode: udptcode,
-          page: that.data.Leave.length,
-          pagesize: that.data.pagesize
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
-        success: function (res) {
-          var Leave = that.data.Leave;
-          var _Leave = res.data;
-          if (_Leave.length == 0) {
-            //判断获取参数等于0，提示数据已经到底
-            wx.showToast({
-              title: "数据已经到底",
-              image: "../../../image/warning.png",
-              duration: 2000
-            })
-          } else {
-            for (var bt in _Leave) {
-              Leave.push(_Leave[bt]);
-            }
-            that.setData({
-              Leave: Leave,
-              asize: Leave.length * 115 + that.data.headerHeight,
-              defaultHeight: Leave.length * 115 + that.data.headerHeight
-            });
-          }
-        },
-        fail: function (res) {
-          wx.showModal({
-            title: "数据异常",
-            content: "请检查网络或重启程序,错误代码：duty_GETLIST," + res.errMsg,
-            showCancel: false,
-            confirmText: "确定"
-          })
-        }
-      });
+      that.getRecordSingle();
     }
   },
   /**
@@ -352,8 +276,8 @@ Page({
     //初始化Leave和Duty长度
     //初始化长度
     that.setData({
-      tsize: that.data.Duty.length * 115,
-      asize: that.data.Leave.length * 115,
+      tsize: that.data.Duty.length * 117,
+      asize: that.data.Leave.length * 117,
     });
     var currentTab = that.data.currentTab;
     if (currentTab == 0) {
