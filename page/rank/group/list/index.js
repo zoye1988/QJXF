@@ -1,4 +1,5 @@
 // page/rank/group/list/index.js
+var app = getApp()
 Page({
 
   /**
@@ -6,20 +7,13 @@ Page({
    */
   data: {
     show:0,
-    best:[
-      {
-        title: "3000M越野障碍赛",
-        time: "2018-10-12",
-        record: "02'34\"13",
-        dptname: "特勤中队"
-      },
-      {
-        title: "3000M越野障碍赛",
-        time: "2018-10-12",
-        record: "02'34\"13",
-        dptname: "沾益中队"
-      }
-    ],
+    training:{
+      tid: 0,
+      title: "",
+      brief: "",
+      score: 0,
+      records:[]
+    },
     records:[
       {
         dptname:"马龙中队",
@@ -68,9 +62,36 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: "3000米越野障碍赛"
-    })
+    var that=this;
+    var tid=options.tid;
+    var score=options.score;
+    var host = app.globalData.host;
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getBest",
+        score: score,
+        tid:tid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          training: res.data.training
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+    //获取记录列表
   },
 
   /**

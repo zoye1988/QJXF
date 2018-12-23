@@ -4,7 +4,7 @@
 
     <view class="item">
       <view class="item-20" style='font-size:11pt;font-weight:bolder'>最佳记录</view>
-      <view class="item-60" style='font-size:10pt;text-align:left;'> {{best[0].title}}</view>
+      <view class="item-60" style='font-size:10pt;text-align:left;'> {{training.title}}</view>
       <view class="item-20" style='text-align:right;align-items:center;'>
         <image src="../../../../image/rules.png" style='width:15px;height:15px;' bindtap='showRules'></image>
       </view>
@@ -15,26 +15,64 @@
       </view>
       <view class="item-35">
         <view style='font-size:9pt;color:#969696;'>单 位</view>
-        <view style='font-size:10pt;'>{{best[0].dptname}}</view>
+        <view style='font-size:10pt;'>
+          <block wx:if="{{training.records[0].dptname==null}}">
+            --/--
+          </block>
+          <block wx:if="{{training.records[0].dptname!=null}}">
+            {{training.records[0].dptname}}
+          </block>
+        </view>
       </view>
       <view class="item-25" style='font-size:12pt;border-right:1px solid #cdcdcd;border-left:1px solid #cdcdcd;'>
         <view style='font-size:9pt;color:#969696;'>时 间</view>
-        <view style='font-size:10pt;'>{{best[0].time}}</view>
+        <view style='font-size:10pt;'>
+          <block wx:if="{{training.records[0].time==null}}">
+            --/--
+          </block>
+          <block wx:if="{{training.records[0].time!=null}}">
+            {{training.records[0].time}}
+          </block>
+        </view>
       </view>
       <view class="item-25">
         <view style='font-size:9pt;color:#969696;'>成 绩</view>
-        <view style='font-size:10pt;'>{{best[0].record}}</view>
+        <view style='font-size:10pt;'>
+          <block wx:if="{{training.records[0].record==null}}">
+            --/--
+          </block>
+          <block wx:if="{{training.records[0].record!=null}}">
+            {{training.records[0].record}}
+          </block>
+        </view>
       </view>
     </view>
 
     <view class="item">
       <view class="item-20" style='font-size:9pt;color:#969696;'>最近记录</view>
-      <view class="item-30" style='font-size:9pt;border-left:1px solid #cdcdcd;'>{{best[1].dptname}}</view>
-      <view class="item-25" style='font-size:9pt;'>
-        {{best[1].time}}
+      <view class="item-30" style='font-size:9pt;border-left:1px solid #cdcdcd;'>
+        <block wx:if="{{training.records[1].dptname==null}}">
+          --/--
+        </block>
+        <block wx:if="{{training.best[1].dptname!=null}}">
+          {{training.records[1].dptname}}
+        </block>
       </view>
       <view class="item-25" style='font-size:9pt;'>
-        {{best[1].record}}
+        <block wx:if="{{training.records[1].time==null}}">
+          --/--
+        </block>
+        <block wx:if="{{training.records[1].time!=null}}">
+          {{training.records[1].time}}
+        </block>
+      </view>
+      <view class="item-25" style='font-size:9pt;'>
+        <block wx:if="{{training.records[1].record==null}}">
+          --/--
+        </block>
+        <block wx:if="{{training.records[1].record!=null}}">
+          {{training.records[1].record}}
+        </block>
       </view>
     </view>
 
@@ -74,19 +112,18 @@
 <view class="{{show?'showItem':'hide'}}">
 </view>
 <view class="{{show?'showRules':'hide'}}">
-    <view class="items border-btm">
-      <view class="item-20" style='line-height:25px;align-items: center;text-align:center;margin-top:10px;'>
-        <image src="../../../../image/rules.png" style='width:25px;height:25px;align-items: center;'></image>
-      </view>
-      <view class="item-60 rulesTitle">
-        300M越野障碍赛
-      </view>
-      <view class="item-20" style='line-height:25px;text-align:center;margin-top:10px;'>
-        <image src="../../../../image/delete.png" style='width:25px;height:25px;' bindtap='closeRules'></image>
-      </view>
+  <view class="items border-btm">
+    <view class="item-20" style='line-height:25px;align-items: center;text-align:center;margin-top:10px;'>
+      <image src="../../../../image/rules.png" style='width:25px;height:25px;align-items: center;'></image>
     </view>
-    <view style='font-size:10pt;padding:15px;line-height:25px;text-indent:20px;'>
-      2月13日，在支付宝开放日上海站上，支付宝宣布推出一款全新的刷脸支付产品—— “蜻蜓”，直接将刷脸支付的接入成本降低80%。今后无论是大的医院、超市、餐厅、品牌零售店，还是路边的便利店、夫妻店甚至菜市场，刷个脸就能把钱付了。
-快科技了解到，这款刷脸支付产品的外形如同一个台灯，只是取代“灯泡”位置的是一块书本大小的刷脸显示屏。将它接入人工收银机，并放置在收银台上，顾客只要对准摄像头就能快速完成刷脸支付。
+    <view class="item-60 rulesTitle">
+      {{training.title}}
     </view>
+    <view class="item-20" style='line-height:25px;text-align:center;margin-top:10px;'>
+      <image src="../../../../image/delete.png" style='width:25px;height:25px;' bindtap='closeRules'></image>
+    </view>
+  </view>
+  <view style='font-size:10pt;padding:15px;line-height:25px;text-indent:20px;'>
+    {{training.brief}}
+  </view>
 </view>
