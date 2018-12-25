@@ -1,0 +1,82 @@
+<view class="contain">
+  <view class="main">
+    <!--录入选项-->
+    <view class="item bk">
+      <view class="item-25 br">姓 名</view>
+      <view class="item-55 br">
+        <input placeholder="用户姓名" placeholder-style="color:#888" type='text' value="{{uname}}"></input>
+      </view>
+      <view class="item-30">
+        <radio></radio>自己
+      </view>
+    </view>
+    <view class="_item bk">
+      <view class="item-20"></view>
+      <view class="item-60">
+        <!--联想选项-->
+        <view class="item select">
+          <view class="item-40 br">邓恒靖</view>
+          <view class="item-60" style='color:#969696;font-size:9pt;'>马龙中队</view>
+        </view>
+        <view class="item select">
+          <view class="item-40 br">邓多多</view>
+          <view class="item-60" style='color:#969696;font-size:9pt;'>富源中队</view>
+        </view>
+        <view class="item select">
+          <view class="item-40 br">test</view>
+          <view class="item-60" style='color:#969696;font-size:9pt;'>发发发</view>
+        </view>
+        <!--联想选项-->
+      </view>
+    </view>
+    <view class="item bk">
+      <view class="item-25 br">单 位</view>
+      <view class="item-55">
+        {{dptname}}
+      </view>
+      <view class="item-30"></view>
+    </view>
+    <view class="item bk">
+      <view class="item-25 br">训练科目</view>
+      <view class="item-55">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+          <view style="margin-top:3px;">{{array[index]}}</view>
+        </picker>
+      </view>
+      <view class="item-30"></view>
+    </view>
+
+    <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
+      <view class="item-40">训练记录（计时）</view>
+      <view class="item-60"> </view>
+    </view>
+
+    <view class="item2 bk">
+      <view class="item-25">
+        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888;"></input>
+      </view>
+      <view class="item-10">'</view>
+      <view class="item-25">
+        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888"></input>
+      </view>
+      <view class="item-10">"</view>
+      <view class="item-30">
+        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="000" placeholder-style="color:#888"></input>
+      </view>
+    </view>
+
+    <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
+      <view class="item-40">训练记录（次数）</view>
+      <view class="item-60"></view>
+    </view>
+
+    <view class="item2 bk">
+      <view class="item-30"></view>
+      <view class="item-40">
+        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888"></input>
+      </view>
+      <view class="item-30"></view>
+    </view>
+
+  </view>
+</view>

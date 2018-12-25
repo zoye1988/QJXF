@@ -90,7 +90,13 @@
       <navigator url="../live/index/index">
         <view class="meitem">
           <image src="../../image/push.png"></image>
-          <view style="font-size:10pt;">现场直播</view>
+          <view style="font-size:10pt;">现场图传</view>
+        </view>
+      </navigator>
+      <navigator url="../rank/data/index">
+        <view class="meitem">
+          <image src="../../image/single.png"></image>
+          <view style="font-size:10pt;">训练采集</view>
         </view>
       </navigator>
     </view>

@@ -1,4 +1,5 @@
-// page/rank/group/list/index.js
+// page/rank/single/list/index.js
+var app = getApp();
 Page({
 
   /**
@@ -6,73 +7,143 @@ Page({
    */
   data: {
     show: 0,
-    best: [
-      {
-        title: "男子3000M耐力跑",
-        time: "2018-10-12",
-        record: "02'34\"13",
-        dptname: "特勤企业中队",
-        uname:"李白"
-      },
-      {
-        title: "男子3000M耐力跑",
-        time: "2018-10-12",
-        record: "02'34\"13",
-        dptname: "沾益中队",
-        uname: "李白"
-      }
-    ],
-    records: [
-      {
-        dptname: "特勤中队",
-        total: 7,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "沾益中队",
-        total: 12,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "马龙中队",
-        total: 2,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "富源中队",
-        total: 7,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "会泽中队",
-        total: 7,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "师宗中队",
-        total: 4,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "师宗中队",
-        total: 4,
-        record: "02'34\"13"
-      },
-      {
-        dptname: "师宗中队",
-        total: 4,
-        record: "02'34\"13"
-      },
-    ]
+    training: {
+      tid: 0,
+      title: "",
+      brief: "",
+      score: 0,
+      records: []
+    },
+    records: [],
+    page: 0,
+    pagesize: 10,
+    tid: 0,
+    score: 0,
+    dptcode:"",
+    current_rank:"全体",
+    change_rank:"本级"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: "3000米越野障碍赛"
-    })
+    var that = this;
+    var tid = options.tid;
+    var score = options.score;
+    var host = app.globalData.host;
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getBest",
+        score: score,
+        tid: tid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          training: res.data.training,
+          score:score,
+          tid:tid
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+    //获取记录列表
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getRank",
+        score: score,
+        tid: tid,
+        page: that.data.records.length,
+        pagesize: that.data.pagesize,
+        dptcode:that.data.dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          records: res.data
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+  },
+
+  changeRank:function(){
+    var that = this;
+    var tid = that.data.tid;
+    var score = that.data.score;
+    var host = app.globalData.host;
+    var dptcode = that.data.dptcode;
+    var records=that.data.records;
+    if(dptcode==""){
+      dptcode = app.globalData.udptcode;
+      that.setData({
+        current_rank: "本级",
+        change_rank: "全体"
+      });
+    }else{
+      dptcode="";
+      that.setData({
+        current_rank: "全体",
+        change_rank: "本级"
+      });
+    }
+    //获取记录列表
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getRank",
+        score: score,
+        tid: tid,
+        page: 0,
+        pagesize: that.data.pagesize,
+        dptcode: dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          dptcode: dptcode,
+          page: records.length,
+          records: res.data
+        });
+
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+
+    
   },
 
   /**
@@ -80,6 +151,50 @@ Page({
    */
   onReady: function () {
 
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var that = this;
+    var tid = that.data.tid;
+    var score = that.data.score;
+    var host = app.globalData.host;
+    //获取记录列表
+    wx.request({
+      url: host + "record.do",
+      method: "post",
+      data: {
+        method: "getRank",
+        score: score,
+        tid: tid,
+        page: that.data.records.length,
+        pagesize: that.data.pagesize,
+        dptcode: that.data.dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var _records = res.data;
+        var records = that.data.records;
+        for (var bt in _records) {
+          records.push(_records[bt]);
+        }
+        that.setData({
+          records: records
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
   },
 
   /**
@@ -100,20 +215,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
 
   },
 

@@ -46,7 +46,8 @@
     "page/rank/group/list/index",
     "page/rank/group/index/index",
     "page/rank/single/list/index",
-    "page/rank/single/index/index"
+    "page/rank/single/index/index",
+    "page/rank/data/index"
   ],
   "window": {
     "navigationBarTextStyle": "light",
