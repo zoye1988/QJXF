@@ -5,11 +5,11 @@
       <view class="item-20">
         <image src="../../../../image/team.png" style='width:50px;height:50px;'></image>
       </view>
-      <view class="item-45" style='text-align:left;'>
+      <view class="item-40" style='text-align:left;'>
         <view style='height:25px;line-height:25px;font-size:10pt;'>{{training.uname}} [{{training.dptname}}]</view>
-        <view style='height:25px;line-height:25px;font-size:10pt'>{{training.title}}</view>
+        <view style='height:25px;line-height:25px;font-size:9pt'>{{training.title}}</view>
       </view>
-      <view class="item-15" style='text-align:right;'>
+      <view class="item-20" style='text-align:right;'>
         <view style='height:25px;line-height:25px;font-size:9pt;color:#969696;border-bottom:1px solid #cfcfcf;'>共计训练:</view>
         <view style='height:25px;line-height:25px;font-size:9pt;color:#969696'>最佳记录:</view>
       </view>
@@ -60,8 +60,8 @@
         <view style='font-size:9pt;color:#969696;'>成 绩</view>
         <view style='font-size:11pt;'>{{item.record}}</view>
       </view>
-      <view class="item-15" style='border-left:1px solid #cdcdcd;'>
-        <image style='width:25px;height:25px;' src="../../../../image/delete.png" bindtap='delRecord' data-rid="{{item.rid}}"></image>
+      <view class="item-15" style='border-left:1px solid #cdcdcd;' >
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png" bindtap='delRecord' data-rid="{{item.rid}}" wx:if="{{item.openid==uopenid}}"></image>
       </view>
     </view>
   </view>

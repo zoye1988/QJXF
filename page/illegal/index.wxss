@@ -42,6 +42,9 @@
   width:90%;
   text-align: left;
 }
+.item-100{
+  width:100%;
+}
 .tip{
   width:20px;height:20px;vertical-align: middle;padding-right:5px;border-right:1px solid #CACACA;
 }

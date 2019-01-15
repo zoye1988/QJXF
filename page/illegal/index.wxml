@@ -11,7 +11,7 @@
           <text>申请用户</text>
         </view>
         <view class="flex-item item-75">
-          {{uname}}
+          <open-data type="userNickName"></open-data>
         </view>
       </view>
       <view class="list_flex-wrp" style="flex-direction:row;">
@@ -29,21 +29,26 @@
           <text>用户状态</text>
         </view>
         <view class="flex-item item-75" style='color:red;'>
-          等待管理员审核 
+          等待管理员审核
+        </view>
+      </view>
+      <view class="list_flex-wrp" style="flex-direction:row;" wx:if="{{isPost==0}}">
+        <view class="flex-item item-100">
+          <button type="primary" style="font-size:10pt;"  open-type="getUserInfo"  bindgetuserinfo="onGotUserInfo">提交申请</button>
         </view>
       </view>
       <view style='font-size:10pt;padding:10px;background-color:#efefef;'>
-         <view style='font-size:11pt;font-weight:bold;height:25px;'>安全保密须知</view>
-         <view style='height:25px;'>一、不得在手机通信中涉及国家秘密；</view>
-         <view style='height:25px;'>二、不得在手机上存储、处理、传输国家秘密信息；</view>
-         <view style='height:25px;'>三、不得将手机连接涉密信息系统、信息设备或者载体；</view>
-         <view style='height:25px;'>四、不得私自复制、截屏、保存平台中的敏感信息；</view>
-         <view style='height:25px;'>五、不得随意转发平台中的敏感信息；</view>
+        <view style='font-size:11pt;font-weight:bold;height:25px;'>安全保密须知</view>
+        <view style='height:25px;'>一、不得在手机通信中涉及国家秘密；</view>
+        <view style='height:25px;'>二、不得在手机上存储、处理、传输国家秘密信息；</view>
+        <view style='height:25px;'>三、不得将手机连接涉密信息系统、信息设备或者载体；</view>
+        <view style='height:25px;'>四、不得私自复制、截屏、保存平台中的敏感信息；</view>
+        <view style='height:25px;'>五、不得随意转发平台中的敏感信息；</view>
       </view>
     </view>
     <view style='text-align:center;'>
       <navigator url='../usr/index'>
-         <text style='color:#1296db;font-size:10pt;padding-left:5px; padding-right:5px;text-decoration:underline'>如无法自动提交审核，请选择手动操作</text>
+        <text style='color:#1296db;font-size:10pt;padding-left:5px; padding-right:5px;text-decoration:underline'>如无法自动提交审核，请选择手动操作</text>
       </navigator>
     </view>
   </view>

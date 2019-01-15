@@ -14,7 +14,7 @@ Page({
     array: [],//等级名称列表
     arrayID:[],//等级名称参数
     driver:"",
-    carid:"WJ云",
+    carid:"云",
     reason:"",
     usetime:"",
     cstatus:"",
@@ -33,7 +33,12 @@ Page({
     identifyImg: "../../../res/temp.png",
     downloadurl: app.globalData.downloadurl,
     licences:[],//证件数组
-    DefaultLimit: 7//功能限制访问权限级别
+    DefaultLimit: 7,//功能限制访问权限级别
+    hideLeader:0,
+    automatic:[],
+    _jobcode:0,
+    note:1,
+    check:0
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -53,7 +58,7 @@ Page({
     var uname = app.globalData.uname;
     that.setData({
       driver:uname,
-      cars:[]
+      cars:[],
     });
     /** 
      * 获取系统信息 
@@ -75,6 +80,7 @@ Page({
       data: {
         method: "getCarLicenseList",
         dptcode: app.globalData.udptcode,
+        openid:app.globalData.openid,
         page: that.data.cars.length,
         pagesize: that.data.pagesize
       },
@@ -270,9 +276,24 @@ Page({
     }
   },
   bindPickerChange: function (e) {
+    var that=this;
+    this.showLeader(that.data.arrayID[e.detail.value]);
     this.setData({
       index: e.detail.value
     })
+  },
+  showLeader:function(index){
+    console.log(index);
+    var that=this;
+    that.setData({
+      hideLeader: 0
+    });
+    var _jobcode = that.data._jobcode;
+    if (index == _jobcode) {
+      that.setData({
+        hideLeader: 1,
+      });
+    }
   },
   /**
    * 页面上拉触底事件的处理函数
@@ -335,6 +356,7 @@ Page({
     var driver=this.data.driver;
     var carid=this.data.carid;
     var reason=this.data.reason;
+    var check=this.data.check;
     if(carid=="" || carid==null){
       wx.showModal({
         title: "数据检查",
@@ -362,11 +384,16 @@ Page({
       })
       return;
     }
-    wx.showLoading({
-      title: '数据上传中',
-      mask: true,
-      image: "../../../image/load.gif"
-    })
+
+    if (check == 0) {
+      wx.showModal({
+        title: "数据检查",
+        content: "请核实车辆号牌",
+        showCancel: false,
+        confirmText: "确定"
+      })
+      return;
+    }
     /**
      * 插入车辆申请表
      */
@@ -382,7 +409,10 @@ Page({
         driverid: app.globalData.openid,
         reason:that.data.reason,
         jobtitle:that.data.array[that.data.index],
-        jobcode:that.data.arrayID[that.data.index]
+        jobcode:that.data.arrayID[that.data.index],
+        _jobcode:that.data._jobcode,
+        leader:that.data.leader,
+        leaderID:that.data.leaderID
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -471,11 +501,14 @@ Page({
             icon: "success",
             duration: 2000
           })
-          that.refresh();
           that.setData({
             inCar: true,
-            carid:"WJ云"
+            carid:"云",
+            hideLeader:0,
+            check:0,
+            _jobcode:0
           });
+          that.refresh();
         }
         
       },
@@ -500,12 +533,39 @@ Page({
   },
   //修改用车信息
   keyCar: function (e) {
-    var _title = e.detail.value;
-    //通过正则表达式，仅能输入数字、英文、中文。
-    _title = _title.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '');
-    this.setData({
-      carid: _title
+    var that = this;
+    var host = app.globalData.host;
+    var carnumber = e.detail.value;
+    //查询后台
+    var dptcode = app.globalData.udptcode;
+    wx.request({
+      url: host + "car.do",
+      method: "post",
+      data: {
+        method: "checkCar",
+        carnumber: carnumber,
+        dptcode: dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          automatic:res.data,
+          note:res.data.length,
+          check:0
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
     });
+    
   },
   //修改用车原因信息
   keyReason: function (e) {
@@ -655,6 +715,39 @@ Page({
       cancelColor: "#d81e06",
       success: function (res) {
         if (res.confirm) {
+          //更新车辆状态
+          wx.request({
+            url: host + "car.do",
+            method: "post",
+            data: {
+              method: "updateCarStatus",
+              user: that.data.driver,
+              carid: that.data.carid,
+              isUse: 0,
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              var result = res.data.result;
+              if (result == 0) {
+                wx.showModal({
+                  title: "操作异常",
+                  content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE",
+                  showCancel: false,
+                  confirmText: "确定"
+                })
+              }
+            },
+            fail: function (res) {
+              wx.showModal({
+                title: "数据异常",
+                content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE," + res.errMsg,
+                showCancel: false,
+                confirmText: "确定"
+              })
+            }
+          });
           //确定车辆外出
           wx.request({
             url: host + "car.do",
@@ -683,10 +776,14 @@ Page({
                   icon: "success",
                   duration: 2000
                 });
-                that.refresh();
                 that.setData({
-                  inCar:true
+                  inCar:true,
+                  carid:"云",
+                  hideLeader:0,
+                  check: 0,
+                  _jobcode:0
                 });
+                that.refresh();
               }
             },
             fail: function (res) {
@@ -706,7 +803,6 @@ Page({
     })
   },
   refresh: function () {
-    console.log("refresh");
     var that = this;
     var host = app.globalData.host;//默认系统地址
     var udptcode = app.globalData.udptcode;//用户单位id
@@ -714,7 +810,8 @@ Page({
     var uname = app.globalData.uname;
     that.setData({
       driver: uname,
-      cars: []
+      cars: [],
+      check: 0
     });
     /** 
      * 获取系统信息 
@@ -862,5 +959,20 @@ Page({
         })
       }
     });
+  },
+  updateCar:function(e){
+    var that = this;
+    var isUse = e.currentTarget.dataset.isuse;
+    if(isUse==0){
+      that.setData({
+        leader: e.currentTarget.dataset.leader,
+        leaderID: e.currentTarget.dataset.openid,
+        _jobcode: e.currentTarget.dataset.jobcode,
+        carid: e.currentTarget.dataset.carnumber,
+        automatic: [],
+        check:1
+      });
+      that.showLeader(that.data.arrayID[that.data.index]);
+    }
   }
 })

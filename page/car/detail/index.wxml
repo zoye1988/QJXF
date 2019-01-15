@@ -86,7 +86,9 @@
     </view>
   </view>
   <view class="list_flex-wrp2" wx:if="{{cstatus==1 && jobcode==job}}">
-        <button type="warn" style="font-size:10pt;" bindtap="carPassBtn" data-cid="{{cid}}">同意审批</button>
-        <button type="primary" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carDelayBtn">拒绝审批</button>
+    <block wx:if="{{leaderid=='' || leaderid==openid}}">
+      <button type="primary" style="font-size:10pt;" bindtap="carPassBtn" data-cid="{{cid}}">同意审批</button>
+      <button type="warn" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carDelayBtn">拒绝审批</button>
+    </block>
   </view>
 </view>

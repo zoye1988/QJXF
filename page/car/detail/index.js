@@ -7,17 +7,20 @@ Page({
    */
   data: {
     driver: "",
-    carid: "WJ云",
+    driverid:"",
+    carid: "",
     reason: "",
     usetime: "",
     cstatus: "",
     job: 0,
     index: 0,//审批等级选择
     jobtitle: "",
-    jobcode:0,
+    jobcode: 0,
     leader: "",
-    backtime:"",
-    cid:0,
+    leaderid: "",
+    openid: "",
+    backtime: "",
+    cid: 0,
     DefaultLimit: 7//功能限制访问权限级别
   },
 
@@ -26,9 +29,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    var id=options.id;
+    var id = options.id;
     this.setData({
-      cid:id
+      cid: id,
+      openid: app.globalData.openid
     })
     app.validateUser();//验证用户
     app.checkVisitJob(this.data.DefaultLimit);//验证用户访问权限
@@ -63,9 +67,71 @@ Page({
             cstatus: car.cstatus,
             leader: car.leader,
             backtime: car.backtime,
-            jobcode:car.jobcode
+            jobcode: car.jobcode,
+            leaderid: car.leaderid,
+            driverid:car.openid
           });
-        }else{
+        } else {
+          wx.showModal({
+            title: "系统提示",
+            content: "数据丢失或者删除",
+            showCancel: false,
+            confirmText: "确定"
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+  },
+
+  refresh: function () {
+    var that = this;
+    var id = that.data.cid
+    app.validateUser();//验证用户
+    app.checkVisitJob(this.data.DefaultLimit);//验证用户访问权限
+    var host = app.globalData.host;//默认系统地址
+    /***
+     * 查询是否有已经提交的用车申请
+     */
+    var job = app.globalData.job;
+    that.setData({
+      job: app.globalData.job
+    })
+    wx.request({
+      url: host + "car.do",
+      method: "post",
+      data: {
+        method: "getCarInfo",
+        id: id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var result = res.data.result;
+        var car = res.data.car;
+        if (result > 0) {
+          that.setData({
+            driver: car.driver,
+            carid: car.carid,
+            reason: car.reason,
+            usetime: car.usetime,
+            jobtitle: car.jobtitle,
+            cstatus: car.cstatus,
+            leader: car.leader,
+            backtime: car.backtime,
+            jobcode: car.jobcode,
+            leaderid: car.leaderid
+          });
+          console.log(car.leaderid)
+        } else {
           wx.showModal({
             title: "系统提示",
             content: "数据丢失或者删除",
@@ -89,42 +155,42 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
@@ -135,6 +201,7 @@ Page({
     app.globalData.url = "/page/car/detail/index?id=" + this.data.cid;
     app.ShareAction();
   },
+  
   /**
    审批通过
    */
@@ -151,6 +218,39 @@ Page({
       cancelColor: "#d81e06",
       success: function (res) {
         if (res.confirm) {
+          //更新车辆状态
+          wx.request({
+            url: host + "car.do",
+            method: "post",
+            data: {
+              method: "updateCarStatus",
+              user: that.data.driver,
+              carid: that.data.carid,
+              isUse:1
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            success: function (res) {
+              var result = res.data.result;
+              if (result == 0) {
+                wx.showModal({
+                  title: "操作异常",
+                  content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE",
+                  showCancel: false,
+                  confirmText: "确定"
+                })
+              }
+            },
+            fail: function (res) {
+              wx.showModal({
+                title: "数据异常",
+                content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE," + res.errMsg,
+                showCancel: false,
+                confirmText: "确定"
+              })
+            }
+          });
           //确定车辆外出
           wx.request({
             url: host + "car.do",
@@ -159,6 +259,9 @@ Page({
               method: "leaderCarLicense",
               leaderid: app.globalData.openid,
               leader: app.globalData.uname,
+              driverid:that.data.driverid,
+              carid: that.data.carid,
+              usetime: that.data.usetime,
               cid: cid,
               cstatus: 3
             },
@@ -192,7 +295,7 @@ Page({
               })
             }
           });
-
+          
         } else if (res.cancel) {
 
         }

@@ -124,8 +124,9 @@ image{
   z-index: 8888;
 }
 .select{
-  border:1px solid #969696;
+  border:1px solid #cdcdcd;
   border-top:0;
+  text-align: center;
 }
 .showRules{
   position: absolute;

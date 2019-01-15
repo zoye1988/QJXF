@@ -28,6 +28,7 @@ Page({
     var that = this;
     var tid = options.tid;
     var score = options.score;
+    var types=options.types;
     var host = app.globalData.host;
     wx.request({
       url: host + "record.do",
@@ -64,6 +65,7 @@ Page({
         method: "getRank",
         score: score,
         tid: tid,
+        types:types,
         page: that.data.records.length,
         pagesize: that.data.pagesize
       },

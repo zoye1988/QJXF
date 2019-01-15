@@ -61,7 +61,7 @@
         <view style='font-size:11pt;'>{{item.record}}</view>
       </view>
       <view class="item-15" style='border-left:1px solid #cdcdcd;'>
-        <image style='width:25px;height:25px;' src="../../../../image/delete.png" bindtap='delRecord' data-rid="{{item.rid}}"></image>
+        <image style='width:25px;height:25px;' src="../../../../image/delete.png" bindtap='delRecord' data-rid="{{item.rid}}" wx:if="{{item.dptcode==udptcode}}"></image>
       </view>
     </view>
 

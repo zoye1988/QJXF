@@ -15,7 +15,9 @@
       <image src="../../../image/empty.png"></image>
       <view>暂时无数据</view>
     </view>
-    <view class="home_note" wx:for="{{cars}}" wx:key="{{item.cid}}">  
+
+
+    <navigator class="home_note" wx:for="{{cars}}" wx:key="{{item.cid}}" url="../detail/index?id={{item.cid}}">
       <view class="icon-box2">
         <view class="note_icon_div">
           <view class="note_icon_div2">
@@ -51,18 +53,11 @@
           </view>
         </view>
         <view class="note_icon_btn">
-          <view class="note_icon_btn2" wx:if="{{item.cstatus==1 && item.jobcode==job}}">
-            <image class="note_icon" src="../../../image/cancel.png"  data-cid="{{item.cid}}" bindtap='carDelayBtn'/>
-            <image class="note_icon2" src="../../../image/ok.png" data-cid="{{item.cid}}"  bindtap='carPassBtn' />
-          </view>
+          <image class="note_icon" src="../../../image/enter.png" />
         </view>
-        <navigator wx:if="{{item.jobcode!=job || item.cstatus!=1}}" url="../detail/index?id={{item.cid}}" style='height:120px;line-height:120px;'>
-          <view class="note_icon_btn">
-            <image class="note_icon" src="../../../image/enter.png"/>
-          </view>
-        </navigator>
       </view>
-    </view>
+    </navigator>
+
     <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
       <image src="../../../image/timg.gif"></image>
     </view>
@@ -90,6 +85,35 @@
         <view class="flex-item item-75">
           <input placeholder="请输入车辆号牌" value="{{carid}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
           </input>
+          <!--联想选项-->
+          <block wx:if="{{automatic.length!=0}}">
+            <view class="item" wx:for="{{automatic}}" wx:key="{{item.id}}" bindtap='updateCar' data-carnumber="{{item.carnumber}}" data-isUse='{{item.isUse}}' data-openid='{{item.openid}}' data-jobcode='{{item.jobcode}}' data-leader='{{item.leader}}'>
+              <view style='width:30%;border-right:1px solid #777'>{{item.carnumber}}</view>
+              <view style='width:40%;color:#969696'>
+                <block wx:if="{{item.isUse==1}}">
+                  {{item.user}}
+                </block>
+              </view>
+              <block wx:if="{{item.isUse==1}}">
+                <view style='width:30%;color:red'>[使用中]</view>
+              </block>
+              <block wx:if="{{item.isUse==2}}">
+                <view style='width:30%;color:orange'>[维修中]</view>
+              </block>
+              <block wx:if="{{item.isUse==0}}">
+                <view style='width:30%;color:#2782D7'>[待命中]</view>
+              </block>
+            </view>
+          </block>
+          <block wx:if="{{note==0}}">
+            <view class="item">
+              <view class="item-25">
+                <image src='../../../image/cancel.png' style='height:20px;width:20px;margin-top:2px;'></image>
+              </view>
+              <view class="item-50">未找到符合车辆</view>
+            </view>
+          </block>
+          <!--联想选项-->
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -98,7 +122,7 @@
           <text>用车原因</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入用车原因" value="{{reason}}"  type="text" placeholder-style="color:#888" bindinput="keyReason">
+          <input placeholder="请输入用车原因" value="{{reason}}" type="text" placeholder-style="color:#888" bindinput="keyReason">
           </input>
         </view>
       </view>
@@ -111,6 +135,18 @@
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
             <view>{{array[index]}}</view>
           </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp2 {{hideLeader ? '' : 'hideItemCss'}}" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/rescuer.png" class="tip2" />
+          <text>审批领导</text>
+        </view>
+        <view class="flex-item item-50">
+          {{leader}}
+        </view>
+        <view class="flex-item item-25" style='font-size:9pt;'>
+          [指定审批领导]
         </view>
       </view>
       <view style="padding:5px;background-color:#fff;">
@@ -143,7 +179,7 @@
           <text>使用车辆</text>
         </view>
         <view class="flex-item item-75">
-         {{carid}}
+          {{carid}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -178,8 +214,8 @@
           <text>相关证件</text>
         </view>
         <view class="flex-item item-75 licence">
-            <image mode="aspectFill" src="{{driverImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
-            <image mode="aspectFill" style='margin-left:10px;' src="{{identifyImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
+          <image mode="aspectFill" src="{{driverImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
+          <image mode="aspectFill" style='margin-left:10px;' src="{{identifyImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -187,9 +223,9 @@
           <text>审批结果</text>
         </view>
         <view class="flex-item item-75 car_result">
-            <image wx:if="{{cstatus==1}}" src="../../../image/processing.png"></image>
-            <image wx:if="{{cstatus==2}}" src="../../../image/delay.png"></image>
-            <image wx:if="{{cstatus>2 && cstatus<5}}" src="../../../image/pass.png"></image>
+          <image wx:if="{{cstatus==1}}" src="../../../image/processing.png"></image>
+          <image wx:if="{{cstatus==2}}" src="../../../image/delay.png"></image>
+          <image wx:if="{{cstatus>2 && cstatus<5}}" src="../../../image/pass.png"></image>
           <text style="color:#888;margin-right:5px;">签名</text>{{leader}}
         </view>
       </view>

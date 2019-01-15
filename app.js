@@ -27,12 +27,12 @@ App({
      */
     //downloadurl: 'http://127.0.0.1:8080/wxadmin/res/',//默认系统下载链接
     //host: "http://127.0.0.1:8080/wxadmin/",//默认系统数据访问地址
-    downloadurl: 'http://192.168.3.73:8080/wxadmin/res/',//默认系统下载链接
-    host: "http://192.168.3.73:8080/wxadmin/",//默认系统数据访问地址
-    wss:"ws://192.168.3.73:8080/wxadmin/chat", //建立websocket通信地址
-    // downloadurl:'https://www.zhurendata.com/rescue/res/',//默认系统下载链接
-    // host: "https://www.zhurendata.com/rescue/",//默认系统数据访问地址
-    // wss: "wss://www.zhurendata.com/rescue/chat", //建立websocket通信地址
+    // downloadurl: 'http://192.168.3.4:8080/wxadmin/res/',//默认系统下载链接
+    // host: "http://192.168.3.4:8080/wxadmin/",//默认系统数据访问地址
+    // wss:"ws://192.168.3.4:8080/wxadmin/chat", //建立websocket通信地址
+    downloadurl:'https://www.zhurendata.com/rescue/res/',//默认系统下载链接
+    host: "https://www.zhurendata.com/rescue/",//默认系统数据访问地址
+    wss: "wss://www.zhurendata.com/rescue/chat", //建立websocket通信地址
     sercertcode: "8E7E552B",//与服务器通信默认识别密码,软件版本的默认属性
     url:"",title:""//用户share记录
   },
@@ -69,6 +69,7 @@ App({
     var day=parseInt(diff/(1000*60*60*24));
     if(day>=60){//大于60天，要求重新验证用户数据
       wx.setStorageSync("ustatus", 0);
+      wx.setStorageSync("isPost", 0);
       wx.showModal({
         title: "系统提示",
         content: "用户登录超期，请重启程序",

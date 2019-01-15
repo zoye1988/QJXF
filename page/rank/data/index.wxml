@@ -3,32 +3,41 @@
     <!--录入选项-->
     <view class="item bk">
       <view class="item-25 br">姓 名</view>
-      <view class="item-55 br">
-        <input placeholder="用户姓名" placeholder-style="color:#888" type='text' value="{{uname}}"></input>
+      <view class="item-55">
+        <input placeholder="用户姓名" placeholder-style="color:#888" type='text' value="{{uname}}" bindinput="unameCheck"></input>
       </view>
-      <view class="item-30">
-        <radio></radio>自己
-      </view>
+      <view class="item-30" style='color:#969696'></view>
     </view>
-    <view class="_item bk">
+    <view class="_item bk" wx:if="{{user.length!=0}}">
       <view class="item-20"></view>
-      <view class="item-60">
+      <view class="item-80">
+        <!--联想选项-->
+        <view class="item select" wx:for="{{user}}" wx:key="{{item.id}}" data-uname="{{item.uname}}" data-openid="{{item.openid}}" data-dptname="{{item.dptname}}" data-dptcode="{{item.dptcode}}" bindtap='updateUsr'>
+          <view class="item-20 br">
+            <view style='height:20px;border:1px solid #cdcdcd;font-size:10pt;border-radius:10px;width:80%;margin-left:3px;'>选择</view>
+          </view>
+          <view class="item-40">{{item.uname}}</view>
+          <view class="item-40" style='color:#969696;font-size:9pt;'>[{{item.dptname}}]</view>
+        </view>
+
+        <!--联想选项-->
+      </view>
+    </view>
+
+    <view class="_item bk" wx:if="{{note==0}}">
+      <view class="item-20"></view>
+      <view class="item-80">
         <!--联想选项-->
         <view class="item select">
-          <view class="item-40 br">邓恒靖</view>
-          <view class="item-60" style='color:#969696;font-size:9pt;'>马龙中队</view>
-        </view>
-        <view class="item select">
-          <view class="item-40 br">邓多多</view>
-          <view class="item-60" style='color:#969696;font-size:9pt;'>富源中队</view>
-        </view>
-        <view class="item select">
-          <view class="item-40 br">test</view>
-          <view class="item-60" style='color:#969696;font-size:9pt;'>发发发</view>
+          <view class="item-20 br">
+            <image src='../../../image/cancel.png' style='height:20px;width:20px;margin-top:2px;'></image>
+          </view>
+          <view class="item-40">未找到符合用户</view>
         </view>
         <!--联想选项-->
       </view>
     </view>
+
     <view class="item bk">
       <view class="item-25 br">单 位</view>
       <view class="item-55">
@@ -46,37 +55,44 @@
       <view class="item-30"></view>
     </view>
 
-    <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
-      <view class="item-40">训练记录（计时）</view>
-      <view class="item-60"> </view>
-    </view>
-
-    <view class="item2 bk">
-      <view class="item-25">
-        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888;"></input>
+    <block wx:if="{{score==0}}">
+      <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
+        <view class="item-40">训练记录（计时）</view>
+        <view class="item-60"> </view>
       </view>
-      <view class="item-10">'</view>
-      <view class="item-25">
-        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888"></input>
+      <view class="item2 bk ">
+        <view class="item-25">
+          <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888;" value='{{min}}' bindinput='min'></input>
+        </view>
+        <view class="item-10">'</view>
+        <view class="item-25">
+          <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888" value='{{sec}}' bindinput='sec'></input>
+        </view>
+        <view class="item-10">"</view>
+        <view class="item-30">
+          <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="000" placeholder-style="color:#888" value='{{mse}}' bindinput='mse'></input>
+        </view>
       </view>
-      <view class="item-10">"</view>
-      <view class="item-30">
-        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="000" placeholder-style="color:#888"></input>
+    </block>
+
+    <block wx:if="{{score==1}}">
+      <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
+        <view class="item-40">训练记录（次数）</view>
+        <view class="item-60"></view>
       </view>
-    </view>
-
-    <view class="item bk" style='background-color:#3b413b;color:#ffffff;'>
-      <view class="item-40">训练记录（次数）</view>
-      <view class="item-60"></view>
-    </view>
-
-    <view class="item2 bk">
-      <view class="item-30"></view>
-      <view class="item-40">
-        <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888"></input>
+      <view class="item2 bk">
+        <view class="item-30"></view>
+        <view class="item-30">
+          <input type="number" style='height:50px;line-height:50px;border-bottom: 1px solid #000;' placeholder="00" placeholder-style="color:#888" value='{{sum}}' bindinput='sum'></input>
+        </view>
+        <view class="item-10">次</view>
+        <view class="item-30"></view>
       </view>
-      <view class="item-30"></view>
-    </view>
+    </block>
 
+  </view>
+
+  <view style='width:95%;margin:0 auto'>
+    <button type="primary" style="font-size:10pt;" bindtap='setRecord'>提交数据</button>
   </view>
 </view>

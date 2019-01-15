@@ -18,6 +18,7 @@ Page({
     page: 0,
     pagesize: 10,
     tid: 0,
+    types:0,
     score: 0,
     dptcode:"",
     current_rank:"全体",
@@ -31,6 +32,7 @@ Page({
     var that = this;
     var tid = options.tid;
     var score = options.score;
+    var types=options.types;
     var host = app.globalData.host;
     wx.request({
       url: host + "record.do",
@@ -47,7 +49,8 @@ Page({
         that.setData({
           training: res.data.training,
           score:score,
-          tid:tid
+          tid:tid,
+          types:types
         });
       },
       fail: function (res) {
@@ -67,6 +70,7 @@ Page({
         method: "getRank",
         score: score,
         tid: tid,
+        types:types,
         page: that.data.records.length,
         pagesize: that.data.pagesize,
         dptcode:that.data.dptcode
@@ -118,6 +122,7 @@ Page({
         method: "getRank",
         score: score,
         tid: tid,
+        types:that.data.types,
         page: 0,
         pagesize: that.data.pagesize,
         dptcode: dptcode

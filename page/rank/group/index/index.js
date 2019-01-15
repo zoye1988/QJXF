@@ -8,13 +8,15 @@ Page({
   data: {
     dptcode:2,
     openid:"",
+    udptcode:2,
+    uopenid:"",
     tid:0,
     score:0,
     page: 0,
     pagesize: 10,
     training:{
       tid:0,
-      title:"ceshi",
+      title:"",
       dptname:"",
       dptcode:2,
       uname:"",
@@ -56,7 +58,9 @@ Page({
           tid: tid,
           score: score,
           dptcode: dptcode,
-          openid: openid
+          openid: openid,
+          udptcode:app.globalData.udptcode, //当前用户
+          uopenid:app.globalData.openid //当前用户
         });
       },
       fail: function (res) {

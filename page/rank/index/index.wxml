@@ -16,7 +16,7 @@
       <view>暂无警情数据</view>
     </view>
     <view class="home_note" wx:for="{{group}}" wx:key="{{item.tid}}">
-      <navigator url="../group/list/index?tid={{item.tid}}&&score={{item.score}}">
+      <navigator url="../group/list/index?tid={{item.tid}}&&score={{item.score}}&&types={{item.types}}">
         <view class="icon-box">
           <view class="rank-title">
             <view class="item-15">
@@ -88,7 +88,7 @@
     </view>
 
     <view class="home_note" wx:for="{{single}}" wx:key="{{item.tid}}">
-      <navigator url="../single/list/index?tid={{item.tid}}&&score={{item.score}}">
+      <navigator url="../single/list/index?tid={{item.tid}}&&score={{item.score}}&&types={{item.types}}">
         <view class="icon-box">
           <view class="rank-title">
             <view class="item-15">
