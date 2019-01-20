@@ -115,6 +115,7 @@ Page({
             strokeWidth: 0
           }]
         });
+        that.getSelfPos();
       },
       fail: function (res) {
         wx.showModal({
@@ -125,15 +126,11 @@ Page({
         })
       }
     });
-    that.getSelfPos();
+    
   },
   //获取自身位置
   getSelfPos:function(){
     var that=this;
-    wx.showLoading({
-      title: '数据定位中',
-      mask: "true"
-    })
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
@@ -156,7 +153,7 @@ Page({
           selflongitude: res.longitude,
           markers: markers
         })
-      }
+      }     
     });
   },
   //提交考勤

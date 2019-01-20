@@ -165,6 +165,7 @@ Page({
     var that = this;
     var tid = that.data.tid;
     var score = that.data.score;
+    var types=that.data.types;
     var host = app.globalData.host;
     //获取记录列表
     wx.request({
@@ -176,6 +177,7 @@ Page({
         tid: tid,
         page: that.data.records.length,
         pagesize: that.data.pagesize,
+        types:types,
         dptcode: that.data.dptcode
       },
       header: {

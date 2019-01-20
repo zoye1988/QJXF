@@ -131,6 +131,7 @@ Page({
     var tid = that.data.tid;
     var score = that.data.score;
     var host = app.globalData.host;
+    var types=that.data.types;
     //获取记录列表
     wx.request({
       url: host + "record.do",
@@ -140,7 +141,8 @@ Page({
         score: score,
         tid: tid,
         page: that.data.records.length,
-        pagesize: that.data.pagesize
+        pagesize: that.data.pagesize ,
+        types:types
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded' 
