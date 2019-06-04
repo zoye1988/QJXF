@@ -88,7 +88,7 @@
           </view>
         </view>
         <view class="flex-wrp" style="flex-direction:row;">
-          
+
           <view class="flex-item home_title home_text">
             <navigator url="../rank/index/index">
               <view class="home_img">
@@ -112,6 +112,57 @@
               </view>
               <text>联络电话</text>
             </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../phone/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/dutys.png" />
+              </view>
+              <text>执勤实力</text>
+            </navigator>
+          </view>
+          <view class="flex-item home_title home_text">
+            <navigator url="../phone/index/index">
+              <view class="home_img">
+                <image class="home_image" src="../../image/personlist.png" />
+              </view>
+              <text>人员名册</text>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <!--执勤实力-->
+      <view class="duty_note">
+        <view class="duty-wrp" style="flex-direction:row;">
+          <view class="duty-item home_title dutytext">
+              <view class="dutycount">
+                112人
+              </view>
+              <text>指战员数</text>
+          </view>
+          <view class="duty-item home_title dutytext">
+              <view class="dutycount">
+                259人
+              </view>
+              <text>专职员数</text>
+          </view>
+          <view class="duty-item home_title dutytext">
+              <view class="dutycount">
+                9人
+              </view>
+              <text>请假人数</text>
+          </view>
+          <view class="duty-item home_title dutytext">
+              <view class="dutycount">
+                212辆
+              </view>
+              <text>执勤车数</text>
+          </view>
+          <view class="duty-item home_title dutytext">
+              <view class="dutycount" style='border:0'>
+                2辆
+              </view>
+              <text>故障车数</text>
           </view>
         </view>
       </view>

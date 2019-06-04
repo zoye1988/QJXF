@@ -5,6 +5,29 @@
   display:flex;
   background-color:#373937;
 }
+.duty-wrp{
+  margin:0;
+  display:flex;
+  background-color:#ffffff;
+  border-bottom:1px solid #cacaca;
+}
+.dutytext{
+  text-align: "center";
+  color:#888;
+  font-family:"黑体";
+}
+.dutycount{
+  color:black;
+  font-size:12pt;
+  margin-top:5px;
+  line-height: 25px;
+  border-right:1px solid #888;
+}
+.duty-item{
+  width: 20%;
+  height: 55px;
+  font-size: 26rpx;
+}
 .flex-item{
   width: 20%;
   height: 65px;

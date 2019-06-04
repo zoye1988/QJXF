@@ -25,10 +25,8 @@ App({
     /**
      * 系统默认参数
      */
-    //downloadurl: 'http://127.0.0.1:8080/wxadmin/res/',//默认系统下载链接
-    //host: "http://127.0.0.1:8080/wxadmin/",//默认系统数据访问地址
-    // downloadurl: 'http://192.168.3.4:8080/wxadmin/res/',//默认系统下载链接
-    // host: "http://192.168.3.4:8080/wxadmin/",//默认系统数据访问地址
+    // downloadurl: 'http://127.0.0.1:8080/wxadmin/res/',//默认系统下载链接
+    // host: "http://127.0.0.1:8080/wxadmin/",//默认系统数据访问地址
     // wss:"ws://192.168.3.4:8080/wxadmin/chat", //建立websocket通信地址
     downloadurl:'https://www.zhurendata.com/rescue/res/',//默认系统下载链接
     host: "https://www.zhurendata.com/rescue/",//默认系统数据访问地址
