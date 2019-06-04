@@ -50,7 +50,7 @@
     "page/rank/data/index"
   ],
   "window": {
-    "navigationBarTextStyle": "light",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "珠源消防",
     "navigationBarBackgroundColor": "#3b413b",
     "backgroundColor": "#F8F8F8",
@@ -94,5 +94,6 @@
     "uploadFile": 10000,
     "downloadFile": 10000
   },
-  "debug": false
+  "debug": false,
+  "sitemapLocation": "sitemap.json"
 }

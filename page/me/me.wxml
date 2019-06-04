@@ -81,12 +81,6 @@
           <view style="font-size:10pt;">我的考勤</view>
         </view>
       </navigator>
-      <navigator url="../phone/index/index">
-        <view class="meitem">
-          <image src="../../image/tableb.png"></image>
-          <view style="font-size:10pt;">统计分析</view>
-        </view>
-      </navigator>
       <navigator url="../live/index/index">
         <view class="meitem">
           <image src="../../image/push.png"></image>
@@ -97,6 +91,24 @@
         <view class="meitem">
           <image src="../../image/single.png"></image>
           <view style="font-size:10pt;">训练采集</view>
+        </view>
+      </navigator>
+      <navigator url="../rank/data/index">
+        <view class="meitem">
+          <image src="../../image/book.png"></image>
+          <view style="font-size:10pt;">图书借阅</view>
+        </view>
+      </navigator>
+      <navigator url="../rank/data/index">
+        <view class="meitem">
+          <image src="../../image/carcheck.png"></image>
+          <view style="font-size:10pt;">车辆检查</view>
+        </view>
+      </navigator>
+      <navigator url="../rank/data/index">
+        <view class="meitem">
+          <image src="../../image/dutyedit.png"></image>
+          <view style="font-size:10pt;">值班编辑</view>
         </view>
       </navigator>
     </view>

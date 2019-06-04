@@ -1,35 +1,33 @@
-<swiper-item>
-  <view class="empty_item" wx:if="{{events.length==0}}">
-    <image src="../../../image/empty.png"></image>
-    <view>暂时无数据</view>
-  </view>
-  <view class="home_note" wx:for="{{events}}" wx:key="{{item.eid}}">
-    <navigator url="../detail/index?eid={{item.eid}}">
-      <view class="icon-box">
-        <view class="note_icon_div">
-          <view class="note_icon_div2">
-            <image class="note_icon" src="../../../image/events.png" />
-          </view>
-        </view>
-        <view class="icon-box-ctn">
-          <view class="icon-box-title">
-            <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}" />
-            <text>{{item.title}}</text>
-          </view>
-          <view class="icon-box-desc">
-            <text>发布时间：{{item.time}}\n</text>
-            <text>要情内容：{{item.content}}</text>
-          </view>
-        </view>
-        <view class="note_icon_btn">
-          <view class="note_icon_btn2">
-            <image class="note_btn_icon" src="../../../image/enter.png" />
-          </view>
+<view class="empty_item" wx:if="{{events.length==0}}">
+  <image src="../../../image/empty.png"></image>
+  <view>暂时无数据</view>
+</view>
+<view class="home_note" wx:for="{{events}}" wx:key="{{item.eid}}">
+  <navigator url="../detail/index?eid={{item.eid}}">
+    <view class="icon-box">
+      <view class="note_icon_div">
+        <view class="note_icon_div2">
+          <image class="note_icon" src="../../../image/events.png" />
         </view>
       </view>
-    </navigator>
-  </view>
-  <view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
-    <image src="../../../image/timg.gif"></image>
-  </view>
-</swiper-item>
+      <view class="icon-box-ctn">
+        <view class="icon-box-title">
+          <image src='../../../image/new.png' class="tip2" wx:if="{{item.isnew}}" />
+          <text>{{item.title}}</text>
+        </view>
+        <view class="icon-box-desc">
+          <text>发布时间：{{item.time}}\n</text>
+          <text>要情内容：{{item.content}}</text>
+        </view>
+      </view>
+      <view class="note_icon_btn">
+        <view class="note_icon_btn2">
+          <image class="note_btn_icon" src="../../../image/enter.png" />
+        </view>
+      </view>
+    </view>
+  </navigator>
+</view>
+<view class="load {{loadShow ? 'showItemCss' : 'hideItemCss'}}">
+  <image src="../../../image/timg.gif"></image>
+</view>
