@@ -49,8 +49,13 @@
     "page/rank/single/index/index",
     "page/rank/data/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于警情数据定位"
+    }
+  },
   "window": {
-    "navigationBarTextStyle": "light",
+    "navigationBarTextStyle": "white",
     "navigationBarTitleText": "珠源消防",
     "navigationBarBackgroundColor": "#3b413b",
     "backgroundColor": "#F8F8F8",

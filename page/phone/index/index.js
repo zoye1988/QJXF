@@ -195,7 +195,17 @@ Page({
     //读取用户节本数据
     var host = app.globalData.host;
     var downloadurl = app.globalData.downloadurl;
-    console.log(that.data.tel);
+    var tel=that.data.tel;
+    tel = tel.replace(/\s+/g, "")
+    console.log(tel);
+    if(tel=="" || tel.length==0){
+      wx.showToast({
+        title: "录入电话不能为空",
+        image: "../../../image/warning.png",
+        duration: 2000
+      });
+      return;
+    }
     //读取默认单位数据
     wx.request({
       url: host + "user.do",

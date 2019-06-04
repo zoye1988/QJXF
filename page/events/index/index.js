@@ -101,7 +101,7 @@ Page({
       data: {
         method: "getEventsList",
         dptcode: udptcode,
-        taskdate: eventdate,
+        eventdate: eventdate,
         page: that.data.events.length,
         pagesize: that.data.pagesize
       },

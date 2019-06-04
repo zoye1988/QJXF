@@ -99,7 +99,7 @@ App({
             })
           }
         }
-      })
+      });
     } else if (this.globalData.ustatus==0){
       wx.showModal({
         title: "系统提示",

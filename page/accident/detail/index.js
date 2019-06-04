@@ -17,8 +17,8 @@ Page({
     downloadurl: "",
     imgString: "",//服务器传回文件字符串
     videoString: "",//服务器传回的视频地址
-    lng: 104.216248,
-    lat: 23.400733,
+    lng: 103.8075265288353,
+    lat: 25.484506828614666,
     udptcode: "",
     src: "",
     resDiv:0,//控制资源上传为图片/视频

@@ -355,6 +355,9 @@ Page({
     var host = app.globalData.host;
     var driver=this.data.driver;
     var carid=this.data.carid;
+    //清除回车
+    carid = carid.replace(/[ ]/g, "");    //去掉空格
+    carid = carid.replace(/[\r\n]/g, ""); //去掉回车换行
     var reason=this.data.reason;
     var check=this.data.check;
     if(carid=="" || carid==null){
@@ -536,6 +539,9 @@ Page({
     var that = this;
     var host = app.globalData.host;
     var carnumber = e.detail.value;
+    //清除空格和回车
+    carnumber = carnumber.replace(/[ ]/g, "");    //去掉空格
+    carnumber = carnumber.replace(/[\r\n]/g, ""); //去掉回车换行
     //查询后台
     var dptcode = app.globalData.udptcode;
     wx.request({
@@ -737,6 +743,54 @@ Page({
                   showCancel: false,
                   confirmText: "确定"
                 })
+              }else{
+                //确定车辆外出
+                wx.request({
+                  url: host + "car.do",
+                  method: "post",
+                  data: {
+                    method: "carStatusLicense",
+                    openid: app.globalData.openid,
+                    cid: cid,
+                    cstatus: 4
+                  },
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  success: function (res) {
+                    var result = res.data.result;
+                    if (result == 0) {
+                      wx.showModal({
+                        title: "操作异常",
+                        content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE",
+                        showCancel: false,
+                        confirmText: "确定"
+                      })
+                    } else {
+                      wx.showToast({
+                        title: "完成车辆状态更新",
+                        icon: "success",
+                        duration: 2000
+                      });
+                      that.setData({
+                        inCar: true,
+                        carid: "云",
+                        hideLeader: 0,
+                        check: 0,
+                        _jobcode: 0
+                      });
+                      that.refresh();
+                    }
+                  },
+                  fail: function (res) {
+                    wx.showModal({
+                      title: "数据异常",
+                      content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE," + res.errMsg,
+                      showCancel: false,
+                      confirmText: "确定"
+                    })
+                  }
+                });
               }
             },
             fail: function (res) {
@@ -748,53 +802,7 @@ Page({
               })
             }
           });
-          //确定车辆外出
-          wx.request({
-            url: host + "car.do",
-            method: "post",
-            data: {
-              method: "carStatusLicense",
-              openid: app.globalData.openid,
-              cid: cid,
-              cstatus:4
-            },
-            header: {
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: function (res) {
-              var result = res.data.result;
-              if (result == 0) {
-                wx.showModal({
-                  title: "操作异常",
-                  content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE",
-                  showCancel: false,
-                  confirmText: "确定"
-                })
-              } else {
-                wx.showToast({
-                  title: "完成车辆状态更新",
-                  icon: "success",
-                  duration: 2000
-                });
-                that.setData({
-                  inCar:true,
-                  carid:"云",
-                  hideLeader:0,
-                  check: 0,
-                  _jobcode:0
-                });
-                that.refresh();
-              }
-            },
-            fail: function (res) {
-              wx.showModal({
-                title: "数据异常",
-                content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE," + res.errMsg,
-                showCancel: false,
-                confirmText: "确定"
-              })
-            }
-          });
+         
 
         } else if (res.cancel) {
 

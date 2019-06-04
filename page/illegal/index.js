@@ -16,10 +16,10 @@ Page({
     var that=this;
     var userInfo = e.detail.userInfo;
     that.setData({
-      uname: userInfo.nickName,
+      uname: "待审核用户",
       uimg: userInfo.avatarUrl
     });
-    wx.setStorageSync("uname", userInfo.nickName);
+    wx.setStorageSync("uname", "待审核用户");
     wx.setStorageSync("uimg", userInfo.avatarUrl);
     that.login();
   },
