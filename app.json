@@ -47,7 +47,14 @@
     "page/rank/group/index/index",
     "page/rank/single/list/index",
     "page/rank/single/index/index",
-    "page/rank/data/index"
+    "page/rank/data/index",
+    "page/onduty/list/index",
+    "page/onduty/detail/index",
+    "page/roster/list/index",
+    "page/roster/detail/index",
+    "page/book/index",
+    "page/car/check/list/index",
+    "page/car/check/detail/index"
   ],
   "permission": {
     "scope.userLocation": {
