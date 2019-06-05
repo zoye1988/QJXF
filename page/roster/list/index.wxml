@@ -1,2 +1,55 @@
-<!--page/roster/list/index.wxml-->
-<text>page/roster/list/index.wxml</text>
+<view class="containor">
+  <view class="titlediv items borderbtm">
+    <view class="item-10 bright">
+      <image class="formImg" src="../../../image/other.png" />
+    </view>
+    <view class="item-80 bright">
+      <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入搜索关键字" />
+    </view>
+    <view class="item-10">
+      <image class="formImg" src="../../../image/search.png" />
+    </view>
+  </view>
+  <view class="items" style='height:190px;'>
+    <view class="item-33">
+      <image src="../../../image/head/1.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>郝志伟</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/2.jpg" style='width:95%;height:150px;'  mode="scaleToFill"></image>
+      <text>兰昌寿</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/3.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>李万发</text>
+    </view>
+  </view>
+  <view class="items" style='height:190px;'>
+    <view class="item-33">
+      <image src="../../../image/head/4.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>阮杰</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/5.jpg" style='width:95%;height:150px;'  mode="scaleToFill"></image>
+      <text>王俊虎</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/6.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>尹修波</text>
+    </view>
+  </view>
+  <view class="items" style='height:190px;'>
+    <view class="item-33">
+      <image src="../../../image/head/7.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>张恒</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/8.jpg" style='width:95%;height:150px;'  mode="scaleToFill"></image>
+      <text>张嘉强</text>
+    </view>
+    <view class="item-33">
+      <image src="../../../image/head/9.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>
+      <text>周兴</text>
+    </view>
+  </view>
+</view>
