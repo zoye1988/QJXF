@@ -71,7 +71,7 @@
       <!--swiper-->
         <view style='padding:10px;background-color:#fff;'>
         <view class="plan_input">
-          <textarea auto-focus="" placeholder="记录救援现场情况" value="{{title}}" bindinput='keyChange2'></textarea>
+          <textarea auto-focus="" placeholder="记录开展情况" value="{{title}}" bindinput='keyChange2'></textarea>
         </view>
         <view class="imgDiv {{resDiv ? 'divHide' : 'divShow'}}">
           <view style="text-align:right;color:#B2B2B2;font-size:10pt;">{{imageList.length}}/{{countIndex}}</view>

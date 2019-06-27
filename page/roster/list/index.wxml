@@ -10,6 +10,15 @@
       <image class="formImg" src="../../../image/search.png" />
     </view>
   </view>
+  <view class="total">
+    <view class="items">
+      <view class="item-10 center">
+        <image class="tip" src="../../../image/dpt.png" />
+      </view>
+      <view class="item-20 left bright">支队机关</view>
+      <view class="item-60"></view>
+    </view>
+  </view>
   <view class="items" style='height:190px;'>
     <view class="item-33">
       <image src="../../../image/head/1.jpg" style='width:95%;height:150px;' mode="scaleToFill"></image>

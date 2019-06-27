@@ -23,6 +23,42 @@ form{
 .tc{
   text-align: center;
 }
+.left{
+  text-align: left;
+}
+.right{
+  text-align: right;
+}
+.center{
+  text-align: center;
+}
+.item-10{
+  width:10%;
+}
+.item-20{
+  width:20%;
+}
+.item-25{
+  width:25%;
+}
+.item-30{
+  width:30%;
+}
+.item-33{
+  width:33%;
+}
+.item-40{
+  width:40%;
+}
+.item-50{
+  width:50%;
+}
+.item-60{
+  width:60%;
+}
+.item-100{
+  width:100%;
+}
 
 /* page */
 .container {

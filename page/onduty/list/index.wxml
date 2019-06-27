@@ -1,157 +1,66 @@
 <!--page/onduty/list/index.wxml-->
 <view class="containor">
   <view class="items borderbtm titlediv">
-    <view class="item-10"></view>
+    <view class="item-10">
+      <image src="../../../image/times.png" class='tip'></image>
+    </view>
     <view class="item-40 left">2019年06月04日</view>
-    <view class="item-40 right">昨天</view>
+    <view class="item-40 right">
+      <button type="primary" class="mini-btn" size="mini">昨天</button>
+    </view>
     <view class="item-10"></view>
   </view>
-  <view class="dutys">
+  <view class="dutys" wx:for="{{dutys}}" wx:key="{{item.did}}">
     <view class="items borderbtm">
-      <view class="item-40">支队机关</view>
-      <view class="item-60"></view>
+      <view class="item-10 center">
+        <image src="../../../image/dpt.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">{{item.dptname}}</view>
+      <view class="item-40"></view>
+    </view>
+    <block wx:for="{{item.duty}}" wx:for-item="duty" wx:key="id" >
+      <view class="items borderbtm">
+        <view class="item-40 bright">{{duty.name}}</view>
+        <view class="item-60">{{duty.val}}</view>
+      </view>
+    </block>
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/sir.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤人员</view>
+      <view class="item-40 right"></view>
+      <view class="item-10 center">>></view>
     </view>
     <view class="items borderbtm">
-      <view class="item-40 bright">带班领导</view>
-      <view class="item-60">毕明</view>
+      <view class="item-25 bright">指战员</view>
+      <view class="item-25 bright">专职队员</view>
+      <view class="item-25 bright">休假人员</view>
+      <view class="item-25">搜救犬</view>
     </view>
     <view class="items borderbtm">
-      <view class="item-40 bright">值班长</view>
-      <view class="item-60">代红波</view>
+      <view class="item-25 bright">{{item.person.fireman}} 人</view>
+      <view class="item-25 bright">{{item.person.amatuer}} 人</view>
+      <view class="item-25 bright">{{item.person.vacation}}人</view>
+      <view class="item-25">{{item.person.dog}} 条</view>
     </view>
     <view class="items borderbtm">
-      <view class="item-40 bright">指挥长</view>
-      <view class="item-60">陈乔</view>
+      <view class="item-10 center">
+        <image src="../../../image/car2.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤车辆</view>
+      <view class="item-40 right"></view>
+      <view class="item-10 center">>></view>
     </view>
     <view class="items borderbtm">
-      <view class="item-40 bright">专职值班</view>
-      <view class="item-60">段斌</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">作战值班</view>
-      <view class="item-60">张昭华</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">政工值班</view>
-      <view class="item-60">何耀</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">后勤值班</view>
-      <view class="item-60">赵梓栋</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">防火值班</view>
-      <view class="item-60">王建翔</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">宣传值班</view>
-      <view class="item-60">卢成良</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">通信值班</view>
-      <view class="item-60">扈荣飞</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-20 bright">指挥员</view>
-      <view class="item-20 bright">消防员</view>
-      <view class="item-20 bright">专职队员</view>
-      <view class="item-20 bright">执勤车辆</view>
-      <view class="item-20">搜救犬</view>
+      <view class="item-33 bright">行政车辆</view>
+      <view class="item-33 bright">消防车辆</view>
+      <view class="item-33 ">故障车辆</view>
     </view>
     <view class="items">
-      <view class="item-20 bright">109 人</view>
-      <view class="item-20 bright">119 人</view>
-      <view class="item-20 bright">205 人</view>
-      <view class="item-20 bright">134 辆</view>
-      <view class="item-20">10 条</view>
+      <view class="item-33 bright">{{item.car.smallcar}} 辆</view>
+      <view class="item-33 bright">{{item.car.bigcar}} 辆</view>
+      <view class="item-33 ">{{item.car.brokencar}} 辆</view>
     </view>
   </view>
-
-  <view class="dutys">
-    <view class="items borderbtm">
-      <view class="item-40">麒麟大队</view>
-      <view class="item-60"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">大队领导</view>
-      <view class="item-60">赵琨</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">大队参谋</view>
-      <view class="item-60">林瑾</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-20 bright">指挥员</view>
-      <view class="item-20 bright">消防员</view>
-      <view class="item-20 bright">专职队员</view>
-      <view class="item-20 bright">执勤车辆</view>
-      <view class="item-20">搜救犬</view>
-    </view>
-    <view class="items">
-      <view class="item-20 bright">11 人</view>
-      <view class="item-20 bright">38 人</view>
-      <view class="item-20 bright">25 人</view>
-      <view class="item-20 bright">35 辆</view>
-      <view class="item-20">0 条</view>
-    </view>
-  </view>
-
-  <view class="dutys">
-    <view class="items borderbtm">
-      <view class="item-40">麒麟一中队</view>
-      <view class="item-60"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队干部</view>
-      <view class="item-60">蒋忠耀</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队长助理</view>
-      <view class="item-60">郭锐</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-20 bright">指挥员</view>
-      <view class="item-20 bright">消防员</view>
-      <view class="item-20 bright">专职队员</view>
-      <view class="item-20 bright">执勤车辆</view>
-      <view class="item-20">搜救犬</view>
-    </view>
-    <view class="items">
-      <view class="item-20 bright">3 人</view>
-      <view class="item-20 bright">30 人</view>
-      <view class="item-20 bright">10 人</view>
-      <view class="item-20 bright">35 辆</view>
-      <view class="item-20">0 条</view>
-    </view>
-  </view>
-  <view class="dutys">
-    <view class="items borderbtm">
-      <view class="item-40">麒麟三中队</view>
-      <view class="item-60"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队干部</view>
-      <view class="item-60">杨益伟</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队长助理</view>
-      <view class="item-60">吴东霖</view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-20 bright">指挥员</view>
-      <view class="item-20 bright">消防员</view>
-      <view class="item-20 bright">专职队员</view>
-      <view class="item-20 bright">执勤车辆</view>
-      <view class="item-20">搜救犬</view>
-    </view>
-    <view class="items">
-      <view class="item-20 bright">1 人</view>
-      <view class="item-20 bright">2 人</view>
-      <view class="item-20 bright">20 人</view>
-      <view class="item-20 bright">10 辆</view>
-      <view class="item-20">0 条</view>
-    </view>
-  </view>
-
-
 </view>

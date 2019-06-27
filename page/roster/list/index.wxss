@@ -1,9 +1,21 @@
 /* page/roster/list/index.wxss */
 .containor{
-  width:98%;
+  width:100%;
   height:100vh;
   margin:0 auto;
   font-size:10pt;
+}
+.total{
+  width:95%;
+  margin:5px auto;
+  background-color: #ffffff;
+  height:25px;
+  line-height:25px;
+}
+.tip{
+  width:20px;
+  height:20px;
+  margin-top:5px;
 }
 .formImg{
   width:25px;
