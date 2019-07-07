@@ -6,16 +6,37 @@
   font-size:10pt;
 }
 .total{
-  width:95%;
-  margin:5px auto;
-  background-color: #ffffff;
-  height:25px;
-  line-height:25px;
+  width:100%;
+  margin:0px auto;
+  height:28px;
+  line-height:28px;
 }
 .tip{
   width:20px;
   height:20px;
   margin-top:5px;
+}
+.tip2{
+  width:30px;
+  height:30px;
+}
+.picitems {
+  width:98%;
+  margin:0 auto;
+}
+.picitem{
+  float:left;
+  text-align: center;
+  width:25%;
+  font-size:9pt;
+  background-color:#ffffff;
+}
+.info{
+  border-right:1px solid #cacaca;
+  border-bottom:1px solid #cacaca;
+  margin:1px;
+  padding-top:2px;
+  font-size:9pt;
 }
 .formImg{
   width:25px;
@@ -24,6 +45,7 @@
 .titlediv{
   background-color:#ffffff;
   margin-bottom:10px;
+  width:100%;
 }
 .items{
   display:flex;

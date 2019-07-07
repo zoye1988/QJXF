@@ -1,0 +1,66 @@
+<!--page/onduty/list/index.wxml-->
+<view class="containor">
+  <view class="items borderbtm titlediv">
+    <view class="item-10">
+      <image src="../../../image/times.png" class='tip'></image>
+    </view>
+    <view class="item-80 left">2019年06月04日</view>
+    <view class="item-15">
+      <view class="normalBtn">昨天</view>
+    </view>
+    <view class="item-5"></view>
+  </view>
+  <view class="dutys" wx:for="{{dutys}}" wx:key="{{item.did}}">
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/dpt.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">{{item.dptname}}</view>
+      <view class="item-40"></view>
+    </view>
+    <block wx:for="{{item.duty}}" wx:for-item="duty" wx:key="id" >
+      <view class="items borderbtm">
+        <view class="item-40 bright">{{duty.name}}</view>
+        <view class="item-60">{{duty.val}}</view>
+      </view>
+    </block>
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/sir.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤人员</view>
+      <view class="item-40 right"></view>
+      <view class="item-10 center">>></view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-25 bright">指战员</view>
+      <view class="item-25 bright">专职队员</view>
+      <view class="item-25 bright">休假人员</view>
+      <view class="item-25">搜救犬</view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-25 bright">{{item.person.fireman}} 人</view>
+      <view class="item-25 bright">{{item.person.amatuer}} 人</view>
+      <view class="item-25 bright">{{item.person.vacation}}人</view>
+      <view class="item-25">{{item.person.dog}} 条</view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/car2.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤车辆</view>
+      <view class="item-40 right"></view>
+      <view class="item-10 center">>></view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-33 bright">行政车辆</view>
+      <view class="item-33 bright">消防车辆</view>
+      <view class="item-33 ">故障车辆</view>
+    </view>
+    <view class="items">
+      <view class="item-33 bright">{{item.car.smallcar}} 辆</view>
+      <view class="item-33 bright">{{item.car.bigcar}} 辆</view>
+      <view class="item-33 ">{{item.car.brokencar}} 辆</view>
+    </view>
+  </view>
+</view>

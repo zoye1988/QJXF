@@ -1,0 +1,13 @@
+/* page/roster/edit/index.wxss */
+@import "../detail/index.wxss";
+.editem{
+  width:98%;margin:0 auto;
+  background-color:#ffffff;
+  font-size:10pt;
+}
+.item-15{
+  width:15%;
+}
+.item-70{
+  width:70%;
+}

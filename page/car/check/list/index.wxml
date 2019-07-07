@@ -1,2 +1,57 @@
 <!--page/car/check/list/index.wxml-->
-<text>page/car/check/list/index.wxml</text>
+<view class="containor">
+  <navigator class="carlist items" url="../detail/index?cid=1">
+    <view class="item-15 imgitem">
+      <image src="/image/car.png" class="tip2"></image>
+    </view>
+    <view class="item-70">
+      <view class="carinfo">
+        <view class="ctitle">云X6653应急</view>
+        <view class="cdesc">所属单位：支队机关</view>
+        <view class="cdesc">车辆类型：行政用车</view>
+        <view class="cdesc">检查情况：<text style='color:orange'>未检查</text></view>
+        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+      </view>
+    </view>
+    <view class="item-15 imgitem" style='border:0'>
+      <image src="/image/enter.png" class="tip2"></image>
+    </view>
+  </navigator>
+
+  <navigator class="carlist items" url="../detail/index?cid=1">
+    <view class="item-15 imgitem">
+      <image src="/image/car.png" class="tip2"></image>
+    </view>
+    <view class="item-70">
+      <view class="carinfo">
+        <view class="ctitle">云X6653应急</view>
+        <view class="cdesc">所属单位：支队机关</view>
+        <view class="cdesc">车辆类型：行政用车</view>
+        <view class="cdesc">检查情况：<text style='color:green'>运行正常</text></view>
+        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+      </view>
+    </view>
+    <view class="item-15 imgitem" style='border:0'>
+      <image src="/image/enter.png" class="tip2"></image>
+    </view>
+  </navigator>
+
+  <navigator class="carlist items" url="../detail/index?cid=1">
+    <view class="item-15 imgitem">
+      <image src="/image/car.png" class="tip2"></image>
+    </view>
+    <view class="item-70">
+      <view class="carinfo">
+        <view class="ctitle">云X6653应急</view>
+        <view class="cdesc">所属单位：支队机关</view>
+        <view class="cdesc">车辆类型：行政用车</view>
+        <view class="cdesc">检查情况：<text style='color:red'>故障维护</text></view>
+        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+      </view>
+    </view>
+    <view class="item-15 imgitem" style='border:0'>
+      <image src="/image/enter.png" class="tip2"></image>
+    </view>
+  </navigator>
+
+</view>

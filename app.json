@@ -54,7 +54,9 @@
     "page/roster/detail/index",
     "page/book/index",
     "page/car/check/list/index",
-    "page/car/check/detail/index"
+    "page/car/check/detail/index",
+    "page/roster/edit/index",
+    "page/onduty/edit/index"
   ],
   "permission": {
     "scope.userLocation": {

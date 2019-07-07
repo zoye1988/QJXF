@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="swiper-tab">
   <view class="swiper-tab-list item_border {{currentTab==0? 'on' : ''}}" data-current="0" bindtap="swichNav">
-    通知公告
+    突发事件
   </view>
   <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
     灾害预警
@@ -20,7 +20,7 @@
         <view class="icon-box">
           <view class="note_icon_div">
             <view class="note_icon_div2">
-              <image class="note_icon" src="../../../image/note.png" />
+              <image class="note_icon" src="../../../image/emergency.png" />
             </view>
           </view>
           <view class="icon-box-ctn">
@@ -29,8 +29,8 @@
               <text>{{item.title}}</text>
             </view>
             <view class="icon-box-desc">
-              <text>通知时间：{{item.time}}\n</text>
-              <text>通知内容：{{item.content}}</text>
+              <text>发布时间：{{item.time}}\n</text>
+              <text>事件内容：{{item.content}}</text>
             </view>
           </view>
           <view class="note_icon_btn">

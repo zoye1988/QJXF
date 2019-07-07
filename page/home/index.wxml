@@ -51,7 +51,7 @@
               <view class="home_img">
                 <image class="home_image" src="../../image/notice.png" />
               </view>
-              <text>通知预警</text>
+              <text>灾害预警</text>
             </navigator>
           </view>
           <view class="flex-item home_title home_text">
@@ -136,33 +136,33 @@
         <view class="duty-wrp" style="flex-direction:row;">
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                112人
+                112<text style='color:#888;font-size:9pt;'>人</text>
               </view>
-              <text>指战员数</text>
+              <text>指战员</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                259人
+                259<text style='color:#888;font-size:9pt;'>人</text>
               </view>
-              <text>专职员数</text>
+              <text>专职员</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                9人
+                9<text style='color:#888;font-size:9pt;'>人</text>
               </view>
-              <text>请假人数</text>
+              <text>公差勤务</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                212辆
+                212<text style='color:#888;font-size:9pt;'>辆</text>
               </view>
-              <text>执勤车数</text>
+              <text>执勤车辆</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount" style='border:0'>
-                2辆
+                10<text style='color:#888;font-size:9pt;'>条</text>
               </view>
-              <text>故障车数</text>
+              <text>搜救犬</text>
           </view>
         </view>
       </view>

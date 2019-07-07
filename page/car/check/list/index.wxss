@@ -1,1 +1,37 @@
 /* page/car/check/list/index.wxss */
+@import "/page/roster/edit/index.wxss";
+.carlist{
+  height:110px;
+  background-color:#ffffff;
+  margin:5px 0px;
+  padding:5px 0px;
+  border-bottom:1px solid #cacaca;
+}
+.imgitem{
+  height:110px;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;/** 垂直居中*/
+  display: flex;
+  justify-content: center; /** flex 属性， 水平居中**/
+  border-right:1px solid #cacaca;
+}
+.ctitle{
+  height:25px;
+  line-height: 25px;
+  font-weight: bolder;
+  font-size: 10pt;
+  text-align: left;
+}
+.cdesc{
+  height:20px;
+  line-height: 20px;
+  color:#888;
+  text-align: left;
+  font-size: 10pt;
+}
+.carinfo{
+  padding-left:10px;
+  height:110px;
+  overflow: hidden;
+}

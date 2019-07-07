@@ -1,1 +1,65 @@
 /* page/car/check/detail/index.wxss */
+@import "../list/index.wxss";
+.carlist{
+  height:70px;
+}
+.carinfo{
+  height:70px;
+  font-size:10pt;
+}
+.imgitem{
+  height:70px;
+}
+.item-35{
+  width:35%;
+}
+.item-5{
+  width:5%;
+}
+.item-90{
+  width:90%;
+}
+.swiper-tab{  
+    width: 100%;  
+    text-align: center;  
+    background-color: #ffffff;
+    font-size: 10pt;
+    font-family: "黑体";
+    vertical-align: middle;
+    line-height: 30px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border-bottom: 1px solid #CACACA;
+}  
+.swiper-tab-list{  
+    display: inline-block;  
+    width: 33%;  
+    color: #777777; 
+}  
+.on{ 
+  color: #1296db;  
+}  
+.swiper-box{ display: block; width: 100%; overflow: hidden; }  
+.checklists{
+  margin-bottom:5px;
+  background-color:#ffffff;
+  border-bottom:1px solid #CACACA;
+  height:80px;
+  line-height:40px;
+}
+.normalBtn{
+  border:1px solid #cacaca;color:black;border-radius:5px;margin-top:5px;font-size:10pt;width:90%;height:25px;line-height:25px;
+}
+.errorBtn{
+  border:1px solid #cacaca;color:black;border-radius:5px;margin-top:5px;font-size:10pt;width:90%;height:25px;line-height:25px;
+}
+.selected{
+  background-color:#1296db;
+  color:#ffffff;
+}
+.checkrecord{
+  margin-bottom:5px;
+  background-color:#ffffff;
+  border-bottom:1px solid #CACACA;
+  line-height:25px;
+}

@@ -1,0 +1,116 @@
+<!--page/roster/detail/index.wxml-->
+<view class="containor">
+  <view class="items headitem">
+    <view class="item-20 imagesize"></view>
+    <view class="item-60 imagesize">
+      <image src="../../../image/head/{{person.pic}}" class="headimg" mode="aspectFit"></image>
+    </view>
+    <view class="item-20 imagesize"></view>
+  </view>
+  <view class="pinfo">
+    <view class="items">
+      <view class="item-20 center pname">
+        姓名
+      </view>
+      <view class="item-60 center">
+        {{person.uname}}
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        单位
+      </view>
+      <view class="item-60 center">
+        {{person.dptname}}
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        职务
+      </view>
+      <view class="item-60 center">
+        <input type='text' value='{{person.jobname}}'></input>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        性别
+      </view>
+      <view class="item-60 center">
+        <picker bindchange="bindPickerChange" value="{{sexIndex}}" range="{{sex}}">
+          <view class="picker">
+            {{sex[sexIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        民族
+      </view>
+      <view class="item-60 center">
+        <input type='text' value='{{person.nation}}族'></input>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        籍贯
+      </view>
+      <view class="item-60 center">
+        <input type='text' value='{{person.hometown}}'></input>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        政治面貌
+      </view>
+      <view class="item-60 center">
+        <picker bindchange="bindPickerChange" value="{{nationIndex}}" range="{{nation}}">
+          <view class="picker">
+            {{nation[nationIndex]}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        入队时间
+      </view>
+      <view class="item-60 center">
+        <picker mode="date" value="{{person.joindate}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{person.joindate}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        出生日期
+      </view>
+      <view class="item-60 center">
+        <picker mode="date" value="{{person.brithday}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{person.brithday}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-20 center pname">
+        手机号码
+      </view>
+      <view class="item-60 center">
+        <input type='number' value='{{person.tel}}'></input>
+      </view>
+    </view>
+
+  </view>
+  <view class="items">
+    <view class="item-10"></view>
+    <view class="item-80 center">
+      <button type="primary" style="font-size:10pt;" bindtap="submitDuty">提交</button>
+    </view>
+  </view>
+
+</view>

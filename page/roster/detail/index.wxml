@@ -1,2 +1,112 @@
 <!--page/roster/detail/index.wxml-->
-<text>page/roster/detail/index.wxml</text>
+<view class="container">
+  <swiper circular='true' style="height:100vh;">
+    <!--设置4个滚动模块，循环滚动-->
+    <swiper-item wx:for="{{person}}" wx:key="{{item.pid}}">
+      <view class="items headitem">
+        <view class="item-20 imagesize"></view>
+        <view class="item-60 imagesize">
+          <image src="../../../image/head/{{item.pic}}" class="headimg" mode="aspectFit"></image>
+        </view>
+        <view class="item-20 imagesize"></view>
+      </view>
+      <view class="pinfo">
+        <view class="items">
+          <view class="item-20 center pname">
+            姓名
+          </view>
+          <view class="item-60 center">
+            {{item.uname}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            职务
+          </view>
+          <view class="item-60 center">
+            {{item.jobname}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            单位
+          </view>
+          <view class="item-60 center">
+            {{item.dptname}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            性别
+          </view>
+          <view class="item-30 center">
+            {{item.sex}}
+          </view>
+          <view class="item-20 center pname2">
+            民族
+          </view>
+          <view class="item-30 center">
+            {{item.nation}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            籍贯
+          </view>
+          <view class="item-30 center">
+            {{item.hometown}}
+          </view>
+          <view class="item-20 center pname2">
+            政治面貌
+          </view>
+          <view class="item-30 center">
+            {{item.politics}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            入队时间
+          </view>
+          <view class="item-30 center">
+            {{item.joindate}}
+          </view>
+          <view class="item-20 center pname2">
+            生日
+          </view>
+          <view class="item-30 center">
+            {{item.brithday}}
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-20 center pname">
+            手机号
+          </view>
+          <view class="item-30 center">
+            {{item.tel}}
+          </view>
+          <view class="item-20 center pname2">
+            状态
+          </view>
+          <view class="item-30 center">
+            {{item.dutystatus}}
+          </view>
+        </view>
+      </view>
+      <view class="items">
+        <view class="item-25 center">
+          <button type="primary" style="font-size:10pt;" bindtap="editDuty" data-uid='{{item.uid}}'>编辑</button>
+        </view>
+        <view class="item-10 center"></view>
+        <view class="item-30 center">
+          <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{bitems}}">
+              <button type="default" style="font-size:10pt;background-color:#ffffff;" data-uid='{{item.uid}}'>状态调整</button>
+          </picker>
+        </view>
+        <view class="item-10 center"></view>
+        <view class="item-25 center">
+          <button type="warn" style="font-size:10pt;" bindtap="removeBtn" data-uid='{{item.uid}}' data-uname='{{item.uname}}'>移除</button>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>

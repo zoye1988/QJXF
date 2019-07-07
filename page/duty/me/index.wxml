@@ -1,5 +1,5 @@
 <view class="car_title">
-  工作表情登记表（{{dutytime}}）</view>
+  工作考勤登记表（{{dutytime}}）</view>
           <map
           id="myMap"
           latitude="{{latitude}}"

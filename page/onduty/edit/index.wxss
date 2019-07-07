@@ -1,0 +1,15 @@
+/* page/onduty/edit/index.wxss */
+@import "../list/index.wxss";
+.normalBtn{
+  border:1px solid #cacaca;color:white;border-radius:5px;margin-top:3px;font-size:10pt;width:90%;height:25px;line-height:25px;
+  background-color:#1296db;
+}
+.item-80{
+  width:80%;
+}
+.item-15{
+  width:15%;
+}
+.item-5{
+  width:5%;
+}

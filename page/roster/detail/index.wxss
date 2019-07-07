@@ -1,1 +1,39 @@
 /* page/roster/detail/index.wxss */
+@import "../list/index.wxss";
+.container{
+  width:98%;
+  margin:0 auto;
+}
+.headimg{
+  height:200px;
+  width:100%;
+}
+.imagesize{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:200px;
+  background-color:#ffffff;
+}
+.headitem{
+  height:200px;
+  margin-bottom:5px;
+}
+
+.pinfo >.items{
+  font-size:10pt;
+  background-color:#ffffff;
+  border-bottom:1px solid #cacaca;
+  height:30px;
+  line-height: 30px;
+  padding:3px 0;
+}
+.pname{
+  border-right:1px solid #cacaca;
+  color:#888;
+}
+.pname2{
+  border-right:1px solid #cacaca;
+  border-left:1px solid #cacaca;
+  color:#888;
+}

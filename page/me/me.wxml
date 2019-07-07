@@ -99,16 +99,22 @@
           <view style="font-size:10pt;">图书借阅</view>
         </view>
       </navigator>
-      <navigator url="../rank/data/index">
+      <navigator url="../car/check/list/index">
         <view class="meitem">
           <image src="../../image/carcheck.png"></image>
           <view style="font-size:10pt;">车辆检查</view>
         </view>
       </navigator>
-      <navigator url="../rank/data/index">
+      <navigator url="../onduty/edit/index">
         <view class="meitem">
           <image src="../../image/dutyedit.png"></image>
           <view style="font-size:10pt;">值班编辑</view>
+        </view>
+      </navigator>
+      <navigator url="../rank/data/index">
+        <view class="meitem">
+          <image src="../../image/alcohol.png"></image>
+          <view style="font-size:10pt;">饮酒管理</view>
         </view>
       </navigator>
     </view>

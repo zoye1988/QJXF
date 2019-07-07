@@ -5,7 +5,64 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    fireman:0,//指战员数量
+    amatuer:0,//合同制
+    onDuty:0,
+    offDuty:0,
+    total:0,
+    dptcode:2,
+    dptname:"支队机关",
+    rosters:[
+      {
+        img:"1.jpg",
+        uname:"阮杰",
+        jobname:"二级消防士",
+        job:5,
+        duty:"在位"
+      },
+      {
+        img: "2.jpg",
+        uname: "尹修波",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "1.jpg",
+        uname: "阮杰",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "2.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "2.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "2.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "2.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+    ]
   },
 
   /**

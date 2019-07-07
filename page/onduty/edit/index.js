@@ -1,11 +1,11 @@
-// page/car/check/detail/index.js
+// page/onduty/edit/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentTab:0
+
   },
 
   /**

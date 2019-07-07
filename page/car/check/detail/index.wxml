@@ -1,2 +1,240 @@
-<!--page/car/check/detail/index.wxml-->
-<text>page/car/check/detail/index.wxml</text>
+<view class="containor">
+  <view class="carlist items">
+    <view class="item-15 imgitem">
+      <image src="/image/car.png" class="tip2"></image>
+    </view>
+    <view class="item-40">
+      <view class="carinfo">
+        <view class="ctitle">云X6653应急</view>
+        <view class="cdesc bright">所属单位：支队机关</view>
+        <view class="cdesc bright">车辆类型：行政用车</view>
+      </view>
+    </view>
+    <view class="item-35">
+      <view class="carinfo">
+        <view class="ctitle"></view>
+        <view class="cdesc">检查人员：邓恒靖</view>
+        <view class="cdesc">检查情况：
+          <text style='color:orange'>未检查</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="swiper-tab">
+    <view class="swiper-tab-list bright {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
+      检查清单
+    </view>
+    <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
+      检查记录
+    </view>
+  </view>
+  <swiper current="{{currentTab}}" class="swiper-box" style="height:100vh" duration="300">
+    <swiper-item>
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">水量电量情况</view>
+          <view class="item-25">
+            <view class="normalBtn selected">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="normalBtn ">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">燃油机油情况</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">制动转向情况</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">轮胎气压情况</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">车灯警灯喇叭</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">随车器材装备</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+      <view class="checklists">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">内外环境卫生</view>
+          <view class="item-25">
+            <view class="normalBtn">正常</view>
+          </view>
+          <view class="item-25">
+            <view class="errorBtn">故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
+          </view>
+        </view>
+      </view>
+
+    </swiper-item>
+    <swiper-item>
+      <view class="checkrecord">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/times.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+           <text style='color:#888'>检查时间：</text>2019-07-07 10:12:13
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/person.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+            <text style='color:#888'>检查人员：</text> 邓恒靖
+          </view>
+        </view>
+        <view class="items" style='height:auto'>
+          <view class="item-10">
+            <image src="/image/other.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+            <text style='color:#888'>检查情况：</text>故障
+            <view style='color:#d81e06'>水量电量情况：电瓶线路老化部分漏电</view>
+            <view style='color:#d81e06'>车灯警灯喇叭：车尾灯不亮</view>
+          </view>
+        </view>
+      </view>
+      <view class="checkrecord">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/times.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+           <text style='color:#888'>检查时间：</text>2019-07-07 10:12:13
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/person.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+            <text style='color:#888'>检查人员：</text> 邓恒靖
+          </view>
+        </view>
+        <view class="items" style='height:auto'>
+          <view class="item-10">
+            <image src="/image/other.png" class="tip"></image>
+          </view>
+          <view class="item-80 left">
+            <text style='color:#888'>检查情况：</text>故障
+            <view style='color:#d81e06'>水量电量情况：电瓶线路老化部分漏电</view>
+            <view style='color:#d81e06'>车灯警灯喇叭：车尾灯不亮</view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
