@@ -3,7 +3,7 @@
   <view class="items headitem">
     <view class="item-20 imagesize"></view>
     <view class="item-60 imagesize">
-      <image src="../../../image/head/{{person.pic}}" class="headimg" mode="aspectFit"></image>
+      <image src="{{downloadurl}}photo/{{person.pic}}" class="headimg" mode="aspectFit"></image>
     </view>
     <view class="item-20 imagesize"></view>
   </view>

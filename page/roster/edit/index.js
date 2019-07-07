@@ -1,10 +1,12 @@
 // page/roster/edit/index.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    downloadurl: "",
     person: {
       uid: 1,
       uname: "李双江",
@@ -31,6 +33,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var downloadurl = app.globalData.downloadurl;
+    that.setData({
+      downloadurl: downloadurl
+    });
   }
 })

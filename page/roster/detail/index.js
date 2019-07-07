@@ -6,9 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    downloadurl: "",
     person:[
       {
-        downloadurl: "",
+        
         uid:1,
         uname:"李双江",
         jobname:"二级消防士",
