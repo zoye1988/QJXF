@@ -46,7 +46,7 @@
   <view class="picitems">
     <navigator class="picitem" wx:for="{{rosters}}" wx:key="{{item.rid}}" url='../detail/index?rid=1'>
       <view class="info">
-        <image src="../../../image/head/{{item.img}}" style='width:95%;height:110px;' mode="aspectFit"></image>
+        <image src="{{downloadurl}}photo/{{item.img}}" style='width:95%;height:110px;' mode="aspectFit"></image>
         <view>{{item.jobname}}</view>
         <view>{{item.uname}}</view>
         <view style='color:red'>{{item.duty}}</view>

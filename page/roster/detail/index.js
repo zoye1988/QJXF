@@ -1,4 +1,5 @@
 // page/roster/detail/index.js
+var app = getApp();
 Page({
 
   /**
@@ -7,6 +8,7 @@ Page({
   data: {
     person:[
       {
+        downloadurl: "",
         uid:1,
         uname:"李双江",
         jobname:"二级消防士",
@@ -49,7 +51,7 @@ Page({
         brithday: "1988-02-29",
         tel: "15288653843",
         dutystatus: "在位",
-        pic: "1.jpg"
+        pic: "3.jpg"
       },
       {
         uid: 4,
@@ -64,7 +66,7 @@ Page({
         brithday: "1988-02-29",
         tel: "15288653843",
         dutystatus: "在位",
-        pic: "2.jpg"
+        pic: "4.jpg"
       },
     ],
     bitems: ["在位","休假","出差","培训"],
@@ -76,7 +78,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    var downloadurl = app.globalData.downloadurl;
+    that.setData({
+      downloadurl: downloadurl
+    });
   },
 
   /**

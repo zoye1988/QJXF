@@ -1,10 +1,12 @@
 // page/roster/list/index.js
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    downloadurl:"",
     fireman:0,//指战员数量
     amatuer:0,//合同制
     onDuty:0,
@@ -28,35 +30,49 @@ Page({
         duty: "在位"
       },
       {
-        img: "1.jpg",
+        img: "3.jpg",
         uname: "阮杰",
         jobname: "二级消防士",
         job: 5,
         duty: "在位"
       },
       {
-        img: "2.jpg",
+        img: "4.jpg",
         uname: "张嘉强",
         jobname: "二级消防士",
         job: 5,
         duty: "在位"
       },
       {
-        img: "2.jpg",
+        img: "5.jpg",
         uname: "张嘉强",
         jobname: "二级消防士",
         job: 5,
         duty: "在位"
       },
       {
-        img: "2.jpg",
+        img: "6.jpg",
         uname: "张嘉强",
         jobname: "二级消防士",
         job: 5,
         duty: "在位"
       },
       {
-        img: "2.jpg",
+        img: "7.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "8.jpg",
+        uname: "张嘉强",
+        jobname: "二级消防士",
+        job: 5,
+        duty: "在位"
+      },
+      {
+        img: "9.jpg",
         uname: "张嘉强",
         jobname: "二级消防士",
         job: 5,
@@ -69,7 +85,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    var downloadurl = app.globalData.downloadurl;
+    that.setData({
+      downloadurl: downloadurl
+    });
   },
 
   /**

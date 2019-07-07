@@ -10,39 +10,56 @@
     </view>
     <view class="item-5"></view>
   </view>
-  <view class="dutys" wx:for="{{dutys}}" wx:key="{{item.did}}">
+  <view class="dutys">
     <view class="items borderbtm">
       <view class="item-10 center">
         <image src="../../../image/dpt.png" class='tip'></image>
       </view>
-      <view class="item-40 left">{{item.dptname}}</view>
+      <view class="item-40 left">麒麟大队</view>
       <view class="item-40"></view>
     </view>
-    <block wx:for="{{item.duty}}" wx:for-item="duty" wx:key="id" >
-      <view class="items borderbtm">
-        <view class="item-40 bright">{{duty.name}}</view>
-        <view class="item-60">{{duty.val}}</view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">大队值班领导</view>
+      <view class="item-60">
+        <input type='text' placeholder='请输入值班人员姓名'></input>
       </view>
-    </block>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">大队值班参谋</view>
+      <view class="item-60">
+        <input type='text' placeholder='请输入值班人员姓名'></input>
+      </view>
+    </view>
     <view class="items borderbtm">
       <view class="item-10 center">
         <image src="../../../image/sir.png" class='tip'></image>
       </view>
       <view class="item-40 left">执勤人员</view>
       <view class="item-40 right"></view>
-      <view class="item-10 center">>></view>
     </view>
     <view class="items borderbtm">
-      <view class="item-25 bright">指战员</view>
-      <view class="item-25 bright">专职队员</view>
-      <view class="item-25 bright">休假人员</view>
-      <view class="item-25">搜救犬</view>
+      <view class="item-40 bright">指战员(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
     </view>
     <view class="items borderbtm">
-      <view class="item-25 bright">{{item.person.fireman}} 人</view>
-      <view class="item-25 bright">{{item.person.amatuer}} 人</view>
-      <view class="item-25 bright">{{item.person.vacation}}人</view>
-      <view class="item-25">{{item.person.dog}} 条</view>
+      <view class="item-40 bright">专职队员(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">公差休假(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">搜救犬（条）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
     </view>
     <view class="items borderbtm">
       <view class="item-10 center">
@@ -50,17 +67,104 @@
       </view>
       <view class="item-40 left">执勤车辆</view>
       <view class="item-40 right"></view>
-      <view class="item-10 center">>></view>
     </view>
     <view class="items borderbtm">
-      <view class="item-33 bright">行政车辆</view>
-      <view class="item-33 bright">消防车辆</view>
-      <view class="item-33 ">故障车辆</view>
+      <view class="item-40 bright">行政车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">消防车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
     </view>
     <view class="items">
-      <view class="item-33 bright">{{item.car.smallcar}} 辆</view>
-      <view class="item-33 bright">{{item.car.bigcar}} 辆</view>
-      <view class="item-33 ">{{item.car.brokencar}} 辆</view>
+      <view class="item-40 bright">故障车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
     </view>
+  </view>
+  <view class="dutys">
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/dpt.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">麒麟一中队</view>
+      <view class="item-40"></view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">中队值班领导</view>
+      <view class="item-60">
+        <input type='text' placeholder='请输入值班人员姓名'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">中队值班助理</view>
+      <view class="item-60">
+        <input type='text' placeholder='请输入值班人员姓名'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/sir.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤人员</view>
+      <view class="item-40 right"></view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">指战员(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">专职队员(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">公差休假(人)</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">搜救犬（条）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-10 center">
+        <image src="../../../image/car2.png" class='tip'></image>
+      </view>
+      <view class="item-40 left">执勤车辆</view>
+      <view class="item-40 right"></view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">行政车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items borderbtm">
+      <view class="item-40 bright">消防车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-40 bright">故障车辆（辆）</view>
+      <view class="item-60">
+        <input type='number' value='0'></input>
+      </view>
+    </view>
+  </view>
+  <view style='width:90%;margin:10px auto'>
+    <button type="primary" style="font-size:10pt;" bindtap="submitCar">提交</button>
   </view>
 </view>

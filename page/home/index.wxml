@@ -150,7 +150,7 @@
               <view class="dutycount">
                 9<text style='color:#888;font-size:9pt;'>人</text>
               </view>
-              <text>公差勤务</text>
+              <text>公差休假</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
