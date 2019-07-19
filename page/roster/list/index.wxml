@@ -1,7 +1,9 @@
 <view class="containor">
   <view class="titlediv items borderbtm">
     <view class="item-10 bright">
-      <image class="formImg" src="../../../image/other.png" />
+      <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{dptlist}}">
+        <image class="formImg" src="../../../image/other.png" />
+      </picker>
     </view>
     <view class="item-80 bright">
       <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入搜索关键字" />
