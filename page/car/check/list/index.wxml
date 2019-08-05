@@ -1,57 +1,60 @@
 <!--page/car/check/list/index.wxml-->
 <view class="containor">
-  <navigator class="carlist items" url="../detail/index?cid=1">
-    <view class="item-15 imgitem">
-      <image src="/image/car.png" class="tip2"></image>
-    </view>
-    <view class="item-70">
-      <view class="carinfo">
-        <view class="ctitle">云X6653应急</view>
-        <view class="cdesc">所属单位：支队机关</view>
-        <view class="cdesc">车辆类型：行政用车</view>
-        <view class="cdesc">检查情况：<text style='color:orange'>未检查</text></view>
-        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+  <block wx:for="{{carlist}}" wx:key="{{item.cid}}">
+    <view class="items" style='background-color:#ffffff;'>
+      <view class="item-15">
+        <image src="/image/dpt.png" class="tip"></image>
+      </view>
+      <view class='item-70 left'>
+        {{item.dptname}}
+      </view>
+      <view class='item-15'>
+        {{item.carcheck.length}} 辆
       </view>
     </view>
-    <view class="item-15 imgitem" style='border:0'>
-      <image src="/image/enter.png" class="tip2"></image>
-    </view>
-  </navigator>
-
-  <navigator class="carlist items" url="../detail/index?cid=1">
-    <view class="item-15 imgitem">
-      <image src="/image/car.png" class="tip2"></image>
-    </view>
-    <view class="item-70">
-      <view class="carinfo">
-        <view class="ctitle">云X6653应急</view>
-        <view class="cdesc">所属单位：支队机关</view>
-        <view class="cdesc">车辆类型：行政用车</view>
-        <view class="cdesc">检查情况：<text style='color:green'>运行正常</text></view>
-        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+    <navigator wx:for="{{item.carcheck}}" wx:for-item="car" wx:key="id" class="carlist items" url="../detail/index?cid={{car.cid}}&carid={{car.carid}}&&types={{car.types}}&&dptname={{car.dptname}}&dptcode={{car.dptcode}}">
+      <view class="item-15 imgitem">
+        <image src="/image/car.png" class="tip2"></image>
       </view>
-    </view>
-    <view class="item-15 imgitem" style='border:0'>
-      <image src="/image/enter.png" class="tip2"></image>
-    </view>
-  </navigator>
-
-  <navigator class="carlist items" url="../detail/index?cid=1">
-    <view class="item-15 imgitem">
-      <image src="/image/car.png" class="tip2"></image>
-    </view>
-    <view class="item-70">
-      <view class="carinfo">
-        <view class="ctitle">云X6653应急</view>
-        <view class="cdesc">所属单位：支队机关</view>
-        <view class="cdesc">车辆类型：行政用车</view>
-        <view class="cdesc">检查情况：<text style='color:red'>故障维护</text></view>
-        <view class="cdesc">检查时间：2019-07-05 15:01:12</view>
+      <view class="item-70">
+        <view class="carinfo">
+          <view class="ctitle">{{car.carid}}</view>
+          <view class="cdesc">所属单位： {{car.dptname}}</view>
+          <view class="cdesc">车辆类型：
+            <block wx:if="{{car.types==0}}">
+              行政车辆
+            </block>
+            <block wx:if="{{car.types==1}}">
+              消防车辆
+            </block>
+          </view>
+          <view class="cdesc">检查情况：
+            <block wx:if="{{car.checkdate!=today}}">
+              <text style='color:orange'>未检查</text>
+            </block>
+            <block wx:if="{{car.checkdate==today}}">
+              <block wx:if="{{car.carstatus==0}}">
+                <text style='color:green'>正常执勤</text>
+              </block>
+              <block wx:if="{{car.carstatus==1}}">
+                <text style='color:red'>故障维修</text>
+              </block>
+            </block>
+          </view>
+          <view class="cdesc">检查时间：
+            <block wx:if="{{car.checkdate==today}}">
+              {{car.checkdate}} {{car.time}}
+            </block>
+            <block wx:if="{{car.checkdate!=today}}">
+              --------
+            </block>
+          </view>
+        </view>
       </view>
-    </view>
-    <view class="item-15 imgitem" style='border:0'>
-      <image src="/image/enter.png" class="tip2"></image>
-    </view>
-  </navigator>
+      <view class="item-15 imgitem" style='border:0'>
+        <image src="/image/enter.png" class="tip2"></image>
+      </view>
+    </navigator>
 
+  </block>
 </view>

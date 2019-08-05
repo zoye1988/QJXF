@@ -6,7 +6,7 @@ Page({
     /** 
         * 页面配置 
         */
-    winWidth: 0,
+    winHeight: 0,
     defaultHeight: 0,
     headerHeight: 30,
     // tab切换  

@@ -1,191 +1,66 @@
 <view class="containor">
   <view class="carlist items">
-    <view class="item-15 imgitem">
+    <view class="item-10 imgitem">
       <image src="/image/car.png" class="tip2"></image>
     </view>
     <view class="item-40">
       <view class="carinfo">
-        <view class="ctitle">云X6653应急</view>
-        <view class="cdesc bright">所属单位：支队机关</view>
-        <view class="cdesc bright">车辆类型：行政用车</view>
+        <view class="ctitle">{{carcheck.carid}}</view>
+        <view class="cdesc bright">所属单位： {{carcheck.dptname}}</view>
+        <view class="cdesc bright">车辆类型：
+          <block wx:if="{{carcheck.types==0}}">
+            行政车辆
+          </block>
+          <block wx:if="{{carcheck.types==1}}">
+            消防车辆
+          </block>
+        </view>
       </view>
     </view>
-    <view class="item-35">
+    <view class="item-40">
       <view class="carinfo">
         <view class="ctitle"></view>
-        <view class="cdesc">检查人员：邓恒靖</view>
+        <view class="cdesc">检查人员： {{carcheck.checker}}</view>
         <view class="cdesc">检查情况：
-          <text style='color:orange'>未检查</text>
+          <block wx:if="{{carcheck.carstatus=='null'}}">
+            <text style='color:orange'>未检查</text>
+          </block>
+          <block wx:if="{{carcheck.carstatus!='null'}}">
+            <block wx:if="{{carcheck.carstatus==0}}">
+              <text style='color:green'>正常执勤</text>
+            </block>
+            <block wx:if="{{carcheck.carstatus==1}}">
+              <text style='color:red'>故障维修</text>
+            </block>
+          </block>
         </view>
       </view>
     </view>
   </view>
   <view class="swiper-tab">
     <view class="swiper-tab-list bright {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
-      检查清单
+      检查记录(最近6次)
     </view>
     <view class="swiper-tab-list  {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
-      检查记录
+      检查清单
     </view>
   </view>
-  <swiper current="{{currentTab}}" class="swiper-box" style="height:100vh" duration="300">
+  <swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
     <swiper-item>
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">水量电量情况</view>
-          <view class="item-25">
-            <view class="normalBtn selected">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="normalBtn ">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
+      
+      <view class="carlist items" wx:if="{{checkList.length==0}}">
+        <view class="item-100">
+          <image src="/image/empty.png" class="tip2"></image>
+          <text style='color:#888'>\n暂无检查数据</text>
         </view>
       </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">燃油机油情况</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">制动转向情况</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">轮胎气压情况</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">车灯警灯喇叭</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">随车器材装备</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-      <view class="checklists">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/point.png" class="tip"></image>
-          </view>
-          <view class="item-50 left">内外环境卫生</view>
-          <view class="item-25">
-            <view class="normalBtn">正常</view>
-          </view>
-          <view class="item-25">
-            <view class="errorBtn">故障</view>
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-5"></view>
-          <view class="item-90 left">
-            <input type='text' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;'></input>
-          </view>
-        </view>
-      </view>
-
-    </swiper-item>
-    <swiper-item>
-      <view class="checkrecord">
+      <view class="checkrecord" wx:for="{{checkList}}" wx:key="{{item.cid}}">
         <view class="items">
           <view class="item-10">
             <image src="/image/times.png" class="tip"></image>
           </view>
           <view class="item-80 left">
-           <text style='color:#888'>检查时间：</text>2019-07-07 10:12:13
+            <text style='color:#888'>检查时间：</text>{{item.checkdate}} {{item.time}}
           </view>
         </view>
         <view class="items">
@@ -193,7 +68,7 @@
             <image src="/image/person.png" class="tip"></image>
           </view>
           <view class="item-80 left">
-            <text style='color:#888'>检查人员：</text> 邓恒靖
+            <text style='color:#888'>检查人员：</text> {{item.checker}}
           </view>
         </view>
         <view class="items" style='height:auto'>
@@ -201,40 +76,42 @@
             <image src="/image/other.png" class="tip"></image>
           </view>
           <view class="item-80 left">
-            <text style='color:#888'>检查情况：</text>故障
-            <view style='color:#d81e06'>水量电量情况：电瓶线路老化部分漏电</view>
-            <view style='color:#d81e06'>车灯警灯喇叭：车尾灯不亮</view>
-          </view>
-        </view>
-      </view>
-      <view class="checkrecord">
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/times.png" class="tip"></image>
-          </view>
-          <view class="item-80 left">
-           <text style='color:#888'>检查时间：</text>2019-07-07 10:12:13
-          </view>
-        </view>
-        <view class="items">
-          <view class="item-10">
-            <image src="/image/person.png" class="tip"></image>
-          </view>
-          <view class="item-80 left">
-            <text style='color:#888'>检查人员：</text> 邓恒靖
-          </view>
-        </view>
-        <view class="items" style='height:auto'>
-          <view class="item-10">
-            <image src="/image/other.png" class="tip"></image>
-          </view>
-          <view class="item-80 left">
-            <text style='color:#888'>检查情况：</text>故障
-            <view style='color:#d81e06'>水量电量情况：电瓶线路老化部分漏电</view>
-            <view style='color:#d81e06'>车灯警灯喇叭：车尾灯不亮</view>
+            <text style='color:#888'>检查情况：</text>
+            <block wx:if="{{item.carstatus==0}}">
+              <text style='color:green'>正在执勤</text>
+            </block>
+            <block wx:if="{{item.carstatus==1}}">
+              <text style='color:red'>故障维修</text>
+            </block>
+            <text style='color:#d81e06'>\n{{item.checklist}}</text>
           </view>
         </view>
       </view>
     </swiper-item>
+
+    <swiper-item>
+      <view class="checklists" wx:for="{{newlist}}" wx:key="{{item.id}}">
+        <view class="items">
+          <view class="item-10">
+            <image src="/image/point.png" class="tip"></image>
+          </view>
+          <view class="item-50 left">{{item.title}}</view>
+          <view class="item-25">
+            <view class="normalBtn {{item.status==0? 'selected' : ''}} " bindtap='normalBtn' data-id='{{index}}'>正常</view>
+          </view>
+          <view class="item-25">
+            <view class="normalBtn {{item.status==1? 'selected' : ''}} " bindtap='errorBtn' data-id='{{index}}'>故障</view>
+          </view>
+        </view>
+        <view class="items">
+          <view class="item-5"></view>
+          <view class="item-90 left">
+            <input type='text' value='{{item.desc}}' placeholder='请输入故障情况' style='border-bottom:1px solid #cacaca;margin-top:10px;' data-id='{{index}}' bindinput='errorInfo'></input>
+          </view>
+        </view>
+      </view>
+      <button type="primary" style="font-size:10pt;margin:5px;background-color:#1296db" bindtap="submitCheck">提交</button>
+    </swiper-item>
+
   </swiper>
 </view>

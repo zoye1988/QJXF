@@ -7,7 +7,7 @@ Page({
    */
   data: {
     dptlist: [],//单位列表
-    dptlistval: [0],
+    dptlistval: [],
     bindex: 0,//默认选择类型
     downloadurl:"",
     fireman:0,//指战员数量
@@ -21,71 +21,7 @@ Page({
     DefaultLimit: 7,//功能限制访问权限级别,中队成员以上访问
     dptname:"支队机关",
     dptcode:2,
-    rosters:[
-      {
-        img:"1.jpg",
-        uname:"阮杰",
-        jobname:"二级消防士",
-        job:5,
-        duty:"在位"
-      },
-      {
-        img: "2.jpg",
-        uname: "尹修波",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "3.jpg",
-        uname: "阮杰",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "4.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "5.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "6.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "7.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "8.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-      {
-        img: "9.jpg",
-        uname: "张嘉强",
-        jobname: "二级消防士",
-        job: 5,
-        duty: "在位"
-      },
-    ]
+    rosters:[]
   },
 
   /**
@@ -102,7 +38,7 @@ Page({
     var job = app.globalData.job;
     var host = app.globalData.host;
     var downloadurl = app.globalData.downloadurl;
-    that.setData({
+    that.setData({ 
       downloadurl: downloadurl,
       dptname:app.globalData.udptname,
       dptcode:app.globalData.udptcode
@@ -134,12 +70,21 @@ Page({
       },
     });
     //读取本单位的人员信息
+    that.getRoster(this);
+    //获取本级所有人员数量
+    that.getRosterTotal(this);
+  },
+
+  //获取人员函数
+  getRoster:function(that){
+    var host = app.globalData.host;
+    var downloadurl = app.globalData.downloadurl;
     wx.request({
       url: host + "user.do",
       method: "post",
       data: {
-        method: "userlist",
-        page: that.data.user.length,
+        method: "rosterlist",
+        page: that.data.rosters.length,
         pagesize: that.data.pagesize,
         dptcode: that.data.dptcode
       },
@@ -147,11 +92,55 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var user = that.data.user;
+        var rosters = that.data.rosters;
         var temp = res.data;
+        for(var t in temp){
+          rosters.push({
+            uid:temp[t].uid,
+            uname:temp[t].uname,
+            dptname:temp[t].dptname,
+            jobname:temp[t].jobname,
+            dutystatus:temp[t].dutystatus,
+            dptcode:temp[t].dptcode,
+            img:temp[t].img
+          });
+        }
         that.setData({
-          rosters: temp,
+          rosters: rosters,
           loadShow: false//隐藏底部加载图标
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：读取USER_GETLIST," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
+  },
+
+  //获取全部人员统计数据
+  getRosterTotal: function (that){
+    var host = app.globalData.host;
+    var downloadurl = app.globalData.downloadurl;
+    wx.request({
+      url: host + "user.do",
+      method: "post",
+      data: {
+        method: "rosterTotal",
+        dptcode: that.data.dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.setData({
+          onDuty: res.data.onDutyCount,
+          offDuty:res.data.offDutyCount,
+          fireman:res.data.firemanCount,
+          amatuer:res.data.amatuerCount
         });
       },
       fail: function (res) {
@@ -185,10 +174,30 @@ Page({
   onHide: function () {
 
   },
+  bindPickerChange:function(e){
+    var that = this;
+    var host = app.globalData.host;
+    that.setData({
+      bindex: e.detail.value,
+      dptcode: that.data.dptlistval[e.detail.value],
+      dptname: that.data.dptlist[e.detail.value],
+      //情况数据
+      rosters:[],
+      onDuty:0,
+      offDuty:0,
+      fireman:0,
+      amatuer:0
+    });
+    //读取本单位的人员信息
+    that.getRoster(this);
+    //获取本级所有人员数量
+    that.getRosterTotal(this);
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    var that=this;
+    that.getRoster(this);
   }
 })

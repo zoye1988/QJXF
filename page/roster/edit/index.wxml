@@ -3,7 +3,7 @@
   <view class="items headitem">
     <view class="item-20 imagesize"></view>
     <view class="item-60 imagesize">
-      <image src="{{downloadurl}}photo/{{person.pic}}" class="headimg" mode="aspectFit"></image>
+      <image src="{{downloadurl}}{{img}}" class="headimg" mode="aspectFit"></image>
     </view>
     <view class="item-20 imagesize"></view>
   </view>
@@ -13,7 +13,7 @@
         姓名
       </view>
       <view class="item-60 center">
-        {{person.uname}}
+        {{uname}}
       </view>
     </view>
     <view class="items">
@@ -21,7 +21,7 @@
         单位
       </view>
       <view class="item-60 center">
-        {{person.dptname}}
+        {{dptname}}
       </view>
     </view>
     <view class="items">
@@ -29,7 +29,7 @@
         职务
       </view>
       <view class="item-60 center">
-        <input type='text' value='{{person.jobname}}'></input>
+        <input type='text' value='{{jobname}}' bindinput="jobnameChange"></input>
       </view>
     </view>
     <view class="items">
@@ -37,9 +37,9 @@
         性别
       </view>
       <view class="item-60 center">
-        <picker bindchange="bindPickerChange" value="{{sexIndex}}" range="{{sex}}">
+        <picker bindchange="sexyChange" value="{{sexy}}" range="{{sex}}">
           <view class="picker">
-            {{sex[sexIndex]}}
+            {{sex[sexy]}}
           </view>
         </picker>
       </view>
@@ -49,7 +49,7 @@
         民族
       </view>
       <view class="item-60 center">
-        <input type='text' value='{{person.nation}}族'></input>
+        <input type='text' value='{{nations}}'  bindinput='nationsChange'></input>
       </view>
     </view>
     <view class="items">
@@ -57,7 +57,7 @@
         籍贯
       </view>
       <view class="item-60 center">
-        <input type='text' value='{{person.hometown}}'></input>
+        <input type='text' value='{{hometown}}'  bindinput='hometownChange'></input>
       </view>
     </view>
     <view class="items">
@@ -65,9 +65,9 @@
         政治面貌
       </view>
       <view class="item-60 center">
-        <picker bindchange="bindPickerChange" value="{{nationIndex}}" range="{{nation}}">
+        <picker bindchange="politicsChange" value="{{politics}}" range="{{plist}}">
           <view class="picker">
-            {{nation[nationIndex]}}
+            {{plist[politics]}}
           </view>
         </picker>
       </view>
@@ -77,9 +77,9 @@
         入队时间
       </view>
       <view class="item-60 center">
-        <picker mode="date" value="{{person.joindate}}" bindchange="bindDateChange">
+        <picker mode="date" value="{{joindate}}" bindchange="joinDateChange">
           <view class="picker">
-            {{person.joindate}}
+            {{joindate}}
           </view>
         </picker>
       </view>
@@ -89,9 +89,9 @@
         出生日期
       </view>
       <view class="item-60 center">
-        <picker mode="date" value="{{person.brithday}}" bindchange="bindDateChange">
+        <picker mode="date" value="{{brithday}}" bindchange="brithdayChange">
           <view class="picker">
-            {{person.brithday}}
+            {{brithday}}
           </view>
         </picker>
       </view>
@@ -101,7 +101,7 @@
         手机号码
       </view>
       <view class="item-60 center">
-        <input type='number' value='{{person.tel}}'></input>
+        <input type='number' value='{{tel}}' bindinput='telChange'></input>
       </view>
     </view>
 
@@ -109,7 +109,7 @@
   <view class="items">
     <view class="item-10"></view>
     <view class="item-80 center">
-      <button type="primary" style="font-size:10pt;" bindtap="submitDuty">提交</button>
+      <button type="primary" style="font-size:10pt;" bindtap="submitRoater">提交</button>
     </view>
   </view>
 

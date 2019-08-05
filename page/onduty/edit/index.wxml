@@ -4,7 +4,7 @@
     <view class="item-10">
       <image src="../../../image/times.png" class='tip'></image>
     </view>
-    <view class="item-80 left">2019年06月04日</view>
+    <view class="item-80 left">{{date}}</view>
     <view class="item-15">
       <view class="normalBtn">昨天</view>
     </view>
@@ -165,6 +165,6 @@
     </view>
   </view>
   <view style='width:90%;margin:10px auto'>
-    <button type="primary" style="font-size:10pt;" bindtap="submitCar">提交</button>
+    <button type="primary" style="font-size:10pt;background-color:#2782D7" bindtap="submitCar">提交</button>
   </view>
 </view>

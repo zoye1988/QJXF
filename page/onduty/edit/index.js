@@ -1,18 +1,32 @@
 // page/onduty/edit/index.js
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    date:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    var date=new Date();
+    var year=date.getFullYear();
+    var month=date.getMonth();
+    if(month<10){
+      month="0"+month;
+    }
+    var day=date.getDate();
+    if(day<10){
+      day="0"+day;
+    }
+    that.setData({
+      date:year+"-"+month+"-"+day
+    })
   },
 
   /**
