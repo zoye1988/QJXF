@@ -27,6 +27,9 @@ Page({
     that.setData({
       date:year+"-"+month+"-"+day
     })
+    //获取单位列表
+    
+
   },
 
   /**
