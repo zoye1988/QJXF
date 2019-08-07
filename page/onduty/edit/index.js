@@ -7,6 +7,52 @@ Page({
    */
   data: {
     date:"",
+    val1:"",
+    val2: "",
+    val3: "",
+    val4: "",
+    val5: "",
+    val6: "",
+    val7: "",
+    val8: "",
+    val9: "",
+    val10: "",
+    val11: "",
+    val12: "",
+    val13: "",
+    val14: "",
+    duty:[
+      {
+        dptname:"支队机关",
+        dptcode:2,
+        types:1,
+        dutylist:[
+
+        ],
+        fireman:20,
+        amatuer:100,
+        holiday:10,
+        dog:10,
+        officalcar:10,
+        firecar:20,
+        repaircar:10
+      },
+      {
+        dptname: "麒麟大队",
+        dptcode: 10,
+        types: 2,
+        dutylist: [
+
+        ],
+        fireman: 10,
+        amatuer: 20,
+        holiday: 30,
+        dog: 10,
+        officalcar: 10,
+        firecar: 10,
+        repaircar: 10
+      },
+    ]
   },
 
   /**
@@ -16,7 +62,7 @@ Page({
     var that=this;
     var date=new Date();
     var year=date.getFullYear();
-    var month=date.getMonth();
+    var month=date.getMonth()+1;
     if(month<10){
       month="0"+month;
     }
@@ -28,7 +74,7 @@ Page({
       date:year+"-"+month+"-"+day
     })
     //获取单位列表
-    
+    var dptcode=app.globalData.dptcode;
 
   },
 
@@ -43,41 +89,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    
   }
 })
