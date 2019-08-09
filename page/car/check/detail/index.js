@@ -84,7 +84,7 @@ Page({
       success: function (res) {
         that.setData({
           defaultHeight: res.windowHeight,
-          rightHieght: res.windowHeight-30,
+          rightHieght: res.windowHeight+30,
           leftHieght: res.windowHeight
         });
       }

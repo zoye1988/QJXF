@@ -21,45 +21,15 @@ Page({
     val12: "",
     val13: "",
     val14: "",
-    duty:[
-      {
-        dptname:"支队机关",
-        dptcode:2,
-        types:1,
-        dutylist:[
-
-        ],
-        fireman:20,
-        amatuer:100,
-        holiday:10,
-        dog:10,
-        officalcar:10,
-        firecar:20,
-        repaircar:10
-      },
-      {
-        dptname: "麒麟大队",
-        dptcode: 10,
-        types: 2,
-        dutylist: [
-
-        ],
-        fireman: 10,
-        amatuer: 20,
-        holiday: 30,
-        dog: 10,
-        officalcar: 10,
-        firecar: 10,
-        repaircar: 10
-      },
-    ]
+    duty:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
+    var host = app.globalData.host;//默认系统地址
     var date=new Date();
     var year=date.getFullYear();
     var month=date.getMonth()+1;
@@ -73,8 +43,48 @@ Page({
     that.setData({
       date:year+"-"+month+"-"+day
     })
-    //获取单位列表
-    var dptcode=app.globalData.dptcode;
+    //获取检查列表
+    var dptcode=app.globalData.udptcode;
+    wx.request({
+      url: host + "onduty.do",
+      method: "post",
+      data: {
+        method: "getDutyList",
+        //dptcode: dptcode
+        dptcode: 430
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        var _duty=res.data;
+        that.setData({
+          duty:_duty
+        });
+        //将值班表填入
+        for(var i=0;i<_duty.length;i++){
+          var dutys=_duty[i].ondutys;
+          for(var t=0;t<dutys.length;t++){
+            var dname = "val"+dutys[t].indexs;
+            that.setData({
+             dname:dutys[t].dval
+            })
+          }
+        }
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      },
+      complete: function (res) {
+
+      }
+    });
 
   },
 
