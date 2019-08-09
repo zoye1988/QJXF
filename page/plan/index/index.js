@@ -26,7 +26,7 @@ Page({
     app.checkVisitJob(this.data.DefaultLimit);//验证用户访问权限
     var host = app.globalData.host;
     var udptcode = app.globalData.udptcode;
-    var taskdate = wx.getStorageSync("taskdate")//获取最后查看accident栏目的时间
+    var taskdate = wx.getStorageSync("eventdate")//获取最后查看accident栏目的时间
     /** 
      * 获取系统信息 
      */
@@ -43,12 +43,12 @@ Page({
       获取数据列表note
      */
     wx.request({
-      url: host + "notice.do",
+      url: host + "events.do",
       method: "post",
       data: {
-        method: "getNoteList",
+        method: "getEventsList",
         dptcode: udptcode,
-        taskdate: taskdate,
+        eventdate: taskdate,
         pagesize:that.data.pagesize,
         page: that.data.note.length
       },
@@ -330,12 +330,12 @@ Page({
     if (current == 0) {
       var list = that.data.note;
       wx.request({
-        url: host + "notice.do",
+        url: host + "events.do",
         method: "post",
         data: {
-          method: "getNoteList",
+          method: "getEventsList",
           dptcode: udptcode,
-          taskdate: taskdate,
+          eventdate: taskdate,
           page: that.data.note.length,
           pagesize: that.data.pagesize
         },

@@ -15,8 +15,8 @@
       <image src="../../../image/empty.png"></image>
       <view>暂时无数据</view>
     </view>
-    <view class="home_note" wx:for="{{note}}" wx:key="{{item.nid}}">
-      <navigator url="../show/index?nid={{item.nid}}&code=note">
+    <view class="home_note" wx:for="{{note}}" wx:key="{{item.eid}}">
+      <navigator url="/page/events/detail/index?eid={{item.eid}}">
         <view class="icon-box">
           <view class="note_icon_div">
             <view class="note_icon_div2">
