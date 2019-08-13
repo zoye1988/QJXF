@@ -113,7 +113,7 @@
           <view style="font-size:10pt;">值班编辑</view>
         </view>
       </navigator>
-      <navigator url="../rank/data/index">
+      <navigator url="">
         <view class="meitem">
           <image src="../../image/alcohol.png"></image>
           <view style="font-size:10pt;">饮酒管理</view>

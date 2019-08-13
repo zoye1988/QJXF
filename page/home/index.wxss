@@ -13,7 +13,7 @@
   height:30px;
   color:white;
   line-height: 30px;
-  background-image:url("http://127.0.0.1:8080/wxadmin/res/bgbtm.png");
+  background-image:url("http://www.zhurendata.com/rescue/res/bgbtm.png");
   background-repeat: no-repeat;
   background-size: 100% 95%;
 }
