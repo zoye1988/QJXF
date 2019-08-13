@@ -4,34 +4,39 @@
     <view class="item-10">
       <image src="../../../image/times.png" class='tip'></image>
     </view>
-    <view class="item-40 left">2019年06月04日</view>
+    <view class="item-40 left">{{date}}</view>
     <view class="item-40 right">
-      <button type="primary" class="mini-btn" size="mini">昨天</button>
+      <button type="primary" class="mini-btn" size="mini" bindtap='lastDuty'>昨天</button>
     </view>
     <view class="item-10"></view>
   </view>
-  <view class="dutys" wx:for="{{dutys}}" wx:key="{{item.did}}">
+  <view class="dutys" wx:for="{{forces}}" wx:key="{{item.id}}">
     <view class="items borderbtm">
       <view class="item-10 center">
         <image src="../../../image/dpt.png" class='tip'></image>
       </view>
       <view class="item-40 left">{{item.dptname}}</view>
-      <view class="item-40"></view>
+      <view class="item-40 right">
+        <block wx:if="{{item.ondutys.length==0}}">
+          <text style='color:red;'>未录入执勤实力</text>
+        </block>
+      </view>
     </view>
-    <block wx:for="{{item.duty}}" wx:for-item="duty" wx:key="id" >
+
+    <block wx:for="{{item.ondutys}}" wx:for-item="duty" wx:key="id">
       <view class="items borderbtm">
-        <view class="item-40 bright">{{duty.name}}</view>
-        <view class="item-60">{{duty.val}}</view>
+        <view class="item-40 bright">{{duty.dname}}</view>
+        <view class="item-60">{{duty.dvals}}</view>
       </view>
     </block>
-    <view class="items borderbtm">
+    <navigator class="items borderbtm" url="/page/roster/list/index?dptcode={{item.dptcode}}&dptname={{item.dptname}}">
       <view class="item-10 center">
         <image src="../../../image/sir.png" class='tip'></image>
       </view>
       <view class="item-40 left">执勤人员</view>
       <view class="item-40 right"></view>
       <view class="item-10 center">>></view>
-    </view>
+    </navigator>
     <view class="items borderbtm">
       <view class="item-25 bright">指战员</view>
       <view class="item-25 bright">专职队员</view>
@@ -39,28 +44,28 @@
       <view class="item-25">搜救犬</view>
     </view>
     <view class="items borderbtm">
-      <view class="item-25 bright">{{item.person.fireman}} 人</view>
-      <view class="item-25 bright">{{item.person.amatuer}} 人</view>
-      <view class="item-25 bright">{{item.person.vacation}}人</view>
-      <view class="item-25">{{item.person.dog}} 条</view>
+      <view class="item-25 bright">{{item.fireman}} 人</view>
+      <view class="item-25 bright">{{item.amatuer}} 人</view>
+      <view class="item-25 bright">{{item.holiday}}人</view>
+      <view class="item-25">{{item.dog}} 条</view>
     </view>
-    <view class="items borderbtm">
+    <navigator class="items borderbtm" url="/page/car/check/list/index?dptcode={{item.dptcode}}">
       <view class="item-10 center">
         <image src="../../../image/car2.png" class='tip'></image>
       </view>
       <view class="item-40 left">执勤车辆</view>
       <view class="item-40 right"></view>
       <view class="item-10 center">>></view>
-    </view>
+    </navigator>
     <view class="items borderbtm">
       <view class="item-33 bright">行政车辆</view>
       <view class="item-33 bright">消防车辆</view>
       <view class="item-33 ">故障车辆</view>
     </view>
     <view class="items">
-      <view class="item-33 bright">{{item.car.smallcar}} 辆</view>
-      <view class="item-33 bright">{{item.car.bigcar}} 辆</view>
-      <view class="item-33 ">{{item.car.brokencar}} 辆</view>
+      <view class="item-33 bright">{{item.officalCar}} 辆</view>
+      <view class="item-33 bright">{{item.fireCar}} 辆</view>
+      <view class="item-33 ">{{item.repairCar}} 辆</view>
     </view>
   </view>
 </view>

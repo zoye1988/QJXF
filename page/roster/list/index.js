@@ -29,6 +29,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var _dptcode=options.dptcode;
+    var _dptname=options.dptname;
     app.validateUser();//验证用户
     app.checkVisitJob(this.data.DefaultLimit);//验证用户访问权限
     that.setData({
@@ -38,11 +40,20 @@ Page({
     var job = app.globalData.job;
     var host = app.globalData.host;
     var downloadurl = app.globalData.downloadurl;
-    that.setData({ 
-      downloadurl: downloadurl,
-      dptname:app.globalData.udptname,
-      dptcode:app.globalData.udptcode
-    });
+    if(_dptcode==null || _dptcode==""){
+      that.setData({
+        downloadurl: downloadurl,
+        dptname: app.globalData.udptname,
+        dptcode: app.globalData.udptcode
+      });
+    }else{
+      that.setData({
+        downloadurl: downloadurl,
+        dptname: _dptname,
+        dptcode: _dptcode
+      });
+    }
+    
     //读取所有单位的列表
     //获取单位列表
     wx.request({
@@ -50,7 +61,7 @@ Page({
       method: "post",
       data: {
         method: "dptListLimit",
-        dptcode:app.globalData.udptcode
+        dptcode:that.data.dptcode
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'

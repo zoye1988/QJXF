@@ -18,7 +18,7 @@ Page({
     //获取用户的dptcode
     var _dptcode=options.dptcode;
     var dptcode = 2;
-    if(_dptcode==null)
+    if(_dptcode==null || _dptcode=="")
       dptcode = app.globalData.udptcode;
     else
       dptcode=_dptcode;

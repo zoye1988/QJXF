@@ -9,7 +9,17 @@ Page({
     worknotes: [],
     loadShow: true,///加载图标显示
     page: 0,
-    pagesize: 10
+    pagesize: 10,
+    date:"",
+    force:{
+      fireman:0,
+      amatuer:0,
+      holiday:0,
+      dog:0,
+      officalcar:0,
+      firecar:0,
+      repaircar:0
+    }
   },
 
   /**
@@ -46,8 +56,54 @@ Page({
           confirmText: "确定"
         })
       }
-    })
+    });
+    //获取日期
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var day = date.getDate();
+    if (day < 10) {
+      day = "0" + day;
+    }
+    that.setData({
+      date: year + "-" + month + "-" + day
+    });
+    //读取总的执勤实力
+    that.getDptDuty();
     this.setLastLoginDate();//更新登录时间
+  },
+
+  getDptDuty: function () {
+    var that = this;
+    var udptcode = app.globalData.udptcode;
+    var host = app.globalData.host;
+    wx.request({
+      url: host + "onduty.do",
+      data: {
+        method: "getDptDuty",
+        dptcode: udptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          force: res.data[0],
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：读取Worknote_GETBRIEFNOIMG," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      }
+    });
   },
 
   /**
@@ -63,6 +119,8 @@ Page({
   onShow: function () {
     
   },
+
+  
 
   /**
    * 生命周期函数--监听页面隐藏

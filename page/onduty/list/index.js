@@ -1,79 +1,62 @@
 // page/onduty/list/index.js
+var app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    dutys:[
-      {
-        dptname:"支队机关",
-        duty:[
-          {
-            name:"带班领导",
-            val:"毕明"
-          },
-          {
-            name: "值班长",
-            val: "代红波"
-          },
-          {
-            name: "指挥长",
-            val: "陈乔"
-          },
-          {
-            name: "专职值班",
-            val: "段斌"
-          },
-          {
-            name: "作战值班",
-            val: "张昭华"
-          },
-        ],
-        person:{
-          fireman:10,
-          amatuer:12,
-          vacation:1,
-          dog:1
-        },
-        car:{
-          smallcar:5,
-          bigcar:12,
-          brokencar:1
-        }
-      },
-      {
-        dptname: "麒麟大队",
-        duty: [
-          {
-            name: "大队领导",
-            val: "赵琨"
-          },
-          {
-            name: "大队参谋",
-            val: "林瑾"
-          },
-        ],
-        person: {
-          fireman: 10,
-          amatuer: 12,
-          vacation: 1,
-          dog: 1
-        },
-        car: {
-          smallcar: 5,
-          bigcar: 12,
-          brokencar: 1
-        }
-      },
-    ]
+    date:"",
+    forces:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    var host = app.globalData.host;//默认系统地址
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var day = date.getDate();
+    if (day < 10) {
+      day = "0" + day;
+    }
+    that.setData({
+      date: year + "-" + month + "-" + day
+    });
+    wx.request({
+      url: host + "onduty.do",
+      method: "post",
+      data: {
+        method: "getAllDuty",
+        dptcode:app.globalData.udptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var forces=res.data;
+        that.setData({
+          forces:forces
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      },
+      complete: function (res) {
 
+      }
+    });
   },
 
   /**
@@ -88,11 +71,53 @@ Page({
   onShow: function () {
 
   },
-
   /**
-   * 用户点击右上角分享
+   * 昨日情况
    */
-  onShareAppMessage: function () {
+  lastDuty:function(){
+    var that=this;
+    var host = app.globalData.host;//默认系统地址
+    var date = new Date();
+    date.setTime(date.getTime() - 24 * 60 * 60 * 1000);
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if (month < 10) {
+      month = "0" + month;
+    }
+    var day = date.getDate();
+    if (day < 10) {
+      day = "0" + day;
+    }
+    that.setData({
+      date: year + "-" + month + "-" + day
+    });
+    wx.request({
+      url: host + "onduty.do",
+      method: "post",
+      data: {
+        method: "getAllDutyLast",
+        dptcode: app.globalData.udptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        var forces = res.data;
+        that.setData({
+          forces: forces
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
+      },
+      complete: function (res) {
 
+      }
+    });
   }
 })

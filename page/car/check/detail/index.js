@@ -196,7 +196,7 @@ Page({
         checker:uname,
         openid:openid,
         carnumber: that.data.carcheck.carid,
-        dptcode:that.data.dptcode
+        dptcode:app.globalData.udptcode
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -210,11 +210,9 @@ Page({
             duration: 1000,
             complete:function(e){
               //返回上一级
-              setTimeout(function(){
-                wx.redirectTo({
-                  url: '../list/index',
-                })
-              } ,1000 );
+              wx.navigateBack({
+                
+              })
               
             }
           });

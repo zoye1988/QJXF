@@ -5,6 +5,18 @@
   display:flex;
   background-color:#373937;
 }
+.dtime{
+  margin:0;
+  display:flex;
+  background-color:#ffffff;
+  font-size:10pt;
+  height:30px;
+  color:white;
+  line-height: 30px;
+  background-image:url("http://127.0.0.1:8080/wxadmin/res/bgbtm.png");
+  background-repeat: no-repeat;
+  background-size: 100% 95%;
+}
 .duty-wrp{
   margin:0;
   display:flex;

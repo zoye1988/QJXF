@@ -133,34 +133,39 @@
       </view>
       <!--执勤实力-->
       <view class="duty_note">
+        <view class="dtime">
+          <view class="item-100 center">
+            执勤实力统计（{{date}}）
+          </view>
+        </view>
         <view class="duty-wrp" style="flex-direction:row;">
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                112<text style='color:#888;font-size:9pt;'>人</text>
+                {{force.fireman}}<text style='color:#888;font-size:9pt;'>人</text>
               </view>
               <text>指战员</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                259<text style='color:#888;font-size:9pt;'>人</text>
+                {{force.amatuer}}<text style='color:#888;font-size:9pt;'>人</text>
               </view>
               <text>专职消防员</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                9<text style='color:#888;font-size:9pt;'>人</text>
+                {{force.holiday}}<text style='color:#888;font-size:9pt;'>人</text>
               </view>
               <text>公差休假</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount">
-                212<text style='color:#888;font-size:9pt;'>辆</text>
+                {{force.officalCar+force.fireCar}}<text style='color:#888;font-size:9pt;'>辆</text>
               </view>
               <text>执勤车辆</text>
           </view>
           <view class="duty-item home_title dutytext">
               <view class="dutycount" style='border:0'>
-                10<text style='color:#888;font-size:9pt;'>条</text>
+                {{force.dog}}<text style='color:#888;font-size:9pt;'>条</text>
               </view>
               <text>搜救犬</text>
           </view>
