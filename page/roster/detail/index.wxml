@@ -1,12 +1,12 @@
 <!--page/roster/detail/index.wxml-->
 <view class="container">
-  <swiper circular='true' style="height:100vh;">
+  <swiper style="height:100vh;" current="{{currentTab}}">
     <!--设置4个滚动模块，循环滚动-->
-    <swiper-item wx:for="{{person}}" wx:key="{{item.pid}}">
+    <swiper-item wx:for="{{person}}" wx:key="{{item.uid}}">
       <view class="items headitem">
         <view class="item-20 imagesize"></view>
         <view class="item-60 imagesize">
-          <image src="{{downloadurl}}photo/{{item.pic}}" class="headimg" mode="aspectFit"></image>
+          <image src="{{downloadurl}}{{item.img}}" class="headimg" mode="aspectFit"></image>
         </view>
         <view class="item-20 imagesize"></view>
       </view>
@@ -40,13 +40,14 @@
             性别
           </view>
           <view class="item-30 center">
-            {{item.sex}}
+            <block wx:if="{{item.sexy==0}}">男</block>
+            <block wx:if="{{item.sexy!=0}}">女</block>
           </view>
           <view class="item-20 center pname2">
             民族
           </view>
           <view class="item-30 center">
-            {{item.nation}}
+            {{item.nations}}族
           </view>
         </view>
         <view class="items">
@@ -60,7 +61,10 @@
             政治面貌
           </view>
           <view class="item-30 center">
-            {{item.politics}}
+            <block wx:if="{{item.politics==0}}">群众</block>
+            <block wx:if="{{item.politics==1}}">共青团员</block>
+            <block wx:if="{{item.politics==2}}">共产党员</block>
+            <block wx:if="{{item.politics==3}}">其他党派</block>
           </view>
         </view>
         <view class="items">
@@ -88,7 +92,8 @@
             状态
           </view>
           <view class="item-30 center">
-            {{item.dutystatus}}
+            <block wx:if="{{item.dutystatus==0}}">在岗</block>
+            <block wx:if="{{item.dutystatus!=0}}">不在岗</block>
           </view>
         </view>
       </view>
@@ -98,7 +103,7 @@
         </view>
         <view class="item-10 center"></view>
         <view class="item-30 center">
-          <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{bitems}}">
+          <picker bindchange="statusChange" value="{{item.dutystatus}}" range="{{bitems}}" data-uid='{{item.uid}}'>
               <button type="default" style="font-size:10pt;background-color:#ffffff;" data-uid='{{item.uid}}'>状态调整</button>
           </picker>
         </view>

@@ -93,12 +93,14 @@
           <view style="font-size:10pt;">训练采集</view>
         </view>
       </navigator>
+      <!--
       <navigator url="../rank/data/index">
         <view class="meitem">
           <image src="../../image/book.png"></image>
           <view style="font-size:10pt;">图书借阅</view>
         </view>
       </navigator>
+      -->
       <navigator url="../car/check/list/index">
         <view class="meitem">
           <image src="../../image/carcheck.png"></image>

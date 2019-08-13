@@ -4,32 +4,114 @@
     <view class="item-10">
       <image src="../../../image/times.png" class='tip'></image>
     </view>
-    <view class="item-80 left">2019年06月04日</view>
+    <view class="item-80 left">{{date}}</view>
     <view class="item-15">
       <view class="normalBtn">昨天</view>
     </view>
     <view class="item-5"></view>
   </view>
-  <view class="dutys">
+  <view class="dutys" wx:for="{{duty}}" wx:key="{{item.oid}}">
     <view class="items borderbtm">
       <view class="item-10 center">
         <image src="../../../image/dpt.png" class='tip'></image>
       </view>
-      <view class="item-40 left">麒麟大队</view>
+      <view class="item-40 left">{{item.dptname}}</view>
       <view class="item-40"></view>
     </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">大队值班领导</view>
-      <view class="item-60">
-        <input type='text' placeholder='请输入值班人员姓名'></input>
+    <!--分岗位显示-->
+    <block wx:if="{{item.types==1}}">
+      <view class="items borderbtm">
+        <view class="item-40 bright">带班领导</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val1}}" data-dname='1' data-dptcode='{{item.dptcode}}'></input>
+        </view>
       </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">大队值班参谋</view>
-      <view class="item-60">
-        <input type='text' placeholder='请输入值班人员姓名'></input>
+      <view class="items borderbtm">
+        <view class="item-40 bright">值班长</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val2}}" data-dname='2' data-dptcode='{{item.dptcode}}'></input>
+        </view>
       </view>
-    </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">指挥长</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val3}}" data-dname='3' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">专职值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val4}}" data-dname='4' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">作战值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val5}}" data-dname='5' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">政工值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val6}}" data-dname='6' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">后勤值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val7}}" data-dname='7' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">防火值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val8}}" data-dname='8' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">宣传值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val9}}" data-dname='9' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">通信值班</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val10}}" data-dname='10' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{item.types==2}}">
+      <view class="items borderbtm">
+        <view class="item-40 bright">大队领导</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val11}}" data-dname='11' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">大队参谋</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val12}}" data-dname='12' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{item.types==3}}">
+      <view class="items borderbtm">
+        <view class="item-40 bright">中队干部</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val13}}" data-dname='13' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+      <view class="items borderbtm">
+        <view class="item-40 bright">中队长助理</view>
+        <view class="item-60">
+          <input type='text' placeholder='请输入人员姓名' value="{{val14}}" data-dname='14' data-dptcode='{{item.dptcode}}'></input>
+        </view>
+      </view>
+    </block>
+
     <view class="items borderbtm">
       <view class="item-10 center">
         <image src="../../../image/sir.png" class='tip'></image>
@@ -40,25 +122,25 @@
     <view class="items borderbtm">
       <view class="item-40 bright">指战员(人)</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.fireman}}'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">专职队员(人)</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.amatuer}}'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">公差休假(人)</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.holiday}}'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">搜救犬（条）</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.dog}}'></input>
       </view>
     </view>
     <view class="items borderbtm">
@@ -71,100 +153,24 @@
     <view class="items borderbtm">
       <view class="item-40 bright">行政车辆（辆）</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.officalCar}}'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">消防车辆（辆）</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.fireCar}}'></input>
       </view>
     </view>
     <view class="items">
       <view class="item-40 bright">故障车辆（辆）</view>
       <view class="item-60">
-        <input type='number' value='0'></input>
+        <input type='number' value='{{item.repairCar}}'></input>
       </view>
     </view>
   </view>
-  <view class="dutys">
-    <view class="items borderbtm">
-      <view class="item-10 center">
-        <image src="../../../image/dpt.png" class='tip'></image>
-      </view>
-      <view class="item-40 left">麒麟一中队</view>
-      <view class="item-40"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队值班领导</view>
-      <view class="item-60">
-        <input type='text' placeholder='请输入值班人员姓名'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">中队值班助理</view>
-      <view class="item-60">
-        <input type='text' placeholder='请输入值班人员姓名'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-10 center">
-        <image src="../../../image/sir.png" class='tip'></image>
-      </view>
-      <view class="item-40 left">执勤人员</view>
-      <view class="item-40 right"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">指战员(人)</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">专职队员(人)</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">公差休假(人)</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">搜救犬（条）</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-10 center">
-        <image src="../../../image/car2.png" class='tip'></image>
-      </view>
-      <view class="item-40 left">执勤车辆</view>
-      <view class="item-40 right"></view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">行政车辆（辆）</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items borderbtm">
-      <view class="item-40 bright">消防车辆（辆）</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-    <view class="items">
-      <view class="item-40 bright">故障车辆（辆）</view>
-      <view class="item-60">
-        <input type='number' value='0'></input>
-      </view>
-    </view>
-  </view>
+
   <view style='width:90%;margin:10px auto'>
-    <button type="primary" style="font-size:10pt;" bindtap="submitCar">提交</button>
+    <button type="primary" style="font-size:10pt;background-color:#2782D7" bindtap="submitCar">提交</button>
   </view>
 </view>

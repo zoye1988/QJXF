@@ -1,7 +1,9 @@
 <view class="containor">
   <view class="titlediv items borderbtm">
     <view class="item-10 bright">
-      <image class="formImg" src="../../../image/other.png" />
+      <picker bindchange="bindPickerChange" value="{{bindex}}" range="{{dptlist}}">
+        <image class="formImg" src="../../../image/other.png" />
+      </picker>
     </view>
     <view class="item-80 bright">
       <input class="wxsearch" type="text" name="keyword" value="{{keyword}}" placeholder="请输入搜索关键字" />
@@ -44,12 +46,13 @@
   </view>
 
   <view class="picitems">
-    <navigator class="picitem" wx:for="{{rosters}}" wx:key="{{item.rid}}" url='../detail/index?rid=1'>
+    <navigator class="picitem" wx:for="{{rosters}}" wx:key="{{item.uid}}" url='../detail/index?uid={{item.uid}}&dptcode={{item.dptcode}}'>
       <view class="info">
-        <image src="{{downloadurl}}photo/{{item.img}}" style='width:95%;height:110px;' mode="aspectFit"></image>
+        <image src="{{downloadurl}}{{item.img}}" style='width:95%;height:110px;' mode="aspectFit"></image>
         <view>{{item.jobname}}</view>
         <view>{{item.uname}}</view>
-        <view style='color:red'>{{item.duty}}</view>
+        <view wx:if="{{item.dutystatus==0}}" style='color:#1296db'>在位</view>
+        <view wx:if="{{item.dutystatus!=0}}" style='color:#d26456'>不在位</view>
       </view>
     </navigator>
   </view>
