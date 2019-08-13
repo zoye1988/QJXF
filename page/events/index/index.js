@@ -21,12 +21,12 @@ Page({
       获取数据列表note
      */
     wx.request({
-      url: host + "events.do",
+      url: host + "notice.do",
       method: "post",
       data: {
-        method: "getEventsList",
+        method: "getNoteList",
         dptcode: udptcode,
-        eventdate: eventdate,
+        taskdate: eventdate,
         pagesize: that.data.pagesize,
         page: that.data.events.length
       },
@@ -96,12 +96,12 @@ Page({
      */
     var list = that.data.events;
     wx.request({
-      url: host + "events.do",
+      url: host + "notice.do",
       method: "post",
       data: {
-        method: "getEventsList",
+        method: "getNoteList",
         dptcode: udptcode,
-        eventdate: eventdate,
+        taskdate: eventdate,
         page: that.data.events.length,
         pagesize: that.data.pagesize
       },
@@ -142,77 +142,5 @@ Page({
         });
       }
     });
-  },
-  onPullDownRefresh: function () {
-    var that = this;
-    var host = app.globalData.host;
-    var udptcode = app.globalData.udptcode;
-    var eventdate = wx.getStorageSync("eventdate")//获取最后查看accident栏目的时间
-    wx.request({
-      url: host + "events.do",
-      method: "post",
-      data: {
-        method: "getEventsNewList",
-        dptcode: udptcode,
-        eventdate: eventdate
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var events = that.data.events;
-        var _events = res.data;
-        var title = "";
-        if (_events.length == 0) {
-          title = "无最新数据"
-        }else{
-          title = "更新" + temp.length + "条数据";
-          for (var bt in _events) {
-            events.unshift(_events[bt]);
-          }
-          that.setData({
-            events: events
-          });
-        }
-        
-        //停止加载下拉图标
-        wx.stopPullDownRefresh({
-          complete: function (res) {
-            wx.showToast({
-              title: title,
-              image: "../../../image/ok2.png",
-              duration: 2000
-            })
-          }
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：Events_GETNEWEVENTSLIST," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
-    /**
-     * 更新用户获取Acc时间
-     */
-    var dt = new Date();
-    var year = dt.getFullYear();
-    var month = 1 + dt.getMonth();
-    if (month >= 1 && month <= 9) {
-      month = "0" + month;
-    }
-    var day = dt.getDate();
-    if (day >= 0 && day <= 9) {
-      day = "0" + day;
-    }
-    var hour = dt.getHours();
-    var minite = dt.getMinutes();
-    var second = dt.getSeconds();
-    var dtime = year + "-" + month + "-" + day + " " + hour + ":" + minite + ":" + second;
-    //写入cookie
-    wx.setStorageSync("eventdate", dtime);
   },
 })

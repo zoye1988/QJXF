@@ -20,7 +20,7 @@
         <view class="icon-box">
           <view class="note_icon_div">
             <view class="note_icon_div2">
-              <image class="note_icon" src="../../../image/emergency.png" />
+              <image class="note_icon" src="../../../image/events.png" />
             </view>
           </view>
           <view class="icon-box-ctn">

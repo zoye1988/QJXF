@@ -2,12 +2,12 @@
   <image src="../../../image/empty.png"></image>
   <view>暂时无数据</view>
 </view>
-<view class="home_note" wx:for="{{events}}" wx:key="{{item.eid}}">
-  <navigator url="../detail/index?eid={{item.eid}}">
+<view class="home_note" wx:for="{{events}}" wx:key="{{item.nid}}">
+  <navigator url="/page/plan/show/index?nid={{item.nid}}">
     <view class="icon-box">
       <view class="note_icon_div">
         <view class="note_icon_div2">
-          <image class="note_icon" src="../../../image/events.png" />
+          <image class="note_icon" src="../../../image/note.png" />
         </view>
       </view>
       <view class="icon-box-ctn">

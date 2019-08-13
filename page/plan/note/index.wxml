@@ -4,7 +4,7 @@
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/title.png" class="tip2" />
-          <text>通知标题</text>
+          <text>要情标题</text>
         </view>
         <view class="flex-item item-75">
           <input type='text' placeholder="请输入通知标题" placeholder-style="color:#888" value='{{title}}' bindinput='titleChange'>
@@ -14,7 +14,7 @@
       <view class="list_flex-wrp" style="flex-direction:row;border-bottom:0;">
         <view class="flex-item item-25" style="border-bottom:0;">
           <image src="../../../image/other.png" class="tip2" />
-          <text>通知内容</text>
+          <text>要情内容</text>
         </view>
         <view class="flex-item item-75" style="border-bottom:0;">
           <view class="plan_input">
@@ -30,7 +30,7 @@
               <view class="weui-uploader__hd">
                 <view class="weui-uploader__title">
 								<image src="../../../image/fujian.png" class="tip2" />
-								通知附件</view>
+								要情附件</view>
                 <view class="weui-uploader__info">{{imageList.length}}/{{countIndex}}</view>
               </view>
               <view class="weui-uploader__bd">

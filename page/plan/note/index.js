@@ -119,7 +119,7 @@ Page({
           if (result != 0) {
             wx.showToast({
               icon: "success",
-              title: "通知公告录入成功",
+              title: "工作要情录入成功",
               duration: 1000
             })
             that.setData({
@@ -179,12 +179,12 @@ Page({
         dptname: app.globalData.udptname,
         openid: app.globalData.openid,
         uname: app.globalData.uname,
-        sipname: "通知公告",
-        sipID: "note",//关联标识
+        sipname: "工作要情",
+        sipID: "events",//关联标识
         targetID: that.data.nid,
-        targetTime: "通知时间：" + that.data.time,
-        targetTitle: "通知标题：" + that.data.title,
-        targetBrief: "通知内容：" + _content,
+        targetTime: "发布时间：" + that.data.time,
+        targetTitle: "要情标题：" + that.data.title,
+        targetBrief: "要情内容：" + _content,
         targetIcon: "note.png",
         targetUrl: "plan/show/index?nid=" + that.data.nid+"&code=note",
         imgs: that.data.imgString,

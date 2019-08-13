@@ -47,8 +47,8 @@
       </navigator>
       <navigator url="../plan/note/index">
         <view class="meitem">
-          <image src="../../image/nnote.png"></image>
-          <view style="font-size:10pt;">通知管理</view>
+          <image src="../../image/events2.png"></image>
+          <view style="font-size:10pt;">工作要情</view>
         </view>
       </navigator>
       <navigator url="../plan/weather/index">
@@ -61,18 +61,6 @@
         <view class="meitem">
           <image src="../../image/nunion.png"></image>
           <view style="font-size:10pt;">联动采集</view>
-        </view>
-      </navigator>
-      <navigator url="../events/new/index">
-        <view class="meitem">
-          <image src="../../image/events2.png"></image>
-          <view style="font-size:10pt;">工作要情</view>
-        </view>
-      </navigator>
-      <navigator url="../phone/index/index">
-        <view class="meitem">
-          <image src="../../image/line.png"></image>
-          <view style="font-size:10pt;">联络电话</view>
         </view>
       </navigator>
       <navigator url="../duty/me/index">

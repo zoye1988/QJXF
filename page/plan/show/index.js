@@ -30,13 +30,11 @@ Page({
     app.validateUser();//验证用户
     app.checkVisitJob(this.data.DefaultLimit);//验证用户访问权限
     var nid = options.nid;
-    var code = options.code;
     var that = this;
     var host = app.globalData.host;
     var downloadurl = app.globalData.downloadurl;
     that.setData({
       downloadurl: downloadurl,
-      code:code,
       _nid:nid,
       _openid: app.globalData.openid
     });
@@ -45,7 +43,7 @@ Page({
       method: "post",
       data: {
         method: "getNoteDetail",
-        code:code,
+        code:"note",
         nid: nid,
         dptcode: app.globalData.udptcode,
         downloadurl: downloadurl
@@ -130,10 +128,6 @@ Page({
                   title: "删除成功",
                   duration: 1000,
                   success: function (res) {
-                    //跳转
-                    wx.redirectTo({
-                      url: "../index/index"
-                    })
                   }
                 })
               }
