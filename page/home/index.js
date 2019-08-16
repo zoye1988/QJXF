@@ -224,6 +224,8 @@ Page({
     })
     wx.stopPullDownRefresh({
     });
+    //读取总的执勤实力
+    that.getDptDuty();
     this.setLastLoginDate();//更新登录时间
   },
 

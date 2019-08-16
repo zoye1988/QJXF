@@ -16,7 +16,7 @@ Page({
     offDuty:0,
     total:0,
     page: 1,
-    pagesize: 16,
+    pagesize: 20,
     dptcode:2,
     DefaultLimit: 7,//功能限制访问权限级别,中队成员以上访问
     dptname:"支队机关",

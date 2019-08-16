@@ -74,5 +74,50 @@ Page({
    */
   onReachBottom: function () {
 
-  }
+  },
+  onPullDownRefresh: function () {
+    
+    var that = this;
+    var dptcode=that.data.dptcode;
+    var host = app.globalData.host;
+    //获取当日的日期
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if (month < 10)
+      month = "0" + month;
+    var day = date.getDate();
+    if (day < 10)
+      day = "0" + day;
+    this.setData({
+      today: year + "-" + month + "-" + day
+    })
+    wx.request({
+      url: host + "car.do",
+      method: "post",
+      data: {
+        method: "getCheckList",
+        dptcode: dptcode
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          carlist: res.data
+        });
+      },
+    });
+
+    wx.stopPullDownRefresh({
+      complete: function (res) {
+        wx.showToast({
+          title: "刷新成功",
+          image: "/image/ok2.png",
+          duration: 2000
+        })
+      }
+    });
+  },
 })
