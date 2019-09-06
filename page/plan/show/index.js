@@ -32,6 +32,7 @@ Page({
     var nid = options.nid;
     var that = this;
     var host = app.globalData.host;
+    var code=options.code;
     var downloadurl = app.globalData.downloadurl;
     that.setData({
       downloadurl: downloadurl,
@@ -43,7 +44,7 @@ Page({
       method: "post",
       data: {
         method: "getNoteDetail",
-        code:"note",
+        code:code,
         nid: nid,
         dptcode: app.globalData.udptcode,
         downloadurl: downloadurl

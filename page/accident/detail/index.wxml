@@ -96,7 +96,7 @@
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/times.png" class="tip2" />
-          <text>出警时间</text>
+          <text>录入时间</text>
         </view>
         <view class="flex-item item-75">
           {{accident.atime}}

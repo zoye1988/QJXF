@@ -1,5 +1,4 @@
-// page/roster/list/index.js
-var app = getApp();
+var app=getApp();
 Page({
 
   /**

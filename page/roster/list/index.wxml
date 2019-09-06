@@ -49,8 +49,13 @@
     <navigator class="picitem" wx:for="{{rosters}}" wx:key="{{item.uid}}" url='../detail/index?uid={{item.uid}}&dptcode={{item.dptcode}}'>
       <view class="info">
         <image src="{{downloadurl}}{{item.img}}" style='width:95%;height:110px;' mode="aspectFit"></image>
-        <view>{{item.jobname}}</view>
         <view>{{item.uname}}</view>
+        <block wx:if="{{item.jobname==''}}">
+          <view style='color:#888'>未设置</view>
+        </block>
+        <block wx:if="{{item.jobname!=''}}">
+          <view style='overflow:hidden'>{{item.jobname}}</view>
+        </block>
         <view wx:if="{{item.dutystatus==0}}" style='color:#1296db'>在位</view>
         <view wx:if="{{item.dutystatus!=0}}" style='color:#d26456'>不在位</view>
       </view>
