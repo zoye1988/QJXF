@@ -16,7 +16,7 @@
   <view class="department">
     <view class="list_flex-wrp" style="flex-direction:row;">
       <view class="flex-item item-25">
-        更新用户
+        版本号{{version}}
       </view>
       <view class="flex-item item-70" style='text-align:right;'>
         <button type="primary" class="mini-btn" size="mini" bindtap='updateUser' style='margin:0;'>点击更新</button>
@@ -101,10 +101,10 @@
           <view style="font-size:10pt;">值班编辑</view>
         </view>
       </navigator>
-      <navigator url="">
+      <navigator url="../drink/list/index">
         <view class="meitem">
           <image src="../../image/alcohol.png"></image>
-          <view style="font-size:10pt;">饮酒管理</view>
+          <view style="font-size:10pt;">饮酒报备</view>
         </view>
       </navigator>
     </view>

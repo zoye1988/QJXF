@@ -11,7 +11,8 @@ Page({
     udptname:'',
     udptcode:'',
     uimg:'',//用户头像
-    jobtitle:"未审核用户"
+    jobtitle:"未审核用户",
+    version:0
   },
 
   /**
@@ -27,7 +28,8 @@ Page({
       udptcode: app.globalData.udptcode,
       uimg: app.globalData.uimg,
       jobtitle: app.globalData.jobtitle,
-      lastlogindate: app.globalData.lastlogindate
+      lastlogindate: app.globalData.lastlogindate,
+      version:app.globalData.version
     });
   },
 

@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="swiper-tab">
   <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
-    派车记录
+    报备记录
   </view>
   <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
     我的申请
@@ -22,34 +22,22 @@
         <view class="note_icon_div">
           <view class="note_icon_div2">
             <view wx:if="{{item.cstatus==1}}">
-              <image class="note_icon" src="../../../image/approve.png" />
+              <image class="note_icon" src="../../../image/drinkProcess.png" />
               <view style='font-size:9pt;color:#888'>审批中</view>
             </view>
-            <view wx:if="{{item.cstatus==2}}">
-              <image class="note_icon" src="../../../image/cancel2.png" />
-              <view style='font-size:9pt;color:#888'>未通过</view>
-            </view>
-            <view wx:if="{{item.cstatus==3}}">
-              <image class="note_icon" src="../../../image/carout.png" />
+            <view wx:if="{{item.cstatus!=1}}">
+              <image class="note_icon" src="../../../image/drinkPass.png" />
               <view style='font-size:9pt;color:#888'>已审批</view>
-            </view>
-            <view wx:if="{{item.cstatus==4}}">
-              <image class="note_icon" src="../../../image/carin.png" />
-              <view style='font-size:9pt;color:#888'>已返回</view>
-            </view>
-            <view wx:if="{{item.cstatus==5}}">
-              <image class="note_icon" src="../../../image/delay2.png" />
-              <view style='font-size:9pt;color:#888'>已取消</view>
             </view>
           </view>
         </view>
         <view class="icon-box-ctn">
           <view class="icon-box-title">{{item.dptname}}</view>
           <view class="icon-box-desc2">
-            <text>用车时间：{{item.usetime}}\n</text>
-            <text>车牌号牌：{{item.carid}}\n</text>
-            <text>驾驶车辆：{{item.driver}}\n</text>
-            <text>用车原因：{{item.reason}}</text>
+            <text>申请时间：{{item.usetime}}\n</text>
+            <text>申请人员：{{item.driver}}\n</text>
+            <text>审批级别：支队领导\n</text>
+            <text>申请原因：{{item.reason}}</text>
           </view>
         </view>
         <view class="note_icon_btn">

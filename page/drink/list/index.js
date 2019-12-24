@@ -12,33 +12,33 @@ Page({
     // tab切换  
     currentTab: 0,
     array: [],//等级名称列表
-    arrayID:[],//等级名称参数
-    driver:"",
-    carid:"云",
-    reason:"",
-    usetime:"",
-    cstatus:"",
-    job:0,
+    arrayID: [],//等级名称参数
+    driver: "",
+    carid: "云",
+    reason: "",
+    usetime: "",
+    cstatus: "",
+    job: 0,
     index: 0,//审批等级选择
-    jobtitle:"",
-    leader:"",
-    leaderID:"",
-    cars:[],
+    jobtitle: "",
+    leader: "",
+    leaderID: "",
+    cars: [],
     loadShow: true,///加载图标显示
     csize: 0,
     pagesize: 10,
-    cid:0,
-    inCar:true,//  判断用户是否在审批流程
+    cid: 0,
+    inCar: true,//  判断用户是否在审批流程
     driverImg: "../../../res/temp.png",//驾驶证
     identifyImg: "../../../res/temp.png",
     downloadurl: app.globalData.downloadurl,
-    licences:[],//证件数组
+    licences: [],//证件数组
     DefaultLimit: 7,//功能限制访问权限级别
-    hideLeader:0,
-    automatic:[],
-    _jobcode:0,
-    note:1,
-    check:0
+    hideLeader: 0,
+    automatic: [],
+    _jobcode: 0,
+    note: 1,
+    check: 0
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -57,8 +57,8 @@ Page({
     var openid = app.globalData.openid;//用户的id
     var uname = app.globalData.uname;
     that.setData({
-      driver:uname,
-      cars:[],
+      driver: uname,
+      cars: [],
     });
     /** 
      * 获取系统信息 
@@ -71,7 +71,7 @@ Page({
         });
       }
     });
-    
+
     /**
      * 获取车辆审批列表
      */
@@ -81,7 +81,7 @@ Page({
       data: {
         method: "getCarLicenseList",
         dptcode: app.globalData.udptcode,
-        openid:app.globalData.openid,
+        openid: app.globalData.openid,
         page: that.data.cars.length,
         pagesize: that.data.pagesize
       },
@@ -90,7 +90,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          cars:res.data
+          cars: res.data
         });
       },
       fail: function (res) {
@@ -101,9 +101,9 @@ Page({
           confirmText: "确定"
         })
       },
-      complete:function(res){
+      complete: function (res) {
         that.setData({
-          loadShow:false
+          loadShow: false
         });
       }
     });
@@ -122,8 +122,8 @@ Page({
       },
       success: function (res) {
         that.setData({
-          driverImg: that.data.downloadurl+res.data.driverLicence,
-          identifyImg: that.data.downloadurl+res.data.identifyLicence,
+          driverImg: that.data.downloadurl + res.data.driverLicence,
+          identifyImg: that.data.downloadurl + res.data.identifyLicence,
           licences: [that.data.downloadurl + res.data.driverLicence, that.data.downloadurl + res.data.identifyLicence]
         });
       },
@@ -151,19 +151,19 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var result=res.data.result;
-        var car=res.data.car;
-        if(result>0){
+        var result = res.data.result;
+        var car = res.data.car;
+        if (result > 0) {
           that.setData({
-            inCar:false,
-            driver:car.driver,
-            carid:car.carid,
-            reason:car.reason,
-            usetime:car.usetime,
-            jobtitle:car.jobtitle,
-            cstatus:car.cstatus,
-            leader:car.leader,
-            cid:car.cid
+            inCar: false,
+            driver: car.driver,
+            carid: car.carid,
+            reason: car.reason,
+            usetime: car.usetime,
+            jobtitle: car.jobtitle,
+            cstatus: car.cstatus,
+            leader: car.leader,
+            cid: car.cid
           });
         }
       },
@@ -181,7 +181,7 @@ Page({
      */
     var job = app.globalData.job;
     that.setData({
-      job:app.globalData.job
+      job: app.globalData.job
     })
     wx.request({
       url: host + "car.do",
@@ -277,15 +277,15 @@ Page({
     }
   },
   bindPickerChange: function (e) {
-    var that=this;
+    var that = this;
     this.showLeader(that.data.arrayID[e.detail.value]);
     this.setData({
       index: e.detail.value
     })
   },
-  showLeader:function(index){
+  showLeader: function (index) {
     console.log(index);
-    var that=this;
+    var that = this;
     that.setData({
       hideLeader: 0
     });
@@ -351,11 +351,11 @@ Page({
       });
     }
   },
-  submitCar:function(){
+  submitCar: function () {
     var that = this;
     var host = app.globalData.host;
-    var driver=this.data.driver;
-    var carid=this.data.carid;
+    var driver = this.data.driver;
+    var carid = this.data.carid;
     /**
      * 接收信息
      */
@@ -371,9 +371,9 @@ Page({
     //清除回车
     carid = carid.replace(/[ ]/g, "");    //去掉空格
     carid = carid.replace(/[\r\n]/g, ""); //去掉回车换行
-    var reason=this.data.reason;
-    var check=this.data.check;
-    if(carid=="" || carid==null){
+    var reason = this.data.reason;
+    var check = this.data.check;
+    if (carid == "" || carid == null) {
       wx.showModal({
         title: "数据检查",
         content: "车牌号不能为空",
@@ -410,7 +410,7 @@ Page({
       })
       return;
     }
-    
+
     /**
      * 插入车辆申请表
      */
@@ -420,23 +420,23 @@ Page({
       data: {
         method: "insertCarUnLicense",
         dptcode: app.globalData.udptcode,//用户所属辖区code
-        dptname:app.globalData.udptname,
-        driver:that.data.driver,
+        dptname: app.globalData.udptname,
+        driver: that.data.driver,
         carID: carid,
         driverid: app.globalData.openid,
-        reason:that.data.reason,
-        jobtitle:that.data.array[that.data.index],
-        jobcode:that.data.arrayID[that.data.index],
-        _jobcode:that.data._jobcode,
-        leader:that.data.leader,
-        leaderID:that.data.leaderID
+        reason: that.data.reason,
+        jobtitle: that.data.array[that.data.index],
+        jobcode: that.data.arrayID[that.data.index],
+        _jobcode: that.data._jobcode,
+        leader: that.data.leader,
+        leaderID: that.data.leaderID
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var result=res.data.result;
-        if(result==1){
+        var result = res.data.result;
+        if (result == 1) {
           wx.hideLoading();
           wx.showToast({
             title: "申请提交成功",
@@ -445,33 +445,33 @@ Page({
           })
           that.setData({
             inCar: false,
-            usetime:res.data.usetime,
+            usetime: res.data.usetime,
             jobtitle: that.data.array[that.data.index],
-            cstatus:1
+            cstatus: 1
           });
           that.refresh();
-        }else if (result == 3){  //判断驾驶身份未审核
+        } else if (result == 3) {  //判断驾驶身份未审核
           wx.showModal({
             title: "身份审核",
             content: "驾驶员身份未备案，请前往审核",
             showCancel: false,
             confirmText: "确定",
-            success:function(res){
-              if(res.confirm){
+            success: function (res) {
+              if (res.confirm) {
                 wx.navigateTo({
                   url: '../new/index',
                 })
               }
             }
           })
-        }else if(result==-1){
+        } else if (result == -1) {
           wx.showModal({
             title: "身份审核",
             content: "资料已提交，等待审核",
             showCancel: false,
             confirmText: "确定"
           })
-        }else{
+        } else {
           wx.showToast({
             title: "申请提交失败",
             image: "../../../image/warning.png",
@@ -488,7 +488,7 @@ Page({
         })
       }
     });
-    
+
   },
   cancelCar: function () {
     var that = this;
@@ -505,14 +505,14 @@ Page({
       },
       success: function (res) {
         var result = res.data.result;
-        if(result==0){
+        if (result == 0) {
           wx.showModal({
             title: "操作异常",
             content: "请检查网络或重启程序,错误代码：CAR_DELAY",
             showCancel: false,
             confirmText: "确定"
           })
-        }else{
+        } else {
           wx.showToast({
             title: "取消车辆申请",
             icon: "success",
@@ -520,14 +520,14 @@ Page({
           })
           that.setData({
             inCar: true,
-            carid:"云",
-            hideLeader:0,
-            check:0,
-            _jobcode:0
+            carid: "云",
+            hideLeader: 0,
+            check: 0,
+            _jobcode: 0
           });
           that.refresh();
         }
-        
+
       },
       fail: function (res) {
         wx.showModal({
@@ -571,9 +571,9 @@ Page({
       },
       success: function (res) {
         that.setData({
-          automatic:res.data,
-          note:res.data.length,
-          check:0
+          automatic: res.data,
+          note: res.data.length,
+          check: 0
         });
       },
       fail: function (res) {
@@ -585,7 +585,7 @@ Page({
         })
       }
     });
-    
+
   },
   //修改用车原因信息
   keyReason: function (e) {
@@ -599,7 +599,7 @@ Page({
   /**
    审批通过
    */
-  carPassBtn:function(e){
+  carPassBtn: function (e) {
     var that = this;
     var cid = e.target.dataset.cid;
     var host = app.globalData.host;
@@ -608,10 +608,10 @@ Page({
       content: "同意车辆外出?",
       showCancel: true,
       confirmText: "确定",
-      cancelText:"取消",
-      cancelColor:"#d81e06",
-      success:function(res){
-        if(res.confirm){
+      cancelText: "取消",
+      cancelColor: "#d81e06",
+      success: function (res) {
+        if (res.confirm) {
           //确定车辆外出
           wx.request({
             url: host + "car.do",
@@ -621,7 +621,7 @@ Page({
               leaderid: app.globalData.openid,
               leader: app.globalData.uname,
               cid: cid,
-              cstatus:3
+              cstatus: 3
             },
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -654,7 +654,7 @@ Page({
             }
           });
 
-        }else if(res.cancel){
+        } else if (res.cancel) {
 
         }
       }
@@ -664,7 +664,7 @@ Page({
    * 取消审批
    */
   carDelayBtn: function (e) {
-    var that=this;
+    var that = this;
     var cid = e.target.dataset.cid;
     var host = app.globalData.host;
     wx.showModal({
@@ -722,7 +722,7 @@ Page({
       }
     })
   },
-  carBack:function(e){
+  carBack: function (e) {
     var that = this;
     var cid = e.target.dataset.cid;
     var host = app.globalData.host;
@@ -758,7 +758,7 @@ Page({
           //         confirmText: "确定"
           //       })
           //     }else{
-                
+
           //     }
           //   },
           //   fail: function (res) {
@@ -982,17 +982,17 @@ Page({
       }
     });
   },
-  updateCar:function(e){
+  updateCar: function (e) {
     var that = this;
     var isUse = e.currentTarget.dataset.isuse;
-    if(isUse==0){
+    if (isUse == 0) {
       that.setData({
         leader: e.currentTarget.dataset.leader,
         leaderID: e.currentTarget.dataset.openid,
         _jobcode: e.currentTarget.dataset.jobcode,
         carid: e.currentTarget.dataset.carnumber,
         automatic: [],
-        check:1
+        check: 1
       });
       that.showLeader(that.data.arrayID[that.data.index]);
     }

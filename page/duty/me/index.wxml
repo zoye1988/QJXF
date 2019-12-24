@@ -1,15 +1,7 @@
 <view class="car_title">
   工作考勤登记表（{{dutytime}}）</view>
-          <map
-          id="myMap"
-          latitude="{{latitude}}"
-          longitude="{{longitude}}"
-          markers="{{markers}}"
-          scale="17"
-          circles="{{circles}}"
-          show-location=true,
-          bindcontroltap="getSelfLoc">
-          </map>
+<map id="myMap" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" scale="17" circles="{{circles}}" show-location="true" bindcontroltap="getSelfLoc">
+</map>
 <view class="list_flex-wrp2" style="flex-direction:row;">
   <view class="flex-item item-25">
     <image src="../../../image/person.png" class="tip2" />
@@ -20,8 +12,7 @@
   </view>
   <view class="flex-item item-25">
     <view class="radius" bindtap='getSelfPos'>
-      <image src="../../../image/coordinates_fill.png" class="tip2" />
-      重新定位
+      <image src="../../../image/coordinates_fill.png" class="tip2" /> 重新定位
     </view>
   </view>
 </view>
@@ -46,8 +37,8 @@
   </view>
 </view>
 <view class="list_flex-wrp2" style='border-bottom:1px solid #efefef'>
-        <button type="primary" style="font-size:10pt;" bindtap="submitDuty">提交考勤</button>
-        <button type="warn" style="font-size:10pt;" bindtap="leaveBtn">请假/加班</button>
+  <button type="primary" style="font-size:10pt;" bindtap="submitDuty">提交考勤</button>
+  <button type="warn" style="font-size:10pt;" bindtap="leaveBtn">请假/加班</button>
 </view>
 <!--考勤记录-->
 <view class="list_flex-wrp2" style="flex-direction:row;">

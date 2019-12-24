@@ -221,14 +221,20 @@ Page({
       success: function (res) {
         if (res.confirm) {
           //更新车辆状态
+          //确定车辆外出
           wx.request({
             url: host + "car.do",
             method: "post",
             data: {
-              method: "updateCarStatus",
-              user: that.data.driver,
+              method: "leaderCarLicense",
+              leaderid: app.globalData.openid,
+              leader: app.globalData.uname,
+              driverid: that.data.driverid,
+              //driver:that.data.driver,
               carid: that.data.carid,
-              isUse: 1
+              usetime: that.data.usetime,
+              cid: cid,
+              cstatus: 3
             },
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -243,50 +249,12 @@ Page({
                   confirmText: "确定"
                 })
               } else {
-                //确定车辆外出
-                wx.request({
-                  url: host + "car.do",
-                  method: "post",
-                  data: {
-                    method: "leaderCarLicense",
-                    leaderid: app.globalData.openid,
-                    leader: app.globalData.uname,
-                    driverid: that.data.driverid,
-                    carid: that.data.carid,
-                    usetime: that.data.usetime,
-                    cid: cid,
-                    cstatus: 3
-                  },
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  success: function (res) {
-                    var result = res.data.result;
-                    if (result == 0) {
-                      wx.showModal({
-                        title: "操作异常",
-                        content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE",
-                        showCancel: false,
-                        confirmText: "确定"
-                      })
-                    } else {
-                      wx.showToast({
-                        title: "完成车辆审批",
-                        icon: "success",
-                        duration: 2000
-                      });
-                      that.refresh();
-                    }
-                  },
-                  fail: function (res) {
-                    wx.showModal({
-                      title: "数据异常",
-                      content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE," + res.errMsg,
-                      showCancel: false,
-                      confirmText: "确定"
-                    })
-                  }
+                wx.showToast({
+                  title: "完成车辆审批",
+                  icon: "success",
+                  duration: 2000
                 });
+                that.refresh();
               }
             },
             fail: function (res) {
@@ -298,7 +266,6 @@ Page({
               })
             }
           });
-
 
         } else if (res.cancel) {
 
