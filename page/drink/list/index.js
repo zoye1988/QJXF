@@ -13,8 +13,15 @@ Page({
     currentTab: 0,
     array: [],//等级名称列表
     arrayID: [],//等级名称参数
+    reasonArray:[
+      "公务接待",
+      "朋友聚会",
+      "家人来访",
+      "婚丧宴请"
+    ],
+    reasonID:0,
     driver: "",
-    carid: "云",
+    carid: "",
     reason: "",
     usetime: "",
     cstatus: "",
@@ -38,7 +45,7 @@ Page({
     automatic: [],
     _jobcode: 0,
     note: 1,
-    check: 0
+    check: 0,
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -281,6 +288,13 @@ Page({
     this.showLeader(that.data.arrayID[e.detail.value]);
     this.setData({
       index: e.detail.value
+    })
+  },
+
+  drinkPickerChange: function (e) {
+    var that = this;
+    this.setData({
+      reasonID: e.detail.value
     })
   },
   showLeader: function (index) {

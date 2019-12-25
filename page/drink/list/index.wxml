@@ -54,11 +54,11 @@
   <swiper-item>
     <!-- 提交界面 -->
     <view class="home_note2" wx:if="{{inCar}}">
-      <view class="car_title">车辆外出申请表</view>
+      <view class="car_title">饮酒报备申请表</view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
-          <text>用车人员</text>
+          <text>报备人员</text>
         </view>
         <view class="flex-item item-75">
           <input placeholder="请输入姓名" value='{{driver}}' placeholder-style="color:#888" type='text' bindblur="keyDriver">
@@ -67,50 +67,32 @@
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
-          <image src="../../../image/car2.png" class="tip2" />
-          <text>使用车辆</text>
+          <image src="../../../image/person.png" class="tip2" />
+          <text>陪同人员</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入车辆号牌" value="{{carid}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
+          <input placeholder="请输入陪同人员姓名" value="{{carid}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
           </input>
-          <!--联想选项-->
-          <block wx:if="{{automatic.length!=0}}">
-            <view class="item" wx:for="{{automatic}}" wx:key="{{item.id}}" bindtap='updateCar' data-carnumber="{{item.carnumber}}" data-isUse='{{item.isUse}}' data-openid='{{item.openid}}' data-jobcode='{{item.jobcode}}' data-leader='{{item.leader}}'>
-              <view style='width:30%;border-right:1px solid #777'>{{item.carnumber}}</view>
-              <view style='width:40%;color:#969696'>
-                <block wx:if="{{item.isUse==1}}">
-                  {{item.user}}
-                </block>
-              </view>
-              <block wx:if="{{item.isUse==1}}">
-                <view style='width:30%;color:red'>[使用中]</view>
-              </block>
-              <block wx:if="{{item.isUse==2}}">
-                <view style='width:30%;color:orange'>[维修中]</view>
-              </block>
-              <block wx:if="{{item.isUse==0}}">
-                <view style='width:30%;color:#2782D7'>[待命中]</view>
-              </block>
-            </view>
-          </block>
-          <block wx:if="{{note==0}}">
-            <view class="item">
-              <view class="item-25">
-                <image src='../../../image/cancel.png' style='height:20px;width:20px;margin-top:2px;'></image>
-              </view>
-              <view class="item-50">未找到符合车辆</view>
-            </view>
-          </block>
-          <!--联想选项-->
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/other.png" class="tip2" />
-          <text>用车原因</text>
+          <text>申请理由</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入用车原因" value="{{reason}}" type="text" placeholder-style="color:#888" bindinput="keyReason">
+          <picker bindchange="drinkPickerChange" value="{{reasonID}}" range="{{reasonArray}}">
+            <view>{{reasonArray[reasonID]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/phone.png" class="tip2" />
+          <text>紧急电话</text>
+        </view>
+        <view class="flex-item item-75">
+          <input placeholder="请输入紧急联系电话" value="{{reason}}" type="text" placeholder-style="color:#888" bindinput="keyReason">
           </input>
         </view>
       </view>
@@ -141,21 +123,21 @@
         <button type="primary" style="font-size:10pt;margin-top:0;margin-bottom:0;" bindtap="submitCar">提交</button>
       </view>
       <view style='background-color:#fff;padding:5px;font-size:10pt;color:#888;'>
-        <text>用车说明:\n</text>
-        <text>(一)支队领导、部门领导、大队领导可以对下级或同级进行车辆审批，其余级别无法审批车辆。\n</text>
-        <text>(二)部门领导、大队领导驾驶本级车辆离开辖区必须由军政主官或部门领导审批。\n</text>
-        <text>(三)驾驶车辆人员必须携带驾驶证和行车证，向卫兵出示电子车辆审批单。\n</text>
-        <text>(四)车辆返回营区，请及时更新车辆状态。\n</text>
+        <text>报备说明:\n</text>
+        <text>(一)支队领导、部门领导、大队领导可以对下级进行饮酒审批，其余级别无法审批。\n</text>
+        <text>(二)如有随行人员需要报备，可将人员姓名填写在“陪同人员”栏。\n</text>
+        <text>(三)为确保报备人员安全和紧急情况下能及时联系，请填写紧急联系电话。\n</text>
+        <text>(四)报备人员安全返回后，请及时反馈情况。\n</text>
       </view>
     </view>
     <!-- 提交界面 -->
     <!-- 待审界面 -->
     <view class="home_note2" wx:if="{{!inCar}}">
-      <view class="car_title">车辆外出审批单</view>
+      <view class="car_title">饮酒报备审批单</view>
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
-          <text>用车人员</text>
+          <text>报备人员</text>
         </view>
         <view class="flex-item item-75">
           {{driver}}
@@ -163,8 +145,8 @@
       </view>
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
-          <image src="../../../image/car2.png" class="tip2" />
-          <text>使用车辆</text>
+          <image src="../../../image/person.png" class="tip2" />
+          <text>陪同人员</text>
         </view>
         <view class="flex-item item-75">
           {{carid}}
@@ -173,7 +155,7 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/other.png" class="tip2" />
-          <text>用车原因</text>
+          <text>申请原因</text>
         </view>
         <view class="flex-item item-75">
           {{reason}}
@@ -182,7 +164,16 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/date.png" class="tip2" />
-          <text>用车日期</text>
+          <text>申请日期</text>
+        </view>
+        <view class="flex-item item-75">
+          {{usetime}}
+        </view>
+      </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/date.png" class="tip2" />
+          <text>紧急电话</text>
         </view>
         <view class="flex-item item-75">
           {{usetime}}
@@ -199,15 +190,6 @@
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
-          <text>相关证件</text>
-        </view>
-        <view class="flex-item item-75 licence">
-          <image mode="aspectFill" src="{{driverImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
-          <image mode="aspectFill" style='margin-left:10px;' src="{{identifyImg}}" data-ilist="{{licences}}" bindtap="previewImage"></image>
-        </view>
-      </view>
-      <view class="list_flex-wrp2" style="flex-direction:row;">
-        <view class="flex-item item-25">
           <text>审批结果</text>
         </view>
         <view class="flex-item item-75 car_result">
@@ -219,7 +201,7 @@
       </view>
       <view style='background-color:#fff;padding:5px;font-size:10pt;color:#2782D7;'>
         <text>用车提醒:\n</text>
-        <text>驾车前请检查车况和油料；请系好安全带，遵守道路交通法规；车辆使用完毕后请及时上交钥匙，保持车内整洁卫生；及时在平台更新车辆状况。祝您一路平安！\n</text>
+        <text>请勿酒后驾驶，注意！\n</text>
       </view>
       <view class="list_flex-wrp2">
         <button wx:if="{{cstatus<=2}}" type="warn" style="font-size:10pt;" bindtap="cancelCar" data-cid="{{cid}}">取消用车</button>
