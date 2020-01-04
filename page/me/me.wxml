@@ -101,10 +101,10 @@
           <view style="font-size:10pt;">值班编辑</view>
         </view>
       </navigator>
-      <navigator url="../drink/list/index">
+      <navigator url="../phone/index/index">
         <view class="meitem">
-          <image src="../../image/alcohol.png"></image>
-          <view style="font-size:10pt;">饮酒报备</view>
+          <image src="../../image/line.png"></image>
+          <view style="font-size:10pt;">联系电话</view>
         </view>
       </navigator>
     </view>

@@ -57,7 +57,8 @@
     "page/car/check/detail/index",
     "page/roster/edit/index",
     "page/onduty/edit/index",
-    "page/drink/list/index"
+    "page/drink/list/index",
+    "page/drink/detail/index"
   ],
   "permission": {
     "scope.userLocation": {

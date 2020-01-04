@@ -20,32 +20,40 @@ Page({
       "婚丧宴请"
     ],
     reasonID:0,
-    driver: "",
-    carid: "",
-    reason: "",
-    usetime: "",
+    uname:"",
+    openid:"",
+    partner:"",
+    show:0,//安全提示显示
+    tel:"",
     cstatus: "",
     job: 0,
     index: 0,//审批等级选择
     jobtitle: "",
     leader: "",
     leaderID: "",
-    cars: [],
+    alcohols: [],
+    alcohol:"",
     loadShow: true,///加载图标显示
     csize: 0,
     pagesize: 10,
     cid: 0,
-    inCar: true,//  判断用户是否在审批流程
+    inAlcohol: true,//  判断用户是否在审批流程
     driverImg: "../../../res/temp.png",//驾驶证
     identifyImg: "../../../res/temp.png",
     downloadurl: app.globalData.downloadurl,
     licences: [],//证件数组
-    DefaultLimit: 7,//功能限制访问权限级别
+    DefaultLimit: 8,//功能限制访问权限级别
     hideLeader: 0,
     automatic: [],
     _jobcode: 0,
     note: 1,
     check: 0,
+    usetime: "",
+    driver: "",
+    reason: "",
+    cars:[],
+    carid: "",
+    inCar: true,//  判断用户是否在审批流程
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -64,8 +72,8 @@ Page({
     var openid = app.globalData.openid;//用户的id
     var uname = app.globalData.uname;
     that.setData({
-      driver: uname,
-      cars: [],
+      uname: uname,
+      alcohols: [],
     });
     /** 
      * 获取系统信息 
@@ -83,13 +91,12 @@ Page({
      * 获取车辆审批列表
      */
     wx.request({
-      url: host + "car.do",
+      url: host + "alcohol.do",
       method: "post",
       data: {
-        method: "getCarLicenseList",
+        method: "getAlcoholList",
         dptcode: app.globalData.udptcode,
-        openid: app.globalData.openid,
-        page: that.data.cars.length,
+        page: that.data.alcohols.length,
         pagesize: that.data.pagesize
       },
       header: {
@@ -97,8 +104,16 @@ Page({
       },
       success: function (res) {
         that.setData({
-          cars: res.data
+          alcohols: res.data
         });
+        that.setData({
+          csize: that.data.alcohols.length * 125
+        });
+        if (that.data.csize > that.data.defaultHeight) {
+          that.setData({
+            defaultHeight: that.data.csize + that.data.headerHeight
+          });
+        }
       },
       fail: function (res) {
         wx.showModal({
@@ -114,63 +129,27 @@ Page({
         });
       }
     });
-    /**
-     * 获取用户证件
-     */
-    wx.request({
-      url: host + "car.do",
-      method: "post",
-      data: {
-        method: "checkCarLicence",
-        openid: openid
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        that.setData({
-          driverImg: that.data.downloadurl + res.data.driverLicence,
-          identifyImg: that.data.downloadurl + res.data.identifyLicence,
-          licences: [that.data.downloadurl + res.data.driverLicence, that.data.downloadurl + res.data.identifyLicence]
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：读取CAR_USERINFO," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
 
     /***
      * 查询是否有已经提交的用车申请
      */
     wx.request({
-      url: host + "car.do",
+      url: host + "alcohol.do",
       method: "post",
       data: {
-        method: "getCarLicense",
+        method: "getAlcoholDetail2",
         openid: app.globalData.openid
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function (res) {
-        var result = res.data.result;
-        var car = res.data.car;
-        if (result > 0) {
+        var alcohol = res.data.alcohol;
+        if (alcohol.cstatus == 3 || alcohol.cstatus == 0) {
           that.setData({
-            inCar: false,
-            driver: car.driver,
-            carid: car.carid,
-            reason: car.reason,
-            usetime: car.usetime,
-            jobtitle: car.jobtitle,
-            cstatus: car.cstatus,
-            leader: car.leader,
-            cid: car.cid
+            show:alcohol.aid,
+            inAlcohol: false,
+            alcohol: alcohol
           });
         }
       },
@@ -222,17 +201,16 @@ Page({
         })
       }
     });
-    that.setData({
-      csize: that.data.cars.length * 125
-    });
-    if (that.data.csize > that.data.defaultHeight) {
-      that.setData({
-        defaultHeight: that.data.csize + that.data.headerHeight
-      });
-    }
   },
+
   onReady: function () {
 
+  },
+  //关闭提示
+  closeRules:function(){
+    this.setData({
+      show:0
+    });
   },
   /** 
      * 滑动切换tab 
@@ -244,7 +222,7 @@ Page({
     var current = e.detail.current;
     var size = 0;
     if (current == 0) {
-      size = that.data.cars.length;
+      size = that.data.alcohols.length;
       size = size * 125 + that.data.headerHeight;
       if (size < that.data.winHeight) {
         size = that.data.winHeight;
@@ -270,7 +248,7 @@ Page({
       var current = e.target.dataset.current;
       var size = 0;
       if (current == 0) {
-        size = that.data.cars.length;
+        size = that.data.alcohols.length;
         size = size * 125 + that.data.headerHeight;
         if (size < that.data.winHeight) {
           size = that.data.winHeight;
@@ -320,23 +298,23 @@ Page({
     var udptcode = app.globalData.udptcode;
     var current = this.data.currentTab;
     if (current == 0) {
-      var list = that.data.cars;
+      var list = that.data.alcohols;
       wx.request({
-        url: host + "car.do",
+        url: host + "alcohol.do",
         method: "post",
         data: {
-          method: "getCarLicenseList",
+          method: "getAlcoholList",
           dptcode: udptcode,
-          page: that.data.cars.length,
+          page: that.data.alcohols.length,
           pagesize: that.data.pagesize
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         success: function (res) {
-          var cars = that.data.cars;
-          var _cars = res.data;
-          if (_cars.length == 0) {
+          var alcohols = that.data.alcohols;
+          var _alcohols = res.data;
+          if (_alcohols.length == 0) {
             //判断获取参数等于0，提示数据已经到底
             wx.showToast({
               title: "数据已经到底",
@@ -344,13 +322,13 @@ Page({
               duration: 2000
             })
           } else {
-            for (var bt in _cars) {
-              cars.push({ cid: _cars[bt].cid, usetime: _cars[bt].usetime, carid: _cars[bt].carid, driver: _cars[bt].driver, reason: _cars[bt].reason, cstatus: _cars[bt].cstatus, jobcode: _cars[bt].jobcode, dptname: _cars[bt].dptname });
+            for (var bt in _alcohols) {
+              alcohols.push(_alcohols[bt]);
             }
             that.setData({
-              cars: cars,
-              csize: cars.length * 125 + that.data.headerHeight,
-              defaultHeight: cars.length * 125 + that.data.headerHeight
+              alcohols: alcohols,
+              csize: alcohols.length * 125 + that.data.headerHeight,
+              defaultHeight: alcohols.length * 125 + that.data.headerHeight
             });
           }
         },
@@ -368,13 +346,13 @@ Page({
   submitCar: function () {
     var that = this;
     var host = app.globalData.host;
-    var driver = this.data.driver;
-    var carid = this.data.carid;
+    var uname=that.data.uname;
+    var tel=that.data.tel;
     /**
      * 接收信息
      */
     wx.requestSubscribeMessage({
-      tmplIds: ['aA0WoE_tE9LWxJoeW8M1AsaQ9MKwE9tnC5942ZwMMSs'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
+      tmplIds: ['6oxQwPW_baN5AVhfio2ZQFFSEicNHiHP95uP36adKIM'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
       success(res) {
         console.log('已授权接收订阅消息')
       },
@@ -382,43 +360,21 @@ Page({
         console.log("error");
       }
     });
-    //清除回车
-    carid = carid.replace(/[ ]/g, "");    //去掉空格
-    carid = carid.replace(/[\r\n]/g, ""); //去掉回车换行
-    var reason = this.data.reason;
-    var check = this.data.check;
-    if (carid == "" || carid == null) {
+
+    if (uname == "" || uname == null) {
       wx.showModal({
         title: "数据检查",
-        content: "车牌号不能为空",
-        showCancel: false,
-        confirmText: "确定"
-      })
-      return;
-    }
-    if (driver == "" || driver == null) {
-      wx.showModal({
-        title: "数据检查",
-        content: "用车人员不能为空",
-        showCancel: false,
-        confirmText: "确定"
-      })
-      return;
-    }
-    if (reason == "" || reason == null) {
-      wx.showModal({
-        title: "数据检查",
-        content: "用车原因不能为空",
+        content: "报备人员不能为空",
         showCancel: false,
         confirmText: "确定"
       })
       return;
     }
 
-    if (check == 0) {
+    if (tel == "" || tel == null) {
       wx.showModal({
         title: "数据检查",
-        content: "请核实车辆号牌",
+        content: "紧急电话不能为空",
         showCancel: false,
         confirmText: "确定"
       })
@@ -429,21 +385,19 @@ Page({
      * 插入车辆申请表
      */
     wx.request({
-      url: host + "car.do",
+      url: host + "alcohol.do",
       method: "post",
       data: {
-        method: "insertCarUnLicense",
+        method: "newAlcohol",
         dptcode: app.globalData.udptcode,//用户所属辖区code
         dptname: app.globalData.udptname,
-        driver: that.data.driver,
-        carID: carid,
-        driverid: app.globalData.openid,
-        reason: that.data.reason,
+        uname: that.data.uname,
+        tel:that.data.tel,
+        openid: app.globalData.openid,
+        partner: that.data.partner,
+        reason: that.data.reasonArray[that.data.reasonID],
         jobtitle: that.data.array[that.data.index],
         jobcode: that.data.arrayID[that.data.index],
-        _jobcode: that.data._jobcode,
-        leader: that.data.leader,
-        leaderID: that.data.leaderID
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -458,39 +412,9 @@ Page({
             duration: 2000
           })
           that.setData({
-            inCar: false,
-            usetime: res.data.usetime,
-            jobtitle: that.data.array[that.data.index],
-            cstatus: 1
+            inAlcohol: false,
           });
           that.refresh();
-        } else if (result == 3) {  //判断驾驶身份未审核
-          wx.showModal({
-            title: "身份审核",
-            content: "驾驶员身份未备案，请前往审核",
-            showCancel: false,
-            confirmText: "确定",
-            success: function (res) {
-              if (res.confirm) {
-                wx.navigateTo({
-                  url: '../new/index',
-                })
-              }
-            }
-          })
-        } else if (result == -1) {
-          wx.showModal({
-            title: "身份审核",
-            content: "资料已提交，等待审核",
-            showCancel: false,
-            confirmText: "确定"
-          })
-        } else {
-          wx.showToast({
-            title: "申请提交失败",
-            image: "../../../image/warning.png",
-            duration: 2000
-          })
         }
       },
       fail: function (res) {
@@ -507,12 +431,13 @@ Page({
   cancelCar: function () {
     var that = this;
     var host = app.globalData.host;
+    console.log(that.data.alcohol.aid)
     wx.request({
-      url: host + "car.do",
+      url: host + "alcohol.do",
       method: "post",
       data: {
-        method: "delayCarLicense",
-        openid: app.globalData.openid
+        method: "delay",
+        id: that.data.alcohol.aid
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -522,22 +447,21 @@ Page({
         if (result == 0) {
           wx.showModal({
             title: "操作异常",
-            content: "请检查网络或重启程序,错误代码：CAR_DELAY",
+            content: "请检查网络或重启程序,错误代码：ALCOHOL_DELAY",
             showCancel: false,
             confirmText: "确定"
           })
         } else {
           wx.showToast({
-            title: "取消车辆申请",
+            title: "取消饮酒申请",
             icon: "success",
             duration: 2000
           })
           that.setData({
-            inCar: true,
-            carid: "云",
-            hideLeader: 0,
-            check: 0,
-            _jobcode: 0
+            inAlcohol: true,
+            partner: "",
+            reasonID:0,
+            jobcode: 0
           });
           that.refresh();
         }
@@ -559,55 +483,27 @@ Page({
     //通过正则表达式，仅能输入数字、英文、中文。
     _title = _title.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '');
     this.setData({
-      driver: _title
+      uname: _title
     });
   },
   //修改用车信息
   keyCar: function (e) {
     var that = this;
     var host = app.globalData.host;
-    var carnumber = e.detail.value;
+    var partner = e.detail.value;
     //清除空格和回车
-    carnumber = carnumber.replace(/[ ]/g, "");    //去掉空格
-    carnumber = carnumber.replace(/[\r\n]/g, ""); //去掉回车换行
-    //查询后台
-    var dptcode = app.globalData.udptcode;
-    wx.request({
-      url: host + "car.do",
-      method: "post",
-      data: {
-        method: "checkCar",
-        carnumber: carnumber,
-        dptcode: dptcode
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        that.setData({
-          automatic: res.data,
-          note: res.data.length,
-          check: 0
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：duty_GETRECORDSLIST," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
+    partner = partner.replace(/[ ]/g, "");    //去掉空格
+    partner = partner.replace(/[\r\n]/g, ""); //去掉回车换行
+    that.setData({
+      partner: partner
     });
-
   },
   //修改用车原因信息
   keyReason: function (e) {
     var _title = e.detail.value;
     //通过正则表达式，仅能输入数字、英文、中文。
-    _title = _title.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5]/g, '');
     this.setData({
-      reason: _title
+      tel: _title
     });
   },
   /**
@@ -742,7 +638,7 @@ Page({
     var host = app.globalData.host;
     wx.showModal({
       title: "操作提示",
-      content: "已经返回营区?",
+      content: "已经安全返回?",
       showCancel: true,
       confirmText: "确定",
       cancelText: "取消",
@@ -750,50 +646,12 @@ Page({
       success: function (res) {
         if (res.confirm) {
           //更新车辆状态
-          // wx.request({
-          //   url: host + "car.do",
-          //   method: "post",
-          //   data: {
-          //     method: "updateCarStatus",
-          //     user: that.data.driver,
-          //     carid: that.data.carid,
-          //     isUse: 0,
-          //   },
-          //   header: {
-          //     'content-type': 'application/x-www-form-urlencoded'
-          //   },
-          //   success: function (res) {
-          //     var result = res.data.result;
-          //     if (result == 0) {
-          //       wx.showModal({
-          //         title: "操作异常",
-          //         content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE",
-          //         showCancel: false,
-          //         confirmText: "确定"
-          //       })
-          //     }else{
-
-          //     }
-          //   },
-          //   fail: function (res) {
-          //     wx.showModal({
-          //       title: "数据异常",
-          //       content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE," + res.errMsg,
-          //       showCancel: false,
-          //       confirmText: "确定"
-          //     })
-          //   }
-          // });
-          //确定车辆外出
           wx.request({
-            url: host + "car.do",
+            url: host + "alcohol.do",
             method: "post",
             data: {
-              method: "carStatusLicense",
-              openid: app.globalData.openid,
-              cid: cid,
-              cstatus: 4,
-              carid: that.data.carid
+              method: "back",
+              id:that.data.alcohol.aid
             },
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -803,22 +661,16 @@ Page({
               if (result == 0) {
                 wx.showModal({
                   title: "操作异常",
-                  content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE",
+                  content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE",
                   showCancel: false,
                   confirmText: "确定"
                 })
-              } else {
-                wx.showToast({
-                  title: "完成车辆状态更新",
-                  icon: "success",
-                  duration: 2000
-                });
+              }else{
                 that.setData({
-                  inCar: true,
-                  carid: "云",
-                  hideLeader: 0,
-                  check: 0,
-                  _jobcode: 0
+                  inAlcohol: true,
+                  partner: "",
+                  reasonID: 0,
+                  jobcode: 0
                 });
                 that.refresh();
               }
@@ -826,7 +678,7 @@ Page({
             fail: function (res) {
               wx.showModal({
                 title: "数据异常",
-                content: "请检查网络或重启程序,错误代码：CAR_STATUSLICENSE," + res.errMsg,
+                content: "请检查网络或重启程序,错误代码：CAR_CONFIRMLICENSE," + res.errMsg,
                 showCancel: false,
                 confirmText: "确定"
               })
@@ -839,163 +691,9 @@ Page({
     })
   },
   refresh: function () {
-    var that = this;
-    var host = app.globalData.host;//默认系统地址
-    var udptcode = app.globalData.udptcode;//用户单位id
-    var openid = app.globalData.openid;//用户的id
-    var uname = app.globalData.uname;
-    that.setData({
-      driver: uname,
-      cars: [],
-      check: 0
-    });
-    /** 
-     * 获取系统信息 
-     */
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          defaultHeight: res.windowHeight,
-          winHeight: res.windowHeight
-        });
-      }
-    });
-    /**
-     * 获取车辆审批列表
-     */
-    wx.request({
-      url: host + "car.do",
-      method: "post",
-      data: {
-        method: "getCarLicenseList",
-        dptcode: app.globalData.udptcode,
-        page: that.data.cars.length,
-        pagesize: that.data.pagesize
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        that.setData({
-          cars: res.data
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      },
-      complete: function (res) {
-        that.setData({
-          loadShow: false
-        });
-      }
-    });
-    /***
-     * 查询是否有已经提交的用车申请
-     */
-    wx.request({
-      url: host + "car.do",
-      method: "post",
-      data: {
-        method: "getCarLicense",
-        openid: app.globalData.openid
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var result = res.data.result;
-        var car = res.data.car;
-        if (result > 0) {
-          that.setData({
-            inCar: false,
-            driver: car.driver,
-            carid: car.carid,
-            reason: car.reason,
-            usetime: car.usetime,
-            jobtitle: car.jobtitle,
-            cstatus: car.cstatus,
-            leader: car.leader,
-            cid: car.cid
-          });
-        }
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
-    /**
-     * 获取审批等级列表
-     */
-    var job = app.globalData.job;
-    that.setData({
-      job: app.globalData.job
-    })
-    wx.request({
-      url: host + "car.do",
-      method: "post",
-      data: {
-        method: "getJobList",
-        job: job
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function (res) {
-        var array = [];
-        var arrayID = [];
-        var temp = res.data;
-        for (var bt in temp) {
-          array.push(temp[bt].jtitle);
-          arrayID.push(temp[bt].jobcode);
-        }
-        that.setData({
-          array: array,
-          arrayID: arrayID
-        });
-      },
-      fail: function (res) {
-        wx.showModal({
-          title: "数据异常",
-          content: "请检查网络或重启程序,错误代码：WORK_GETBRIEF," + res.errMsg,
-          showCancel: false,
-          confirmText: "确定"
-        })
-      }
-    });
-    that.setData({
-      csize: that.data.cars.length * 125
-    });
-    if (that.data.csize > that.data.defaultHeight) {
-      that.setData({
-        defaultHeight: that.data.csize + that.data.headerHeight
-      });
-    }
+    this.onLoad();
   },
-  /**
-   * 下拉刷新
-   */
-  onPullDownRefresh: function () {
-    this.refresh();
-    wx.stopPullDownRefresh({
-      complete: function (res) {
-        wx.showToast({
-          title: "刷新成功",
-          image: "../../../image/ok2.png",
-          duration: 2000
-        })
-      }
-    });
-  },
+
   updateCar: function (e) {
     var that = this;
     var isUse = e.currentTarget.dataset.isuse;

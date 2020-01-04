@@ -11,21 +11,25 @@
 <swiper current="{{currentTab}}" class="swiper-box" style="height:{{defaultHeight}}px" duration="300" bindchange="bindChange">
   <!-- 一日生活制度 -->
   <swiper-item>
-    <view class="empty_item" wx:if="{{cars.length==0}}">
+    <view class="empty_item" wx:if="{{alcohols.length==0}}">
       <image src="../../../image/empty.png"></image>
       <view>暂时无数据</view>
     </view>
 
 
-    <navigator class="home_note" wx:for="{{cars}}" wx:key="{{item.cid}}" url="../detail/index?id={{item.cid}}">
+    <navigator class="home_note" wx:for="{{alcohols}}" wx:key="{{item.aid}}" url="../detail/index?id={{item.aid}}">
       <view class="icon-box2">
         <view class="note_icon_div">
           <view class="note_icon_div2">
-            <view wx:if="{{item.cstatus==1}}">
+            <view wx:if="{{item.cstatus==0}}">
               <image class="note_icon" src="../../../image/drinkProcess.png" />
               <view style='font-size:9pt;color:#888'>审批中</view>
             </view>
-            <view wx:if="{{item.cstatus!=1}}">
+            <view wx:if="{{item.cstatus==2}}">
+              <image class="note_icon" src="../../../image/refuse.png" />
+              <view style='font-size:9pt;color:#888'>已拒绝</view>
+            </view>
+            <view wx:if="{{item.cstatus>2}}">
               <image class="note_icon" src="../../../image/drinkPass.png" />
               <view style='font-size:9pt;color:#888'>已审批</view>
             </view>
@@ -34,9 +38,9 @@
         <view class="icon-box-ctn">
           <view class="icon-box-title">{{item.dptname}}</view>
           <view class="icon-box-desc2">
-            <text>申请时间：{{item.usetime}}\n</text>
-            <text>申请人员：{{item.driver}}\n</text>
-            <text>审批级别：支队领导\n</text>
+            <text>申请时间：{{item.creatime}}\n</text>
+            <text>申请人员：{{item.uname}}\n</text>
+            <text>审批级别：{{item.jobtitle}}\n</text>
             <text>申请原因：{{item.reason}}</text>
           </view>
         </view>
@@ -53,7 +57,7 @@
   <!-- 用车申请 -->
   <swiper-item>
     <!-- 提交界面 -->
-    <view class="home_note2" wx:if="{{inCar}}">
+    <view class="home_note2" wx:if="{{inAlcohol}}">
       <view class="car_title">饮酒报备申请表</view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
@@ -61,17 +65,17 @@
           <text>报备人员</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入姓名" value='{{driver}}' placeholder-style="color:#888" type='text' bindblur="keyDriver">
+          <input placeholder="请输入姓名" value='{{uname}}' placeholder-style="color:#888" type='text' bindblur="keyDriver">
           </input>
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
-          <text>陪同人员</text>
+          <text>同行人员</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入陪同人员姓名" value="{{carid}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
+          <input placeholder="请输入陪同人员姓名" value="{{partner}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
           </input>
         </view>
       </view>
@@ -92,7 +96,7 @@
           <text>紧急电话</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入紧急联系电话" value="{{reason}}" type="text" placeholder-style="color:#888" bindinput="keyReason">
+          <input placeholder="请输入紧急联系电话" value="{{tel}}" type="number" placeholder-style="color:#888" bindinput="keyReason">
           </input>
         </view>
       </view>
@@ -107,32 +111,20 @@
           </picker>
         </view>
       </view>
-      <view class="list_flex-wrp2 {{hideLeader ? '' : 'hideItemCss'}}" style="flex-direction:row;">
-        <view class="flex-item item-25">
-          <image src="../../../image/rescuer.png" class="tip2" />
-          <text>审批领导</text>
-        </view>
-        <view class="flex-item item-50">
-          {{leader}}
-        </view>
-        <view class="flex-item item-25" style='font-size:9pt;'>
-          [指定审批领导]
-        </view>
-      </view>
       <view style="padding:5px;background-color:#fff;">
         <button type="primary" style="font-size:10pt;margin-top:0;margin-bottom:0;" bindtap="submitCar">提交</button>
       </view>
       <view style='background-color:#fff;padding:5px;font-size:10pt;color:#888;'>
         <text>报备说明:\n</text>
         <text>(一)支队领导、部门领导、大队领导可以对下级进行饮酒审批，其余级别无法审批。\n</text>
-        <text>(二)如有随行人员需要报备，可将人员姓名填写在“陪同人员”栏。\n</text>
+        <text>(二)如有同行人员需要报备，可将人员姓名填写在“陪同人员”栏。\n</text>
         <text>(三)为确保报备人员安全和紧急情况下能及时联系，请填写紧急联系电话。\n</text>
         <text>(四)报备人员安全返回后，请及时反馈情况。\n</text>
       </view>
     </view>
     <!-- 提交界面 -->
     <!-- 待审界面 -->
-    <view class="home_note2" wx:if="{{!inCar}}">
+    <view class="home_note2" wx:if="{{!inAlcohol}}">
       <view class="car_title">饮酒报备审批单</view>
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
@@ -140,16 +132,16 @@
           <text>报备人员</text>
         </view>
         <view class="flex-item item-75">
-          {{driver}}
+          {{alcohol.uname}}
         </view>
       </view>
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
-          <text>陪同人员</text>
+          <text>同行人员</text>
         </view>
         <view class="flex-item item-75">
-          {{carid}}
+          {{alcohol.partner}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -158,7 +150,7 @@
           <text>申请原因</text>
         </view>
         <view class="flex-item item-75">
-          {{reason}}
+          {{alcohol.reason}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -167,7 +159,7 @@
           <text>申请日期</text>
         </view>
         <view class="flex-item item-75">
-          {{usetime}}
+          {{alcohol.creatime}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -176,7 +168,7 @@
           <text>紧急电话</text>
         </view>
         <view class="flex-item item-75">
-          {{usetime}}
+          {{alcohol.tel}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -185,7 +177,7 @@
           <text>审批等级</text>
         </view>
         <view class="flex-item item-75">
-          {{jobtitle}}
+          {{alcohol.jobtitle}}
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -193,19 +185,40 @@
           <text>审批结果</text>
         </view>
         <view class="flex-item item-75 car_result">
-          <image wx:if="{{cstatus==1}}" src="../../../image/processing.png"></image>
-          <image wx:if="{{cstatus==2}}" src="../../../image/delay.png"></image>
-          <image wx:if="{{cstatus>2 && cstatus<5}}" src="../../../image/pass.png"></image>
-          <text style="color:#888;margin-right:5px;">签名</text>{{leader}}
+          <image wx:if="{{alcohol.cstatus==3}}" src="../../../image/pass.png"></image>
+          <image wx:if="{{alcohol.cstatus==0}}" src="../../../image/processing.png"></image>
+          <image wx:if="{{alcohol.cstatus==2}}" src="../../../image/delay.png"></image>
+          <text style="color:#888;margin-right:5px;">签名</text>{{alcohol.leader}}
         </view>
       </view>
-      <view style='background-color:#fff;padding:5px;font-size:10pt;color:#2782D7;'>
-        <text>用车提醒:\n</text>
-        <text>请勿酒后驾驶，注意！\n</text>
-      </view>
       <view class="list_flex-wrp2">
-        <button wx:if="{{cstatus<=2}}" type="warn" style="font-size:10pt;" bindtap="cancelCar" data-cid="{{cid}}">取消用车</button>
-        <button wx:if="{{cstatus>=3}}" type="primary" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carBack">确认返回</button>
+        <button wx:if="{{alcohol.cstatus==0}}" type="warn" style="font-size:10pt;" bindtap="cancelCar" data-cid="{{cid}}">取消审批</button>
+        <button wx:if="{{alcohol.cstatus==3}}" type="primary" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carBack">安全返回</button>
+      </view>
+
+      <view class="{{show!=0?'showItem':'hide'}}">
+      </view>
+      <view class="{{show!=0?'showRules':'hide'}}">
+        <view class="item" style='border:0;border-bottom:1px solid #969696;'>
+          <view class="item-20" style='line-height:25px;align-items: center;text-align:center;margin-top:10px;'>
+            <image src="../../../image/rules.png" style='width:20px;height:20px;align-items: center;'></image>
+          </view>
+          <view class="item-60 rulesTitle">
+            安全提醒
+          </view>
+          <view class="item-20" style='line-height:25px;text-align:center;margin-top:10px;'>
+            <image src="../../../image/delete.png" style='width:20px;height:20px;' bindtap='closeRules'></image>
+          </view>
+        </view>
+        <view style='font-size:10pt;padding:15px;line-height:25px;'>
+          <text>一、饮酒后切勿驾驶机动车，及时联系代驾；\n</text>
+          <text>二、饮酒危害身体健康，切勿过度饮酒，酗酒；\n</text>
+          <text>三、饮酒后切勿游泳及其他激烈运动；\n</text>
+          <text>四、服用药物后请勿饮酒；\n</text>
+          <text>五、饮酒后若身体不适，请尽快到医院就诊；\n</text>
+          <text>六、请确保同行人员安全，尽量避免单独行动；\n</text>
+          <text>七、饮酒后请保持克制，切勿与他人发生争执；\n</text>
+        </view>
       </view>
     </view>
     <!-- 待审界面 -->

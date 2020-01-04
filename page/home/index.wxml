@@ -106,11 +106,11 @@
             </navigator>
           </view>
           <view class="flex-item home_title home_text">
-            <navigator url="../phone/index/index">
+            <navigator url="../drink/list/index">
               <view class="home_img">
-                <image class="home_image" src="../../image/_phone.png" />
+                <image class="home_image" src="../../image/_alcohol.png" />
               </view>
-              <text>联络电话</text>
+              <text>饮酒报备</text>
             </navigator>
           </view>
           <view class="flex-item home_title home_text">
