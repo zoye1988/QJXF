@@ -38,19 +38,19 @@
     <view class="items borderbtm">
       <view class="item-40 bright">指战员(人)</view>
       <view class="item-60">
-        {{item.fireman}}
+        <input type='number' data-dptcode='{{item.dptcode}}' value='{{item.fireman}}' bindinput='firemanDuty'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">专职队员(人)</view>
       <view class="item-60">
-        {{item.amatuer}}
+        <input type='number' data-dptcode='{{item.dptcode}}' value='{{item.amatuer}}' bindinput='amatuerDuty'></input>
       </view>
     </view>
     <view class="items borderbtm">
       <view class="item-40 bright">公差休假(人)</view>
       <view class="item-60">
-        {{item.holiday}}
+         <input type='number' data-dptcode='{{item.dptcode}}' value='{{item.holiday}}' bindinput='holidayDuty'></input>
       </view>
     </view>
     <view class="items borderbtm">

@@ -307,5 +307,50 @@ Page({
     that.setData({
       duty: duty
     })
-  }
+  },
+  firemanDuty:function(e){
+    var that = this;
+    var _title = e.detail.value;
+    var dptcode = e.currentTarget.dataset.dptcode;
+    var duty=that.data.duty;
+    for(var i=0;i<duty.length;i++){
+      if(dptcode==duty[i].dptcode){
+        duty[i].fireman = _title;
+        break;
+      }
+    }
+    that.setData({
+      duty: duty
+    })
+  },
+  amatuerDuty:function(e){
+    var that = this;
+    var _title = e.detail.value;
+    var dptcode = e.currentTarget.dataset.dptcode;
+    var duty=that.data.duty;
+    for(var i=0;i<duty.length;i++){
+      if(dptcode==duty[i].dptcode){
+        duty[i].amatuer = _title;
+        break;
+      }
+    }
+    that.setData({
+      duty: duty
+    })
+  },
+  holidayDuty:function(e){
+    var that = this;
+    var _title = e.detail.value;
+    var dptcode = e.currentTarget.dataset.dptcode;
+    var duty=that.data.duty;
+    for(var i=0;i<duty.length;i++){
+      if(dptcode==duty[i].dptcode){
+        duty[i].holiday = _title;
+        break;
+      }
+    }
+    that.setData({
+      duty: duty
+    })
+  },
 })

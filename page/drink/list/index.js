@@ -19,7 +19,13 @@ Page({
       "家人来访",
       "婚丧宴请"
     ],
+    iseye:0,
+    eyes: [
+      { name: '公开', value: '0', checked: 'true'},
+      { name: '不公开', value: '1'},
+    ],
     reasonID:0,
+    time:"17:30",
     uname:"",
     openid:"",
     partner:"",
@@ -145,13 +151,21 @@ Page({
       },
       success: function (res) {
         var alcohol = res.data.alcohol;
-        if (alcohol.cstatus == 3 || alcohol.cstatus == 0) {
+        if(alcohol.aid==0){
           that.setData({
-            show:alcohol.aid,
-            inAlcohol: false,
-            alcohol: alcohol
+            inAlcohol: true
           });
+        }else{
+          console.log("test");
+          if (alcohol.cstatus == 3 ) {
+            that.setData({
+              show: alcohol.aid,
+              inAlcohol: false,
+              alcohol: alcohol
+            });
+          }
         }
+        
       },
       fail: function (res) {
         wx.showModal({
@@ -216,7 +230,6 @@ Page({
      * 滑动切换tab 
      */
   bindChange: function (e) {
-
     var that = this;
     that.setData({ currentTab: e.detail.current });
     var current = e.detail.current;
@@ -233,6 +246,16 @@ Page({
     this.setData({
       defaultHeight: size
     });
+  },
+
+  /***
+   * 报备时间选择
+   */
+  bindTimeChange:function(e){
+    var that = this;
+    this.setData({
+      time: e.detail.value
+    })
   },
   /** 
    * 点击tab切换 
@@ -268,6 +291,8 @@ Page({
       index: e.detail.value
     })
   },
+
+  
 
   drinkPickerChange: function (e) {
     var that = this;
@@ -348,19 +373,7 @@ Page({
     var host = app.globalData.host;
     var uname=that.data.uname;
     var tel=that.data.tel;
-    /**
-     * 接收信息
-     */
-    wx.requestSubscribeMessage({
-      tmplIds: ['6oxQwPW_baN5AVhfio2ZQFFSEicNHiHP95uP36adKIM'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
-      success(res) {
-        console.log('已授权接收订阅消息')
-      },
-      fail(res) {
-        console.log("error");
-      }
-    });
-
+    
     if (uname == "" || uname == null) {
       wx.showModal({
         title: "数据检查",
@@ -395,9 +408,11 @@ Page({
         tel:that.data.tel,
         openid: app.globalData.openid,
         partner: that.data.partner,
+        time:that.data.time,
         reason: that.data.reasonArray[that.data.reasonID],
         jobtitle: that.data.array[that.data.index],
         jobcode: that.data.arrayID[that.data.index],
+        iseye:that.data.iseye
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -414,7 +429,26 @@ Page({
           that.setData({
             inAlcohol: false,
           });
+          /**
+          * 接收信息
+          */
+          wx.requestSubscribeMessage({
+            tmplIds: ['6oxQwPW_baN5AVhfio2ZQFFSEicNHiHP95uP36adKIM'], // 此处可填写多个模板 ID，但低版本微信不兼容只能授权一个
+            success(res) {
+              console.log('已授权接收订阅消息')
+            },
+            fail(res) {
+              console.log("error");
+            }
+          });
           that.refresh();
+        }else if(result==2){
+          wx.showModal({
+            title: "违规提示",
+            content: "申请人员处于值班中，无法审批",
+            showCancel: false,
+            confirmText: "确定"
+          })
         }
       },
       fail: function (res) {
@@ -431,7 +465,6 @@ Page({
   cancelCar: function () {
     var that = this;
     var host = app.globalData.host;
-    console.log(that.data.alcohol.aid)
     wx.request({
       url: host + "alcohol.do",
       method: "post",
@@ -694,6 +727,11 @@ Page({
     this.onLoad();
   },
 
+  radioChange:function(e){
+    this.setData({
+      iseye: e.detail.value
+    })
+  },
   updateCar: function (e) {
     var that = this;
     var isUse = e.currentTarget.dataset.isuse;

@@ -4,7 +4,7 @@
     报备记录
   </view>
   <view class="swiper-tab-list item_border {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
-    我的申请
+    我的报备
   </view>
 </view>
 
@@ -15,33 +15,23 @@
       <image src="../../../image/empty.png"></image>
       <view>暂时无数据</view>
     </view>
-
-
     <navigator class="home_note" wx:for="{{alcohols}}" wx:key="{{item.aid}}" url="../detail/index?id={{item.aid}}">
       <view class="icon-box2">
         <view class="note_icon_div">
           <view class="note_icon_div2">
-            <view wx:if="{{item.cstatus==0}}">
-              <image class="note_icon" src="../../../image/drinkProcess.png" />
-              <view style='font-size:9pt;color:#888'>审批中</view>
-            </view>
-            <view wx:if="{{item.cstatus==2}}">
-              <image class="note_icon" src="../../../image/refuse.png" />
-              <view style='font-size:9pt;color:#888'>已拒绝</view>
-            </view>
-            <view wx:if="{{item.cstatus>2}}">
+            <view>
               <image class="note_icon" src="../../../image/drinkPass.png" />
-              <view style='font-size:9pt;color:#888'>已审批</view>
+              <view style='font-size:9pt;color:#888'>已报备</view>
             </view>
           </view>
         </view>
         <view class="icon-box-ctn">
           <view class="icon-box-title">{{item.dptname}}</view>
           <view class="icon-box-desc2">
-            <text>申请时间：{{item.creatime}}\n</text>
-            <text>申请人员：{{item.uname}}\n</text>
-            <text>审批级别：{{item.jobtitle}}\n</text>
-            <text>申请原因：{{item.reason}}</text>
+            <text>报备时间：{{item.creatime}}\n</text>
+            <text>报备人员：{{item.uname}}\n</text>
+            <text>报备原因：{{item.reason}}\n</text>
+            <text>可见级别：{{item.jobtitle}}</text>
           </view>
         </view>
         <view class="note_icon_btn">
@@ -58,7 +48,7 @@
   <swiper-item>
     <!-- 提交界面 -->
     <view class="home_note2" wx:if="{{inAlcohol}}">
-      <view class="car_title">饮酒报备申请表</view>
+      <view class="car_title">饮酒报备表</view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
@@ -71,22 +61,35 @@
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
-          <image src="../../../image/person.png" class="tip2" />
-          <text>同行人员</text>
+          <image src="../../../image/address.png" class="tip2" />
+          <text>报备地点</text>
         </view>
         <view class="flex-item item-75">
-          <input placeholder="请输入陪同人员姓名" value="{{partner}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
+          <input placeholder="请输入报备地点" value="{{partner}}" type='text' placeholder-style="color:#888" bindinput="keyCar">
           </input>
         </view>
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/other.png" class="tip2" />
-          <text>申请理由</text>
+          <text>报备理由</text>
         </view>
         <view class="flex-item item-75">
           <picker bindchange="drinkPickerChange" value="{{reasonID}}" range="{{reasonArray}}">
             <view>{{reasonArray[reasonID]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/times.png" class="tip2" />
+          <text>报备时间</text>
+        </view>
+        <view class="flex-item item-75">
+          <picker mode="time" value="{{time}}" start="17:30" end="23:59" bindchange="bindTimeChange">
+            <view class="picker">
+              当日 {{time}}
+            </view>
           </picker>
         </view>
       </view>
@@ -103,7 +106,7 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/leader2.png" class="tip2" />
-          <text>审批等级</text>
+          <text>报备等级</text>
         </view>
         <view class="flex-item item-75">
           <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -111,15 +114,29 @@
           </picker>
         </view>
       </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <image src="../../../image/eye.png" class="tip2" />
+          <text>是否可见</text>
+        </view>
+        <view class="flex-item item-75">
+          <radio-group class="radio-group" bindchange="radioChange">
+                <radio class="radio" wx:for-items="{{eyes}}" wx:key="name" value="{{item.value}}" checked="{{item.checked}}">
+                    <text>{{item.name}}</text>
+                </radio>
+          </radio-group>
+        </view>
+      </view>
       <view style="padding:5px;background-color:#fff;">
         <button type="primary" style="font-size:10pt;margin-top:0;margin-bottom:0;" bindtap="submitCar">提交</button>
       </view>
       <view style='background-color:#fff;padding:5px;font-size:10pt;color:#888;'>
         <text>报备说明:\n</text>
-        <text>(一)支队领导、部门领导、大队领导可以对下级进行饮酒审批，其余级别无法审批。\n</text>
-        <text>(二)如有同行人员需要报备，可将人员姓名填写在“陪同人员”栏。\n</text>
-        <text>(三)为确保报备人员安全和紧急情况下能及时联系，请填写紧急联系电话。\n</text>
-        <text>(四)报备人员安全返回后，请及时反馈情况。\n</text>
+        <text>(一)各级各类人员（包括政府专职消防员和消防文员）在不违反禁令情况下确需饮酒的请填写报备表格。\n</text>
+        <text>(二)以下情况将无法审批：支队、大队、中队人员值班、备勤期间以及工作日“八小时”以内。执勤公务期间（包含开会、培训、比武、调研、督察、考核、督导、检查等）的24小时\n</text>
+        <text>(三)按照一般人员向直接领导报备、部门（处室）负责人向分管领导报备、副职向正职报备、支队级以上单位（含支队）党委书记和副数据相互报备，大队主官向支队值班领导报备。双主官不得同时饮酒。\n</text>
+        <text>(四)“报备地点”请填写所去地点具体名称或地址。\n</text>
+        <text>(五)为确保报备人员安全和紧急情况下能及时联系，请填写紧急联系电话。\n</text>
       </view>
     </view>
     <!-- 提交界面 -->
@@ -138,7 +155,7 @@
       <view class="list_flex-wrp" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/person.png" class="tip2" />
-          <text>同行人员</text>
+          <text>报备地点</text>
         </view>
         <view class="flex-item item-75">
           {{alcohol.partner}}
@@ -147,7 +164,7 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/other.png" class="tip2" />
-          <text>申请原因</text>
+          <text>报备原因</text>
         </view>
         <view class="flex-item item-75">
           {{alcohol.reason}}
@@ -156,7 +173,7 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/date.png" class="tip2" />
-          <text>申请日期</text>
+          <text>报备日期</text>
         </view>
         <view class="flex-item item-75">
           {{alcohol.creatime}}
@@ -174,7 +191,7 @@
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
           <image src="../../../image/leader2.png" class="tip2" />
-          <text>审批等级</text>
+          <text>报备等级</text>
         </view>
         <view class="flex-item item-75">
           {{alcohol.jobtitle}}
@@ -182,17 +199,23 @@
       </view>
       <view class="list_flex-wrp2" style="flex-direction:row;">
         <view class="flex-item item-25">
-          <text>审批结果</text>
+          <image src="../../../image/eye.png" class="tip2" />
+          <text>是否可见</text>
+        </view>
+        <view class="flex-item item-75">
+          {{alcohol.isView==0?'可见':'不可见'}}
+        </view>
+      </view>
+      <view class="list_flex-wrp2" style="flex-direction:row;">
+        <view class="flex-item item-25">
+          <text>领导意见</text>
         </view>
         <view class="flex-item item-75 car_result">
-          <image wx:if="{{alcohol.cstatus==3}}" src="../../../image/pass.png"></image>
-          <image wx:if="{{alcohol.cstatus==0}}" src="../../../image/processing.png"></image>
-          <image wx:if="{{alcohol.cstatus==2}}" src="../../../image/delay.png"></image>
+          {{alcohol.leader!=''?'请注意安全，遵守相关纪律规定，返回及时报告':''}}
           <text style="color:#888;margin-right:5px;">签名</text>{{alcohol.leader}}
         </view>
       </view>
       <view class="list_flex-wrp2">
-        <button wx:if="{{alcohol.cstatus==0}}" type="warn" style="font-size:10pt;" bindtap="cancelCar" data-cid="{{cid}}">取消审批</button>
         <button wx:if="{{alcohol.cstatus==3}}" type="primary" style="font-size:10pt;" data-cid="{{cid}}" bindtap="carBack">安全返回</button>
       </view>
 
@@ -211,13 +234,16 @@
           </view>
         </view>
         <view style='font-size:10pt;padding:15px;line-height:25px;'>
-          <text>一、饮酒后切勿驾驶机动车，及时联系代驾；\n</text>
-          <text>二、饮酒危害身体健康，切勿过度饮酒，酗酒；\n</text>
-          <text>三、饮酒后切勿游泳及其他激烈运动；\n</text>
-          <text>四、服用药物后请勿饮酒；\n</text>
-          <text>五、饮酒后若身体不适，请尽快到医院就诊；\n</text>
-          <text>六、请确保同行人员安全，尽量避免单独行动；\n</text>
-          <text>七、饮酒后请保持克制，切勿与他人发生争执；\n</text>
+          <text>一、请遵守中央八项管理规定和消防救援局“从严管酒治酒十个严禁”要求；\n</text>
+          <text>二、不得着制服在公共场所饮酒；\n</text>
+          <text>三、饮酒后切勿驾驶机动车辆；\n</text>
+          <text>四、饮酒后不得参与可能影响公正执行的公务活动；\n</text>
+          <text>五、饮酒后不得参与影响消防救援队伍形象的聚餐和饮酒；\n</text>
+          <text>六、饮酒危害身体健康，切勿过度饮酒，酗酒；\n</text>
+          <text>七、饮酒后切勿游泳及其他激烈运动；\n</text>
+          <text>八、服用药物后请勿饮酒，饮酒后若身体不适，请尽快到医院就诊；\n</text>
+          <text>九、请确保同行人员安全，尽量避免单独行动，归家或归队后要及时向报备领导反馈信息；\n</text>
+          <text>十、请自觉维护消防救援队伍的良好形象；\n</text>
         </view>
       </view>
     </view>

@@ -11,7 +11,7 @@
   <view class="list_flex-wrp" style="flex-direction:row;">
     <view class="flex-item item-25">
       <image src="../../../image/person.png" class="tip2" />
-      <text>用车人员</text>
+      <text>申请人员</text>
     </view>
     <view class="flex-item item-75">
       {{alcohol.uname}}
@@ -19,8 +19,8 @@
   </view>
   <view class="list_flex-wrp" style="flex-direction:row;">
     <view class="flex-item item-25">
-      <image src="../../../image/person.png" class="tip2" />
-      <text>同行人员</text>
+      <image src="../../../image/loc.png" class="tip2" />
+      <text>报备地点</text>
     </view>
     <view class="flex-item item-75">
       {{alcohol.partner}}
@@ -47,7 +47,7 @@
   <view class="list_flex-wrp2" style="flex-direction:row;">
     <view class="flex-item item-25">
       <image src="../../../image/leader2.png" class="tip2" />
-      <text>审批等级</text>
+      <text>可见等级</text>
     </view>
     <view class="flex-item item-75">
       {{alcohol.jobtitle}}
@@ -56,10 +56,10 @@
   <view class="list_flex-wrp2" style="flex-direction:row;">
     <view class="flex-item item-25">
       <image src="../../../image/rescuer.png" class="tip2" />
-      <text>签批领导</text>
+      <text>领导意见</text>
     </view>
     <view class="flex-item item-75">
-      {{alcohol.leader}}
+     {{alcohol.leader!=''?alcohol.leader+'：请注意安全，遵守相关纪律规定，返回及时报告':''}}
     </view>
   </view>
   <view class="list_flex-wrp2" style="flex-direction:row;">
@@ -77,24 +77,15 @@
       <text>当前状态</text>
     </view>
     <view class="flex-item item-75">
-      <view wx:if="{{alcohol.cstatus==0}}">
-        审批中
-      </view>
-      <view wx:if="{{alcohol.cstatus==2}}">
-        未通过
-      </view>
-      <view wx:if="{{alcohol.cstatus==3}}">
-        已审批
-      </view>
-      <view wx:if="{{alcohol.cstatus==4}}">
-        已返回
-      </view>
+      已报备
     </view>
   </view>
-  <view class="list_flex-wrp2" wx:if="{{alcohol.cstatus==0 && alcohol.jobcode==job}}">
-    <block wx:if="{{alcohol.leaderid=='' || alcohol.leaderid==openid}}">
-      <button type="primary" style="font-size:10pt;" bindtap="carPassBtn" data-cid="{{alcohol.aid}}">同意审批</button>
-      <button type="warn" style="font-size:10pt;" data-cid="{{alcohol.aid}}" bindtap="carDelayBtn">拒绝审批</button>
-    </block>
+  <view class="list_flex-wrp2" wx:if="{{alcohol.cstatus==3 && alcohol.jobcode==job}}">
+    <view wx:if="{{alcohol.leaderid=='' || alcohol.leaderid==openid}}" style="width:100%;">
+      <view style="font-size:10pt;">
+        <input type='text' placeholder="请输入领导意见">{{alcohol.suggest}}</input>
+      </view>
+      <button type="primary" style="font-size:10pt;width:100px;" bindtap="carPassBtn" data-cid="{{alcohol.aid}}">提交意见</button>
+    </view>
   </view>
 </view>

@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    alcohol:"",
-    job:"",
+    alcohol: "",
+    job: "",
     leader: "",
     leaderid: "",
     openid: "",
@@ -21,12 +21,10 @@ Page({
   onLoad: function (options) {
     var that = this;
     var id = options.id;
-    this.refresh(id,that);
+    this.refresh(id, that);
   },
 
-  
-
-  refresh: function (id,that) {
+  refresh: function (id, that) {
     that.setData({
       aid: id,
       openid: app.globalData.openid
@@ -53,17 +51,40 @@ Page({
       },
       success: function (res) {
         var alcohol = res.data.alcohol;
-        if (alcohol.aid != 0) {
-          that.setData({
-            alcohol: alcohol
-          });
-        } else {
+        var jobcode = alcohol.jobcode;
+        var openid = alcohol.openid;
+        var job = app.globalData.job;
+        var temp = 0;
+        if (alcohol.isView == 0) {
+          temp = 1;
+        }
+        if (alcohol.isView == 1 && jobcode == job) {
+          temp = 1;
+        }
+        if (alcohol.isView == 1 && openid == app.globalData.openid) {
+          temp = 1;
+        }
+        if (temp == 0) {
           wx.showModal({
             title: "系统提示",
-            content: "数据丢失或者删除",
+            content: "您无权参看此页面",
             showCancel: false,
             confirmText: "确定"
-          })
+          });
+        }
+        else {
+          if (alcohol.aid != 0) {
+            that.setData({
+              alcohol: alcohol
+            });
+          } else {
+            wx.showModal({
+              title: "系统提示",
+              content: "数据丢失或者删除",
+              showCancel: false,
+              confirmText: "确定"
+            })
+          }
         }
       },
       fail: function (res) {
@@ -106,20 +127,6 @@ Page({
   },
 
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
@@ -135,63 +142,48 @@ Page({
     var that = this;
     var aid = e.target.dataset.cid;
     var host = app.globalData.host;
-    wx.showModal({
-      title: "审批提示",
-      content: "同意饮酒申请?",
-      showCancel: true,
-      confirmText: "确定",
-      cancelText: "取消",
-      cancelColor: "#d81e06",
+    //更新车辆状态
+    //确定车辆外出
+    wx.request({
+      url: host + "alcohol.do",
+      method: "post",
+      data: {
+        method: "CheckAlcohol",
+        aid: aid,
+        leader: app.globalData.uname,
+        leaderid: app.globalData.openid,
+        code: 3
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
       success: function (res) {
-        if (res.confirm) {
-          //更新车辆状态
-          //确定车辆外出
-          wx.request({
-            url: host + "alcohol.do",
-            method: "post",
-            data: {
-              method: "CheckAlcohol",
-              aid: aid,
-              leader: app.globalData.uname,
-              leaderid: app.globalData.openid,
-              code: 3
-            },
-            header: {
-              'content-type': 'application/x-www-form-urlencoded'
-            },
-            success: function (res) {
-              var result = res.data.result;
-              if (result == 0) {
-                wx.showModal({
-                  title: "操作异常",
-                  content: "请检查网络或重启程序,错误代码：ALCOHOL_CONFIRMLICENSE",
-                  showCancel: false,
-                  confirmText: "确定"
-                })
-              } else {
-                wx.showToast({
-                  title: "完成饮酒审批",
-                  icon: "success",
-                  duration: 2000
-                });
-                that.refresh(aid, that);
-              }
-            },
-            fail: function (res) {
-              wx.showModal({
-                title: "数据异常",
-                content: "请检查网络或重启程序,错误代码：ALCOHO_CONFIRMLICENSE," + res.errMsg,
-                showCancel: false,
-                confirmText: "确定"
-              })
-            }
+        var result = res.data.result;
+        if (result == 0) {
+          wx.showModal({
+            title: "操作异常",
+            content: "请检查网络或重启程序,错误代码：ALCOHOL_CONFIRMLICENSE",
+            showCancel: false,
+            confirmText: "确定"
+          })
+        } else {
+          wx.showToast({
+            title: "已成功提交意见",
+            icon: "success",
+            duration: 2000
           });
-
-        } else if (res.cancel) {
-
+          that.refresh(aid, that);
         }
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: "数据异常",
+          content: "请检查网络或重启程序,错误代码：ALCOHO_CONFIRMLICENSE," + res.errMsg,
+          showCancel: false,
+          confirmText: "确定"
+        })
       }
-    })
+    });
   },
   /**
    * 取消审批
